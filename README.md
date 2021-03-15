@@ -2,19 +2,16 @@
 
 Aplicativo Mobile para o auxílio à unidades de saúde com o gerenciamento de consultas médicas.
 
-## Notes
+## Observações
 
-- The project is working with version 1.22.4 of the flutter and version 2.10.4 of the Dart.
+- O projeto está funcionando com a versão 2.1.0 do flutter e a versão 2.13.0 do Dart.
 
 # Getting Started
 
-This project is a starting point for a Flutter application.
+Este projeto é um ponto de partida para um aplicativo Flutter.
 
-A few resources to get you started if this is your first Flutter project:
+Alguns recursos para você começar, se este for seu primeiro projeto Flutter:
 
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [Online documentation](https://flutter.dev/docs)
