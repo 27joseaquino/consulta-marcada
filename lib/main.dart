@@ -1,4 +1,4 @@
-import 'package:consulta_marcada/pages/home_page.dart';
+import 'package:consulta_marcada/pages/home/home_page.dart';
 import 'package:consulta_marcada/ui/styles/light_theme.dart';
 import 'package:flutter/material.dart';
 

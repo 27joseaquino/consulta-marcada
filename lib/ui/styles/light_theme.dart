@@ -15,5 +15,9 @@ ThemeData lightTheme = ThemeData(
         fontWeight: FontWeight.bold,
       ),
     ),
+    iconTheme: IconThemeData(
+      color: Colors.white,
+      size: 14,
+    ),
   ),
 );
