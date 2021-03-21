@@ -1,6 +1,5 @@
 import 'package:consulta_marcada/components/custom_card.dart';
 import 'package:flutter/material.dart';
-
 import '../../ui/styles/my_colors.dart';
 
 class ListPage extends StatefulWidget {
@@ -12,12 +11,9 @@ class _ListPageState extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Lista de consultas"),
-      ),
       body: buildListview(),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Icon(Icons.add, color: Colors.white),
         onPressed: () {},
         backgroundColor: MyColors.appColors["blue"],
       ),
@@ -26,15 +22,36 @@ class _ListPageState extends State<ListPage> {
 }
 
 buildListview() {
-  return ListView(
-    children: <Widget>[
-      CustomCard(
-          patient: "Sabrinna", doctor: "Dhiana", date: "21/03/2021 às 15h"),
-      CustomCard(patient: "Sofia", doctor: "Dhiana", date: "21/03/2021 às 15h"),
-      CustomCard(patient: "Júlia", doctor: "Tarsis", date: "21/03/2021 às 15h"),
-      CustomCard(
-          patient: "Matheus", doctor: "Tarsis", date: "21/03/2021 às 15h"),
-      CustomCard(patient: "Bia", doctor: "Dhiana", date: "21/03/2021 às 15h"),
-    ],
+  return Container(
+    padding: EdgeInsets.only(top: 16, left: 10, right: 10),
+    child: ListView(
+      children: <Widget>[
+        CustomCard(
+          patient: "Sabrinna",
+          doctor: "Dhiana",
+          date: "21/03/2021 às 15h",
+        ),
+        CustomCard(
+          patient: "Sofia",
+          doctor: "Dhiana",
+          date: "21/03/2021 às 15h",
+        ),
+        CustomCard(
+          patient: "Júlia",
+          doctor: "Tarsis",
+          date: "21/03/2021 às 15h",
+        ),
+        CustomCard(
+          patient: "Matheus",
+          doctor: "Tarsis",
+          date: "21/03/2021 às 15h",
+        ),
+        CustomCard(
+          patient: "Bia",
+          doctor: "Dhiana",
+          date: "21/03/2021 às 15h",
+        ),
+      ],
+    ),
   );
 }

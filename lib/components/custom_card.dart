@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-
 import '../ui/styles/custom_text.dart';
 
 class CustomCard extends StatelessWidget {
   final String patient;
   final String doctor;
   final String date;
+
   CustomCard({
     @required this.patient,
     @required this.doctor,
@@ -15,12 +15,15 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(
-        children: [
-          buildRow("Paciente: ", patient),
-          buildRow("Médico: ", doctor),
-          buildRow("Data e hora: ", date),
-        ],
+      child: Container(
+        margin: EdgeInsets.all(10),
+        child: Column(
+          children: [
+            buildRow("Paciente: ", patient),
+            buildRow("Médico: ", doctor),
+            buildRow("Data e hora: ", date),
+          ],
+        ),
       ),
     );
   }
