@@ -1,5 +1,8 @@
 import 'package:consulta_marcada/components/custom_button.dart';
 import 'package:consulta_marcada/components/custom_text_field.dart';
+import 'package:consulta_marcada/core/utils/navigator.dart';
+import 'package:consulta_marcada/pages/home/home_page.dart';
+import 'package:consulta_marcada/ui/styles/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -8,31 +11,68 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _email = TextEditingController();
+  final _password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: Container(
-            color: Colors.white,
-            padding: const EdgeInsets.all(40.0),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  height: 150.0,
-                  child: Image.asset("logo.png", fit: BoxFit.contain),
-                ),
-                SizedBox(height: 40.0),
-                CustomTextField(hintText: "E-mail"),
-                SizedBox(height: 20.0),
-                CustomTextField(hintText: "Senha", obscure: true),
-                SizedBox(height: 30.0),
-                CustomButton(title: "Entrar"),
-              ],
-            ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _logo(),
+              CustomTextField(
+                hintText: "E-mail",
+                controller: _email,
+              ),
+              CustomTextField(
+                hintText: "Senha",
+                obscure: true,
+                controller: _password,
+              ),
+              CustomButton(
+                title: "Entrar",
+                height: 50,
+                width: double.infinity,
+                onPressed: _onClickLogin,
+              ),
+            ],
           ),
         ),
       ),
     );
+  }
+
+  Container _logo() {
+    return Container(
+      margin: EdgeInsets.only(top: 16, bottom: 16),
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 16, bottom: 16),
+            height: 150,
+            child: Image.asset("assets/logo.png", fit: BoxFit.contain),
+          ),
+          CustomText(
+            text: "Consulta Marcada",
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+          ),
+        ],
+      ),
+    );
+  }
+
+  _onClickLogin() {
+    String email = _email.text;
+    String password = _password.text;
+
+    print("E-mail: " + email + " - Senha: " + password);
+
+    push(context, HomePage(), replace: true);
   }
 }

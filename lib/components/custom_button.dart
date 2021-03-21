@@ -1,26 +1,40 @@
+import 'package:consulta_marcada/ui/styles/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:consulta_marcada/ui/styles/my_colors.dart';
 
 class CustomButton extends StatelessWidget {
   final String title;
-  CustomButton({@required this.title});
+  final double height;
+  final double width;
+  final Function onPressed;
+
+  CustomButton({
+    @required this.title,
+    @required this.height,
+    @required this.width,
+    @required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return ButtonTheme(
-      minWidth: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-      child: RaisedButton(
-        color: MyColors.appColors["blue"],
-        child: Text(
-          title,
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 20, color: Colors.white),
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 8),
+      height: height,
+      width: width,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          backgroundColor: MyColors.appColors["blue"],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
         ),
-        onPressed: () {},
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
+        child: CustomText(
+          text: title,
+          color: Colors.white,
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
         ),
+        onPressed: onPressed,
       ),
     );
   }
