@@ -42,7 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 controller: _password,
               ),
               CustomTextField(
-                hintText: " Confirmar Senha",
+                hintText: "Confirmar Senha",
                 obscure: true,
                 controller: _confirmPassword,
               ),
@@ -109,6 +109,7 @@ class _RegisterPageState extends State<RegisterPage> {
     String email = _email.text;
     String password = _password.text;
     String confirmPassword = _confirmPassword.text;
+
     print("E-mail: " +
         email +
         " - Senha: " +

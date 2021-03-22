@@ -46,7 +46,7 @@ class QuickAccessButton extends StatelessWidget {
                 Container(
                   child: CustomText(
                     text: title,
-                    fontSize: height * 0.12,
+                    fontSize: height * 0.15,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     textAlign: TextAlign.start,

@@ -12,26 +12,7 @@ class Menu extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                  height: 100,
-                  width: 100,
-                  child: Image.asset(
-                    "assets/logo.png",
-                    fit: BoxFit.scaleDown,
-                  ),
-                ),
-                CustomText(
-                  text: "Consulta Marcada",
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ],
-            ),
+            child: logo(),
             decoration: BoxDecoration(color: MyColors.appColors["blue"]),
           ),
           buildListTile(
@@ -57,6 +38,29 @@ class Menu extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Column logo() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          height: 100,
+          width: 100,
+          child: Image.asset(
+            "assets/logo.png",
+            fit: BoxFit.scaleDown,
+          ),
+        ),
+        CustomText(
+          text: "Consulta Marcada",
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+      ],
     );
   }
 
