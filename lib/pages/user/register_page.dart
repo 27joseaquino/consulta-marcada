@@ -2,21 +2,21 @@ import 'package:consulta_marcada/components/custom_button.dart';
 import 'package:consulta_marcada/components/custom_text_field.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/pages/home/home_page.dart';
-import 'package:consulta_marcada/pages/user/register_page.dart';
 import 'package:consulta_marcada/ui/styles/custom_text.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/utils/navigator.dart';
-import '../../ui/styles/custom_text.dart';
+import 'login_page.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
+  final _cpf = TextEditingController();
   final _email = TextEditingController();
   final _password = TextEditingController();
+  final _confirmPassword = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +30,10 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               logo(),
               CustomTextField(
+                hintText: "CPF",
+                controller: _cpf,
+              ),
+              CustomTextField(
                 hintText: "E-mail",
                 controller: _email,
               ),
@@ -38,13 +42,18 @@ class _LoginPageState extends State<LoginPage> {
                 obscure: true,
                 controller: _password,
               ),
+              CustomTextField(
+                hintText: " Confirmar Senha",
+                obscure: true,
+                controller: _confirmPassword,
+              ),
               CustomButton(
-                title: "Entrar",
+                title: "Cadastrar",
                 height: 50,
                 width: double.infinity,
-                onPressed: _onClickLogin,
+                onPressed: _onClickRegister,
               ),
-              pushRegisterPage(context),
+              pushLoginPage(context),
             ],
           ),
         ),
@@ -52,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  InkWell pushRegisterPage(BuildContext context) {
+  InkWell pushLoginPage(BuildContext context) {
     return InkWell(
       child: Container(
         margin: EdgeInsets.only(top: 20),
@@ -60,19 +69,19 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             CustomText(
               fontSize: 20,
-              text: "Ainda não uma conta? ",
+              text: "Já possui uma conta? ",
               maxlines: 2,
             ),
             CustomText(
               fontSize: 20,
-              text: "Cadastrar",
+              text: "Entrar",
               fontWeight: FontWeight.bold,
               maxlines: 2,
             ),
           ],
         ),
       ),
-      onTap: () => push(context, RegisterPage(),replace: true),
+      onTap: () => push(context, LoginPage(),replace: true),
     );
   }
 
@@ -96,11 +105,12 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _onClickLogin() {
+  _onClickRegister() {
+    String cpf = _cpf.text;
     String email = _email.text;
     String password = _password.text;
-
-    print("E-mail: " + email + " - Senha: " + password);
+    String confirmPassword = _confirmPassword.text;
+    print("E-mail: " + email + " - Senha: " + password + "CPF" + cpf + "confirmar Senha" + confirmPassword);
 
     push(context, HomePage(), replace: true);
   }
