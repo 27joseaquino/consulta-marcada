@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             CustomText(
               fontSize: 20,
-              text: "Ainda não uma conta? ",
+              text: "Ainda não possui uma conta? ",
               maxlines: 2,
             ),
             CustomText(
