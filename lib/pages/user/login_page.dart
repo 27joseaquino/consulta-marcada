@@ -1,9 +1,10 @@
 import 'package:consulta_marcada/components/custom_button.dart';
 import 'package:consulta_marcada/components/custom_text_field.dart';
-import 'package:consulta_marcada/core/utils/navigator.dart';
+import 'package:consulta_marcada/components/logo_consulta_marcada.dart';
 import 'package:consulta_marcada/pages/home/home_page.dart';
 import 'package:consulta_marcada/pages/user/register_page.dart';
 import 'package:consulta_marcada/styles/custom_text.dart';
+import 'package:consulta_marcada/utils/navigator.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -25,7 +26,11 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              logo(),
+              LogoConsultaMarcada(
+                fontSize: 25,
+                height: 150,
+                width: 150,
+              ),
               CustomTextField(
                 hintText: "E-mail",
                 controller: _email,
@@ -70,26 +75,6 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
       onTap: () => push(context, RegisterPage(), replace: true),
-    );
-  }
-
-  Container logo() {
-    return Container(
-      margin: EdgeInsets.only(top: 16, bottom: 16),
-      child: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: 16, bottom: 16),
-            height: 150,
-            child: Image.asset("assets/logo.png", fit: BoxFit.contain),
-          ),
-          CustomText(
-            text: "Consulta Marcada",
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
-        ],
-      ),
     );
   }
 

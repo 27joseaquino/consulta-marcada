@@ -1,7 +1,8 @@
-import 'package:consulta_marcada/core/utils/navigator.dart';
+import 'package:consulta_marcada/components/logo_consulta_marcada.dart';
 import 'package:consulta_marcada/pages/home/home_page.dart';
 import 'package:consulta_marcada/styles/custom_text.dart';
 import 'package:consulta_marcada/styles/my_colors.dart';
+import 'package:consulta_marcada/utils/navigator.dart';
 import 'package:flutter/material.dart';
 
 class Menu extends StatelessWidget {
@@ -12,7 +13,11 @@ class Menu extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
-            child: logo(),
+            child: LogoConsultaMarcada(
+              fontSize: 18,
+              height: 100,
+              width: 100,
+            ),
             decoration: BoxDecoration(color: MyColors.appColors["blue"]),
           ),
           buildListTile(
@@ -38,29 +43,6 @@ class Menu extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  Column logo() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-          height: 100,
-          width: 100,
-          child: Image.asset(
-            "assets/logo.png",
-            fit: BoxFit.scaleDown,
-          ),
-        ),
-        CustomText(
-          text: "Consulta Marcada",
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
-      ],
     );
   }
 
