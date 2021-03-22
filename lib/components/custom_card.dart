@@ -1,4 +1,5 @@
 import 'package:consulta_marcada/styles/custom_text.dart';
+import 'package:consulta_marcada/styles/my_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomCard extends StatelessWidget {
@@ -15,8 +16,30 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      child: Row(
+        children: [
+          buildLateralBar(),
+          buildContent(),
+        ],
+      ),
+    );
+  }
+
+  FittedBox buildLateralBar() {
+    return FittedBox(
       child: Container(
-        margin: EdgeInsets.all(10),
+        padding: EdgeInsets.all(0),
+        color: MyColors.appColors["dark-blue"],
+        width: 10,
+        height: 110,
+      ),
+    );
+  }
+
+  Expanded buildContent() {
+    return Expanded(
+      child: Container(
+        margin: EdgeInsets.only(left: 16, top: 10, bottom: 10),
         child: Column(
           children: [
             buildRow("Paciente: ", patient),
