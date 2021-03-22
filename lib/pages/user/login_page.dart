@@ -3,11 +3,8 @@ import 'package:consulta_marcada/components/custom_text_field.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/pages/home/home_page.dart';
 import 'package:consulta_marcada/pages/user/register_page.dart';
-import 'package:consulta_marcada/ui/styles/custom_text.dart';
+import 'package:consulta_marcada/styles/custom_text.dart';
 import 'package:flutter/material.dart';
-
-import '../../core/utils/navigator.dart';
-import '../../ui/styles/custom_text.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -72,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
-      onTap: () => push(context, RegisterPage(),replace: true),
+      onTap: () => push(context, RegisterPage(), replace: true),
     );
   }
 

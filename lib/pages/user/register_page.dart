@@ -2,10 +2,9 @@ import 'package:consulta_marcada/components/custom_button.dart';
 import 'package:consulta_marcada/components/custom_text_field.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/pages/home/home_page.dart';
-import 'package:consulta_marcada/ui/styles/custom_text.dart';
+import 'package:consulta_marcada/pages/user/login_page.dart';
+import 'package:consulta_marcada/styles/custom_text.dart';
 import 'package:flutter/material.dart';
-
-import 'login_page.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -81,7 +80,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ],
         ),
       ),
-      onTap: () => push(context, LoginPage(),replace: true),
+      onTap: () => push(context, LoginPage(), replace: true),
     );
   }
 
@@ -110,7 +109,14 @@ class _RegisterPageState extends State<RegisterPage> {
     String email = _email.text;
     String password = _password.text;
     String confirmPassword = _confirmPassword.text;
-    print("E-mail: " + email + " - Senha: " + password + "CPF" + cpf + "confirmar Senha" + confirmPassword);
+    print("E-mail: " +
+        email +
+        " - Senha: " +
+        password +
+        "CPF" +
+        cpf +
+        "confirmar Senha" +
+        confirmPassword);
 
     push(context, HomePage(), replace: true);
   }

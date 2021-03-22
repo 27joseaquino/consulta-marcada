@@ -1,6 +1,6 @@
 import 'package:consulta_marcada/components/custom_card.dart';
+import 'package:consulta_marcada/styles/my_colors.dart';
 import 'package:flutter/material.dart';
-import '../../ui/styles/my_colors.dart';
 
 class ListPage extends StatefulWidget {
   @override

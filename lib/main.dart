@@ -1,5 +1,5 @@
 import 'package:consulta_marcada/pages/user/login_page.dart';
-import 'package:consulta_marcada/ui/styles/light_theme.dart';
+import 'package:consulta_marcada/styles/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

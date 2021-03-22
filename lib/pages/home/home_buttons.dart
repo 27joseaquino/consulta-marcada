@@ -1,5 +1,5 @@
 import 'package:consulta_marcada/components/quick_access_button.dart';
-import 'package:consulta_marcada/ui/styles/custom_text.dart';
+import 'package:consulta_marcada/styles/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class HomeButtons extends StatefulWidget {

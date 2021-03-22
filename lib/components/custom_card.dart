@@ -1,5 +1,5 @@
+import 'package:consulta_marcada/styles/custom_text.dart';
 import 'package:flutter/material.dart';
-import '../ui/styles/custom_text.dart';
 
 class CustomCard extends StatelessWidget {
   final String patient;

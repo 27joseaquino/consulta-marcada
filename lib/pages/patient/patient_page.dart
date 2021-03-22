@@ -1,4 +1,4 @@
-import 'package:consulta_marcada/ui/styles/custom_text.dart';
+import 'package:consulta_marcada/styles/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class PatientPage extends StatefulWidget {

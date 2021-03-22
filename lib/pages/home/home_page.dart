@@ -2,7 +2,7 @@ import 'package:consulta_marcada/components/menu.dart';
 import 'package:consulta_marcada/pages/home/home_buttons.dart';
 import 'package:consulta_marcada/pages/medical_consultation/list_page.dart';
 import 'package:consulta_marcada/pages/patient/patient_page.dart';
-import 'package:consulta_marcada/ui/styles/my_colors.dart';
+import 'package:consulta_marcada/styles/my_colors.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
