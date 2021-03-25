@@ -1,8 +1,9 @@
 import 'package:consulta_marcada/components/menu.dart';
+import 'package:consulta_marcada/pages/doctor/doctor_page.dart';
 import 'package:consulta_marcada/pages/home/home_buttons.dart';
 import 'package:consulta_marcada/pages/medical_consultation/list_page.dart';
 import 'package:consulta_marcada/pages/patient/patient_page.dart';
-import 'package:consulta_marcada/styles/my_colors.dart';
+import 'package:consulta_marcada/pages/room/room_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,6 +26,8 @@ class _HomePageState extends State<HomePage> {
       HomeButtons(),
       ListPage(),
       PatientPage(),
+      DoctorPage(),
+      RoomPage(),
     ];
   }
 
@@ -33,22 +36,13 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       drawer: Menu(),
       appBar: AppBar(
-        title: Text(
-          "Consulta Marcada",
-          style: TextStyle(fontSize: 20),
-        ),
+        title: Text("Consulta Marcada", style: TextStyle(fontSize: 20)),
         centerTitle: true,
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.logout))],
       ),
       body: _screenOptions.elementAt(selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
-        showUnselectedLabels: true,
-        elevation: 20,
-        backgroundColor: MyColors.appColors["blue"],
-        selectedItemColor: Colors.white,
-        unselectedItemColor: MyColors.appColors["grey"],
         currentIndex: selectedIndex,
-        unselectedFontSize: 14,
         onTap: _onItemTapped,
         items: [
           BottomNavigationBarItem(
@@ -62,6 +56,14 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.people_alt),
             label: "Pacientes",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.medical_services),
+            label: "Médicos",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.meeting_room_outlined),
+            label: "Salas",
           ),
         ],
       ),

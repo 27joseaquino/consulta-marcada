@@ -20,4 +20,10 @@ ThemeData lightTheme = ThemeData(
       size: 14,
     ),
   ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    showUnselectedLabels: true,
+    elevation: 20,
+    selectedItemColor: MyColors.appColors["blue"],
+    unselectedItemColor: MyColors.appColors["grey"],
+  ),
 );
