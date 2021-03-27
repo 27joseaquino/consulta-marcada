@@ -21,7 +21,7 @@ class _HomeButtonsState extends State<HomeButtons> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                margin: EdgeInsets.only(top: 16, left: 5),
+                margin: EdgeInsets.only(top: 14, left: 5),
                 child: CustomText(
                   text: "Acesso Rápido",
                   fontSize: 18,
@@ -29,7 +29,12 @@ class _HomeButtonsState extends State<HomeButtons> {
                   textAlign: TextAlign.start,
                 ),
               ),
-              _quickAccess(constraints),
+              quickAccess(
+                height: size.height > 412
+                    ? constraints.maxHeight * .5
+                    : constraints.maxHeight * .75,
+                width: constraints.maxWidth,
+              ),
             ],
           );
         },
@@ -37,11 +42,11 @@ class _HomeButtonsState extends State<HomeButtons> {
     );
   }
 
-  Container _quickAccess(BoxConstraints constraints) {
+  Container quickAccess({double height, double width}) {
     return Container(
-      margin: EdgeInsets.only(top: 8),
-      height: constraints.maxHeight * .5,
-      width: constraints.maxWidth,
+      margin: EdgeInsets.only(top: 5),
+      height: height,
+      width: width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -54,15 +59,15 @@ class _HomeButtonsState extends State<HomeButtons> {
                 title: "Marcar Consulta",
                 icon: Icons.support_agent,
                 function: () {},
-                width: constraints.maxWidth * .5,
-                height: constraints.maxHeight * .25,
+                width: width * .5,
+                height: height * .5,
               ),
               QuickAccessButton(
                 title: "Cadastrar Paciente",
                 icon: Icons.person_add,
                 function: () {},
-                width: constraints.maxWidth * .5,
-                height: constraints.maxHeight * .25,
+                width: width * .5,
+                height: height * .5,
               ),
             ],
           ),
@@ -74,15 +79,15 @@ class _HomeButtonsState extends State<HomeButtons> {
                 title: "Cadastrar Médico",
                 icon: Icons.medical_services,
                 function: () {},
-                width: constraints.maxWidth * .5,
-                height: constraints.maxHeight * .25,
+                width: width * .5,
+                height: height * .5,
               ),
               QuickAccessButton(
                 title: "Enviar Sugestões",
                 icon: Icons.lightbulb,
                 function: () {},
-                width: constraints.maxWidth * .5,
-                height: constraints.maxHeight * .25,
+                width: width * .5,
+                height: height * .5,
               ),
             ],
           )
