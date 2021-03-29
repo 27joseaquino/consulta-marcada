@@ -18,38 +18,73 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.all(16),
-          child: Column(
+      body: Container(
+        height: size.height,
+        width: size.width,
+        padding: EdgeInsets.all(16),
+        child: LayoutBuilder(builder: (context, constrainsts) {
+          return Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              LogoConsultaMarcada(
-                fontSize: 25,
-                height: 150,
-                width: 150,
+              logoConsultaMarcada(
+                height: constrainsts.maxHeight * .35,
+                width: constrainsts.maxWidth,
               ),
-              CustomTextField(
-                hintText: "E-mail",
-                controller: _email,
+              loginForm(
+                context,
+                height: constrainsts.maxHeight * .65,
+                width: constrainsts.maxWidth,
               ),
-              CustomTextField(
-                hintText: "Senha",
-                obscure: true,
-                controller: _password,
-              ),
-              CustomButton(
-                title: "Entrar",
-                height: 50,
-                width: double.infinity,
-                onPressed: _onClickLogin,
-              ),
-              pushRegisterPage(context),
             ],
-          ),
+          );
+        }),
+      ),
+    );
+  }
+
+  Visibility logoConsultaMarcada({double height, double width}) {
+    return Visibility(
+      visible: height > 59,
+      child: Container(
+        padding: EdgeInsets.only(top: 10),
+        height: height,
+        width: width,
+        child: LogoConsultaMarcada(
+          fontSize: 25,
+          height: height * .5,
+          width: width,
         ),
+      ),
+      replacement: SizedBox(),
+    );
+  }
+
+  Container loginForm(BuildContext context, {double height, double width}) {
+    return Container(
+      height: height,
+      width: width,
+      child: ListView(
+        children: [
+          CustomTextField(
+            hintText: "E-mail",
+            controller: _email,
+          ),
+          CustomTextField(
+            hintText: "Senha",
+            obscure: true,
+            controller: _password,
+          ),
+          CustomButton(
+            title: "Entrar",
+            height: 50,
+            width: double.infinity,
+            onPressed: _onClickLogin,
+          ),
+          pushRegisterPage(context),
+        ],
       ),
     );
   }
@@ -64,12 +99,14 @@ class _LoginPageState extends State<LoginPage> {
               fontSize: 20,
               text: "Ainda não possui uma conta? ",
               maxlines: 2,
+              textAlign: TextAlign.center,
             ),
             CustomText(
               fontSize: 20,
               text: "Cadastrar",
               fontWeight: FontWeight.bold,
               maxlines: 2,
+              textAlign: TextAlign.center,
             ),
           ],
         ),
