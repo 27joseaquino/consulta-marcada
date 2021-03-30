@@ -1,8 +1,8 @@
-import 'package:consulta_marcada/components/logo_consulta_marcada.dart';
-import 'package:consulta_marcada/pages/home/home_page.dart';
-import 'package:consulta_marcada/styles/custom_text.dart';
-import 'package:consulta_marcada/styles/my_colors.dart';
-import 'package:consulta_marcada/utils/navigator.dart';
+import 'package:consulta_marcada/core/utils/navigator.dart';
+import 'package:consulta_marcada/ui/components/logo_consulta_marcada.dart';
+import 'package:consulta_marcada/ui/pages/home/home_page.dart';
+import 'package:consulta_marcada/ui/styles/custom_text.dart';
+import 'package:consulta_marcada/ui/styles/my_colors.dart';
 import 'package:flutter/material.dart';
 
 class Menu extends StatelessWidget {

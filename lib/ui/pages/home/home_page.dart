@@ -1,9 +1,9 @@
-import 'package:consulta_marcada/components/menu.dart';
-import 'package:consulta_marcada/pages/doctor/doctor_page.dart';
-import 'package:consulta_marcada/pages/home/home_buttons.dart';
-import 'package:consulta_marcada/pages/medical_consultation/list_page.dart';
-import 'package:consulta_marcada/pages/patient/patient_page.dart';
-import 'package:consulta_marcada/pages/room/room_page.dart';
+import 'package:consulta_marcada/ui/components/menu.dart';
+import 'package:consulta_marcada/ui/pages/doctor/doctor_page.dart';
+import 'package:consulta_marcada/ui/pages/home/home_buttons.dart';
+import 'package:consulta_marcada/ui/pages/medical_consultation/list_page.dart';
+import 'package:consulta_marcada/ui/pages/patient/patient_page.dart';
+import 'package:consulta_marcada/ui/pages/room/room_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

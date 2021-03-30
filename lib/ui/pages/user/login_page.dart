@@ -1,10 +1,10 @@
-import 'package:consulta_marcada/components/custom_button.dart';
-import 'package:consulta_marcada/components/custom_text_field.dart';
-import 'package:consulta_marcada/components/logo_consulta_marcada.dart';
-import 'package:consulta_marcada/pages/home/home_page.dart';
-import 'package:consulta_marcada/pages/user/register_page.dart';
-import 'package:consulta_marcada/styles/custom_text.dart';
-import 'package:consulta_marcada/utils/navigator.dart';
+import 'package:consulta_marcada/core/utils/navigator.dart';
+import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
+import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
+import 'package:consulta_marcada/ui/components/logo_consulta_marcada.dart';
+import 'package:consulta_marcada/ui/pages/home/home_page.dart';
+import 'package:consulta_marcada/ui/pages/user/register_page.dart';
+import 'package:consulta_marcada/ui/styles/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {

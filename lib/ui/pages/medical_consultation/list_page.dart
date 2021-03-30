@@ -1,5 +1,5 @@
-import 'package:consulta_marcada/components/custom_card.dart';
-import 'package:consulta_marcada/styles/my_colors.dart';
+import 'package:consulta_marcada/ui/components/buttons/custom_floating_button.dart';
+import 'package:consulta_marcada/ui/components/cards/custom_card.dart';
 import 'package:flutter/material.dart';
 
 class ListPage extends StatefulWidget {
@@ -12,11 +12,7 @@ class _ListPageState extends State<ListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: buildListview(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add, color: Colors.white),
-        onPressed: () {},
-        backgroundColor: MyColors.appColors["blue"],
-      ),
+      floatingActionButton: CustomFloatingButton(onPressed: () {}),
     );
   }
 }
