@@ -23,38 +23,96 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         height: size.height,
         width: size.width,
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.only(top: 16, left: 16, right: 16),
         child: LayoutBuilder(builder: (context, constrainsts) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              logoConsultaMarcada(
-                height: constrainsts.maxHeight * .35,
-                width: constrainsts.maxWidth,
-              ),
-              loginForm(
-                context,
-                height: constrainsts.maxHeight * .65,
-                width: constrainsts.maxWidth,
-              ),
-            ],
+          return Visibility(
+            visible: size.height >= 640,
+            child: verticalScreen(constrainsts, context),
+            replacement: horizontalScreen(constrainsts, context),
           );
         }),
       ),
     );
   }
 
+  Column verticalScreen(BoxConstraints constrainsts, BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        logoConsultaMarcada(
+          height: constrainsts.maxHeight * .35,
+          width: constrainsts.maxWidth,
+        ),
+        loginForm(
+          context,
+          height: constrainsts.maxHeight * .45,
+          width: constrainsts.maxWidth,
+        ),
+        Visibility(
+          visible: constrainsts.maxHeight > 388,
+          child: pushRegisterPage(
+            context,
+            height: constrainsts.maxHeight * .2,
+            width: constrainsts.maxWidth,
+          ),
+          replacement: SizedBox(),
+        ),
+      ],
+    );
+  }
+
+  Column horizontalScreen(
+    BoxConstraints constrainsts,
+    BuildContext context,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          padding: EdgeInsets.only(top: 16),
+          height: constrainsts.maxHeight * .8,
+          width: constrainsts.maxWidth,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              logoConsultaMarcada(
+                height: constrainsts.maxHeight * .35,
+                width: constrainsts.maxWidth * .4,
+              ),
+              loginForm(
+                context,
+                height: constrainsts.maxHeight * .65,
+                width: constrainsts.maxWidth * .6,
+              ),
+            ],
+          ),
+        ),
+        Visibility(
+          visible: constrainsts.maxHeight >= 344,
+          child: pushRegisterPage(
+            context,
+            height: constrainsts.maxHeight * .2,
+            width: constrainsts.maxWidth,
+          ),
+          replacement: SizedBox(),
+        ),
+      ],
+    );
+  }
+
   Visibility logoConsultaMarcada({double height, double width}) {
     return Visibility(
-      visible: height > 59,
+      visible: height > 90,
       child: Container(
         padding: EdgeInsets.only(top: 10),
         height: height,
         width: width,
         child: LogoConsultaMarcada(
-          fontSize: 25,
-          height: height * .5,
+          fontSize: height * .15,
+          height: height * .6,
           width: width,
         ),
       ),
@@ -83,33 +141,35 @@ class _LoginPageState extends State<LoginPage> {
             width: double.infinity,
             onPressed: _onClickLogin,
           ),
-          pushRegisterPage(context),
         ],
       ),
     );
   }
 
-  InkWell pushRegisterPage(BuildContext context) {
+  InkWell pushRegisterPage(
+    BuildContext context, {
+    double height,
+    double width,
+  }) {
     return InkWell(
-      child: Container(
-        margin: EdgeInsets.only(top: 20),
-        child: Column(
-          children: [
-            CustomText(
-              fontSize: 20,
-              text: "Ainda não possui uma conta? ",
-              maxlines: 2,
-              textAlign: TextAlign.center,
-            ),
-            CustomText(
-              fontSize: 20,
-              text: "Cadastrar",
-              fontWeight: FontWeight.bold,
-              maxlines: 2,
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CustomText(
+            fontSize: 20,
+            text: "Ainda não possui uma conta? ",
+            maxlines: 2,
+            textAlign: TextAlign.center,
+          ),
+          CustomText(
+            fontSize: 20,
+            text: "Cadastrar",
+            fontWeight: FontWeight.bold,
+            maxlines: 2,
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
       onTap: () => push(context, RegisterPage(), replace: true),
     );
