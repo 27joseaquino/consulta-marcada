@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 class TextLine extends StatelessWidget {
   final String title;
   final String content;
-  TextLine({@required this.title, @required this.content});
+  final Color color;
+  TextLine({@required this.title, @required this.content, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,11 @@ class TextLine extends StatelessWidget {
           fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
-        CustomText(text: content, fontSize: 18)
+        CustomText(
+          text: content,
+          fontSize: 18,
+          color: color,
+        )
       ],
     );
   }
