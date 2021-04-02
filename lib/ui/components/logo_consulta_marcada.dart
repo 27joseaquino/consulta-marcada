@@ -14,22 +14,26 @@ class LogoConsultaMarcada extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-          height: height,
-          width: width,
-          child: Image.asset("assets/logo.png", fit: BoxFit.contain),
-        ),
-        CustomText(
-          text: "Consulta Marcada",
-          fontSize: fontSize,
-          fontWeight: FontWeight.bold,
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            height: height,
+            width: width,
+            child: Image.asset("assets/logo.png", fit: BoxFit.contain),
+          ),
+          CustomText(
+            text: "Consulta Marcada",
+            fontSize: fontSize,
+            fontWeight: FontWeight.bold,
+            maxlines: 2,
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
     );
   }
 }

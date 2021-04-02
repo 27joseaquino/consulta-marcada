@@ -13,6 +13,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final GlobalKey<FormState> _loginFormKey = GlobalKey();
   final _email = TextEditingController();
   final _password = TextEditingController();
 
@@ -27,15 +28,15 @@ class _LoginPageState extends State<LoginPage> {
         child: LayoutBuilder(builder: (context, constrainsts) {
           return Visibility(
             visible: size.height >= 640,
-            child: verticalScreen(constrainsts, context),
-            replacement: horizontalScreen(constrainsts, context),
+            child: verticalScreen(constrainsts),
+            replacement: horizontalScreen(constrainsts),
           );
         }),
       ),
     );
   }
 
-  Column verticalScreen(BoxConstraints constrainsts, BuildContext context) {
+  Column verticalScreen(BoxConstraints constrainsts) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -46,14 +47,13 @@ class _LoginPageState extends State<LoginPage> {
         ),
         loginForm(
           context,
-          height: constrainsts.maxHeight * .45,
+          height: constrainsts.maxHeight * .5,
           width: constrainsts.maxWidth,
         ),
         Visibility(
-          visible: constrainsts.maxHeight > 388,
+          visible: constrainsts.maxHeight > 500,
           child: pushRegisterPage(
-            context,
-            height: constrainsts.maxHeight * .2,
+            height: constrainsts.maxHeight * .15,
             width: constrainsts.maxWidth,
           ),
           replacement: SizedBox(),
@@ -62,17 +62,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Column horizontalScreen(
-    BoxConstraints constrainsts,
-    BuildContext context,
-  ) {
+  Column horizontalScreen(BoxConstraints constrainsts) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          padding: EdgeInsets.only(top: 16),
-          height: constrainsts.maxHeight * .8,
+          height: constrainsts.maxHeight * .88,
           width: constrainsts.maxWidth,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -84,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               loginForm(
                 context,
-                height: constrainsts.maxHeight * .65,
+                height: constrainsts.maxHeight * .8,
                 width: constrainsts.maxWidth * .6,
               ),
             ],
@@ -93,8 +89,7 @@ class _LoginPageState extends State<LoginPage> {
         Visibility(
           visible: constrainsts.maxHeight >= 344,
           child: pushRegisterPage(
-            context,
-            height: constrainsts.maxHeight * .2,
+            height: constrainsts.maxHeight * .12,
             width: constrainsts.maxWidth,
           ),
           replacement: SizedBox(),
@@ -107,11 +102,11 @@ class _LoginPageState extends State<LoginPage> {
     return Visibility(
       visible: height > 90,
       child: Container(
-        padding: EdgeInsets.only(top: 10),
+        padding: EdgeInsets.only(top: height * .2),
         height: height,
         width: width,
         child: LogoConsultaMarcada(
-          fontSize: height * .15,
+          fontSize: height * .1,
           height: height * .6,
           width: width,
         ),
@@ -122,18 +117,32 @@ class _LoginPageState extends State<LoginPage> {
 
   Container loginForm(BuildContext context, {double height, double width}) {
     return Container(
+      padding: EdgeInsets.only(top: height * .1),
       height: height,
       width: width,
       child: ListView(
+        physics: BouncingScrollPhysics(),
         children: [
-          CustomTextField(
-            hintText: "E-mail",
-            controller: _email,
-          ),
-          CustomTextField(
-            hintText: "Senha",
-            obscure: true,
-            controller: _password,
+          Form(
+            key: _loginFormKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomTextField(
+                  hintText: "E-mail",
+                  controller: _email,
+                  textInputType: TextInputType.emailAddress,
+                  maxLength: 50,
+                ),
+                CustomTextField(
+                  hintText: "Senha",
+                  isObscure: true,
+                  controller: _password,
+                  maxLength: 50,
+                ),
+              ],
+            ),
           ),
           CustomButton(
             title: "Entrar",
@@ -146,36 +155,29 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  InkWell pushRegisterPage(
-    BuildContext context, {
+  pushRegisterPage({
     double height,
     double width,
   }) {
-    return InkWell(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CustomText(
-            fontSize: 20,
-            text: "Ainda não possui uma conta? ",
-            maxlines: 2,
-            textAlign: TextAlign.center,
-          ),
-          CustomText(
-            fontSize: 20,
-            text: "Cadastrar",
-            fontWeight: FontWeight.bold,
-            maxlines: 2,
-            textAlign: TextAlign.center,
-          ),
-        ],
+    return Container(
+      height: height,
+      width: width,
+      padding: EdgeInsets.symmetric(vertical: 2),
+      child: InkWell(
+        child: CustomText(
+          fontSize: 20,
+          text: "Ainda não possui uma conta? Cadastrar",
+          maxlines: 2,
+          textAlign: TextAlign.center,
+        ),
+        onTap: () => push(context, RegisterPage(), replace: true),
       ),
-      onTap: () => push(context, RegisterPage(), replace: true),
     );
   }
 
   _onClickLogin() {
+    if (!_loginFormKey.currentState.validate()) return;
+
     String email = _email.text;
     String password = _password.text;
 

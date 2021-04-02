@@ -1,29 +1,50 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  final String hintText;
-  final bool obscure;
+  final FormFieldValidator<String> validator;
   final TextEditingController controller;
+  final TextInputType textInputType;
+  final bool isCounting;
+  final String hintText;
+  final bool isObscure;
+  final int maxLength;
+  final int lines;
 
   CustomTextField({
-    @required this.hintText,
-    @required this.controller,
-    this.obscure = false,
+    this.textInputType = TextInputType.text,
+    this.isCounting = false,
+    this.isObscure = false,
+    this.maxLength = 200,
+    this.lines = 1,
+    this.controller,
+    this.validator,
+    this.hintText,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8),
-      child: TextField(
+      child: TextFormField(
+        validator: validator ??
+            (String text) {
+              if (text.isEmpty) {
+                return "Preencha este campo!";
+              } else if (text.length > maxLength) {
+                return "Você ultrapassou o limite de caracteres!";
+              }
+              return null;
+            },
+        maxLines: lines,
+        keyboardType: textInputType,
         controller: controller,
-        obscureText: obscure,
-        style: TextStyle(fontSize: 20),
+        obscureText: isObscure,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: hintText,
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32)),
         ),
+        style: TextStyle(fontSize: 18, color: Colors.grey[700]),
       ),
     );
   }

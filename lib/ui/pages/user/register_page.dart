@@ -43,12 +43,12 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               CustomTextField(
                 hintText: "Senha",
-                obscure: true,
+                isObscure: true,
                 controller: _password,
               ),
               CustomTextField(
                 hintText: "Confirmar Senha",
-                obscure: true,
+                isObscure: true,
                 controller: _confirmPassword,
               ),
               CustomButton(
