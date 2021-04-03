@@ -1,6 +1,8 @@
 import 'package:consulta_marcada/core/models/room.dart';
+import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_floating_button.dart';
 import 'package:consulta_marcada/ui/components/cards/room_card.dart';
+import 'package:consulta_marcada/ui/pages/room/register_page.dart';
 import 'package:flutter/material.dart';
 
 class RoomPage extends StatefulWidget {
@@ -13,7 +15,9 @@ class _RoomPageState extends State<RoomPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: buildListview(),
-      floatingActionButton: CustomFloatingButton(onPressed: () {}),
+      floatingActionButton: CustomFloatingButton(
+        onPressed: () => push(context, RegisterPage()),
+      ),
     );
   }
 

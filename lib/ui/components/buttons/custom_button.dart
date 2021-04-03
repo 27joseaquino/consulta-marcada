@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
   final String title;
+  final double fontSize;
   final double height;
   final double width;
+  final bool hasBorder;
   final Function onPressed;
 
   CustomButton({
@@ -13,6 +15,8 @@ class CustomButton extends StatelessWidget {
     @required this.height,
     @required this.width,
     @required this.onPressed,
+    this.fontSize = 25,
+    this.hasBorder = false,
   });
 
   @override
@@ -23,15 +27,17 @@ class CustomButton extends StatelessWidget {
       width: width,
       child: TextButton(
         style: TextButton.styleFrom(
-          backgroundColor: MyColors.appColors["blue"],
+          backgroundColor:
+              hasBorder ? Colors.grey[200] : MyColors.appColors["blue"],
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(10),
+            side: BorderSide(color: MyColors.appColors["blue"], width: 2),
           ),
         ),
         child: CustomText(
           text: title,
-          color: Colors.white,
-          fontSize: 25,
+          color: hasBorder ? MyColors.appColors["blue"] : Colors.white,
+          fontSize: fontSize,
           fontWeight: FontWeight.bold,
         ),
         onPressed: onPressed,

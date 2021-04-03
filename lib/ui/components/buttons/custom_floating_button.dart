@@ -9,7 +9,7 @@ class CustomFloatingButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       child: Icon(Icons.add, color: Colors.white),
-      onPressed: () {},
+      onPressed: onPressed,
       backgroundColor: MyColors.appColors["dark-blue"],
     );
   }
