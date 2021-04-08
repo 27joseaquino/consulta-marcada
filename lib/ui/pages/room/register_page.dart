@@ -1,6 +1,7 @@
 import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
 import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
+import 'package:consulta_marcada/ui/styles/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -24,17 +25,39 @@ class _RegisterPageState extends State<RegisterPage> {
         width: size.width,
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: LayoutBuilder(builder: (context, constraints) {
+          print(constraints.maxHeight);
           return Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Visibility(
+                visible: constraints.maxHeight >= 560,
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                  height: constraints.maxHeight * .15,
+                  width: constraints.maxWidth,
+                  child: CustomText(
+                    text: "Cadastre aqui uma nova sala da unidade de saúde.",
+                    fontSize: 18,
+                    maxlines: 2,
+                    textAlign: TextAlign.justify,
+                  ),
+                ),
+                replacement: SizedBox(),
+              ),
               registerRoomForm(
-                height: constraints.maxHeight * .5,
+                height: constraints.maxHeight < 560
+                    ? constraints.maxHeight * .9
+                    : constraints.maxHeight * .6,
                 width: constraints.maxWidth,
               ),
-              buttons(
-                height: constraints.maxHeight * .3,
-                width: constraints.maxWidth,
+              Visibility(
+                visible: constraints.maxHeight >= 560,
+                child: buttons(
+                  height: constraints.maxHeight * .2,
+                  width: constraints.maxWidth,
+                ),
+                replacement: SizedBox(),
               ),
             ],
           );
@@ -47,29 +70,31 @@ class _RegisterPageState extends State<RegisterPage> {
     return Container(
       height: height,
       width: width,
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: Form(
         key: _registerRoomFormKey,
-        child: Column(
-          children: [
-            CustomTextField(
-              hintText: "Número",
-              textInputType: TextInputType.number,
-              controller: _number,
-              maxLength: 50,
-            ),
-            CustomTextField(
-              hintText: "Tipo",
-              controller: _type,
-              maxLength: 50,
-            ),
-            CustomTextField(
-              hintText: "Localização",
-              controller: _localization,
-              maxLength: 100,
-              lines: 3,
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomTextField(
+                hintText: "Número",
+                textInputType: TextInputType.number,
+                controller: _number,
+                maxLength: 50,
+              ),
+              CustomTextField(
+                hintText: "Tipo",
+                controller: _type,
+                maxLength: 50,
+              ),
+              CustomTextField(
+                hintText: "Localização",
+                controller: _localization,
+                maxLength: 100,
+                lines: 3,
+              ),
+            ],
+          ),
         ),
       ),
     );

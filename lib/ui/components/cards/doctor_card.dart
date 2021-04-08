@@ -1,4 +1,4 @@
-import 'package:consulta_marcada/ui/components/form/text_line.dart';
+import 'package:consulta_marcada/ui/components/cards/text_line.dart';
 import 'package:consulta_marcada/ui/styles/custom_text.dart';
 import 'package:flutter/material.dart';
 
