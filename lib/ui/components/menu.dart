@@ -2,6 +2,7 @@ import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/ui/components/line.dart';
 import 'package:consulta_marcada/ui/components/logo_consulta_marcada.dart';
 import 'package:consulta_marcada/ui/pages/home/home_page.dart';
+import 'package:consulta_marcada/ui/pages/room/register_room_page.dart';
 import 'package:consulta_marcada/ui/styles/custom_text.dart';
 import 'package:consulta_marcada/ui/styles/my_colors.dart';
 import 'package:flutter/material.dart';
@@ -90,7 +91,7 @@ class Menu extends StatelessWidget {
             title: "Cadastrar Sala",
             onTap: () {
               pop(context);
-              push(context, HomePage(selectedIndex: 4), replace: true);
+              push(context, RegisterRoomPage());
             },
           ),
           buildListTile(

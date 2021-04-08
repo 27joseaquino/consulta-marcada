@@ -5,12 +5,12 @@ import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:consulta_marcada/ui/styles/custom_text.dart';
 import 'package:flutter/material.dart';
 
-class RegisterPage extends StatefulWidget {
+class RegisterRoomPage extends StatefulWidget {
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _RegisterRoomPageState createState() => _RegisterRoomPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterRoomPageState extends State<RegisterRoomPage> {
   final GlobalKey<FormState> _registerRoomFormKey = GlobalKey();
   final _number = TextEditingController();
   final _type = TextEditingController();
@@ -130,7 +130,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 hintText: "Localização",
                 controller: _localization,
                 maxLength: 100,
-                lines: height >= 336 ? 5 : 1,
+                lines: height >= 336 ? 3 : 1,
               ),
             ],
           ),
