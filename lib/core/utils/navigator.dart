@@ -14,7 +14,3 @@ Future push(BuildContext context, Widget page, {bool replace = false}) {
     },
   ));
 }
-
-pop(BuildContext context) {
-  Navigator.pop(context);
-}
