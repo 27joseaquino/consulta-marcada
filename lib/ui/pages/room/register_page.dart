@@ -1,3 +1,4 @@
+import 'package:consulta_marcada/core/models/room.dart';
 import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
 import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
@@ -25,43 +26,80 @@ class _RegisterPageState extends State<RegisterPage> {
         width: size.width,
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: LayoutBuilder(builder: (context, constraints) {
-          print(constraints.maxHeight);
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Visibility(
-                visible: constraints.maxHeight >= 560,
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-                  height: constraints.maxHeight * .15,
-                  width: constraints.maxWidth,
-                  child: CustomText(
-                    text: "Cadastre aqui uma nova sala da unidade de saúde.",
-                    fontSize: 18,
-                    maxlines: 2,
-                    textAlign: TextAlign.justify,
-                  ),
-                ),
-                replacement: SizedBox(),
-              ),
-              registerRoomForm(
-                height: constraints.maxHeight < 560
-                    ? constraints.maxHeight * .9
-                    : constraints.maxHeight * .6,
-                width: constraints.maxWidth,
-              ),
-              Visibility(
-                visible: constraints.maxHeight >= 560,
-                child: buttons(
-                  height: constraints.maxHeight * .2,
-                  width: constraints.maxWidth,
-                ),
-                replacement: SizedBox(),
-              ),
-            ],
+          return Visibility(
+            visible: constraints.maxWidth <= 380,
+            child: verticalScreen(constraints),
+            replacement: horizontalScreen(constraints),
           );
         }),
+      ),
+    );
+  }
+
+  Column verticalScreen(BoxConstraints constraints) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Visibility(
+          visible: constraints.maxHeight >= 560,
+          child: textContainer(
+            height: constraints.maxHeight * .15,
+            width: constraints.maxWidth,
+          ),
+          replacement: SizedBox(),
+        ),
+        registerRoomForm(
+          height: constraints.maxHeight < 560
+              ? constraints.maxHeight * .95
+              : constraints.maxHeight * .6,
+          width: constraints.maxWidth,
+        ),
+        Visibility(
+          visible: constraints.maxHeight >= 560,
+          child: buttons(
+            height: constraints.maxHeight * .25,
+            width: constraints.maxWidth,
+          ),
+          replacement: SizedBox(),
+        ),
+      ],
+    );
+  }
+
+  Column horizontalScreen(BoxConstraints constraints) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        registerRoomForm(
+          height: constraints.maxHeight >= 280
+              ? constraints.maxHeight * .8
+              : constraints.maxHeight * .9,
+          width: constraints.maxWidth,
+        ),
+        Visibility(
+          visible: constraints.maxHeight >= 280,
+          child: buttons(
+            height: constraints.maxHeight * .2,
+            width: constraints.maxWidth,
+          ),
+          replacement: SizedBox(),
+        ),
+      ],
+    );
+  }
+
+  Container textContainer({double height, double width}) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      height: height,
+      width: width,
+      child: CustomText(
+        text: "Cadastre aqui uma nova sala da unidade de saúde.",
+        fontSize: 18,
+        maxlines: 2,
+        textAlign: TextAlign.justify,
       ),
     );
   }
@@ -70,10 +108,11 @@ class _RegisterPageState extends State<RegisterPage> {
     return Container(
       height: height,
       width: width,
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       child: Form(
         key: _registerRoomFormKey,
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               CustomTextField(
@@ -91,7 +130,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 hintText: "Localização",
                 controller: _localization,
                 maxLength: 100,
-                lines: 3,
+                lines: height >= 336 ? 5 : 1,
               ),
             ],
           ),
@@ -125,12 +164,20 @@ class _RegisterPageState extends State<RegisterPage> {
   _onClickRegister() {
     if (!_registerRoomFormKey.currentState.validate()) return;
 
-    String number = _number.text;
+    int number = int.parse(_number.text);
     String type = _type.text;
     String localization = _localization.text;
 
-    print(number);
-    print(type);
-    print(localization);
+    Room room = Room(number, type, localization, true);
+
+    _number.text = "";
+    _type.text = "";
+    _localization.text = "";
+
+    print("ID: ${room.id}");
+    print("Número: ${room.number}");
+    print("Tipo: ${room.type}");
+    print("Localização: ${room.localization}");
+    print("Status: ${room.isAvailable}");
   }
 }
