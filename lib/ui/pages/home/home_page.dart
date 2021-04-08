@@ -1,9 +1,12 @@
+import 'package:consulta_marcada/core/utils/navigator.dart';
+import 'package:consulta_marcada/ui/components/custom_alert.dart';
 import 'package:consulta_marcada/ui/components/menu.dart';
 import 'package:consulta_marcada/ui/pages/doctor/doctor_page.dart';
 import 'package:consulta_marcada/ui/pages/home/home_buttons.dart';
 import 'package:consulta_marcada/ui/pages/medical_consultation/list_page.dart';
 import 'package:consulta_marcada/ui/pages/patient/patient_page.dart';
 import 'package:consulta_marcada/ui/pages/room/room_page.dart';
+import 'package:consulta_marcada/ui/pages/user/login_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -38,7 +41,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Consulta Marcada", style: TextStyle(fontSize: 20)),
         centerTitle: true,
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.logout))],
+        actions: [exitButton(context)],
       ),
       body: _screenOptions.elementAt(selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
@@ -67,6 +70,22 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+    );
+  }
+
+  IconButton exitButton(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        CustomAlert().dialog(
+          context: context,
+          title: "Sair do APP?",
+          message: "Deseja mesmo sair do aplicativo consulta marcada?",
+          firstButtonTitle: "Não",
+          secondButtonTitle: "Sim",
+          function: () => push(context, LoginPage(), replace: true),
+        );
+      },
+      icon: Icon(Icons.logout),
     );
   }
 

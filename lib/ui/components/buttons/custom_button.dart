@@ -12,9 +12,9 @@ class CustomButton extends StatelessWidget {
 
   CustomButton({
     @required this.title,
-    @required this.height,
-    @required this.width,
     @required this.onPressed,
+    this.height,
+    this.width,
     this.fontSize = 25,
     this.hasBorder = false,
   });

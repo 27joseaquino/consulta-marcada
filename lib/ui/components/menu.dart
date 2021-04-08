@@ -39,7 +39,7 @@ class Menu extends StatelessWidget {
             icon: Icon(Icons.support_agent_outlined),
             title: "Marcar Consulta",
             onTap: () {
-              pop(context);
+              Navigator.pop(context);
               push(context, HomePage(selectedIndex: 1), replace: true);
             },
           ),
@@ -47,7 +47,7 @@ class Menu extends StatelessWidget {
             icon: Icon(Icons.list_alt),
             title: "Lista de Atendimento",
             onTap: () {
-              pop(context);
+              Navigator.pop(context);
               push(context, HomePage(selectedIndex: 1), replace: true);
             },
           ),
@@ -56,7 +56,7 @@ class Menu extends StatelessWidget {
             icon: Icon(Icons.person_add),
             title: "Cadastrar Paciente",
             onTap: () {
-              pop(context);
+              Navigator.pop(context);
               push(context, HomePage(selectedIndex: 2), replace: true);
             },
           ),
@@ -64,7 +64,7 @@ class Menu extends StatelessWidget {
             icon: Icon(Icons.people_alt),
             title: "Lista de Pacientes",
             onTap: () {
-              pop(context);
+              Navigator.pop(context);
               push(context, HomePage(selectedIndex: 2), replace: true);
             },
           ),
@@ -73,7 +73,7 @@ class Menu extends StatelessWidget {
             icon: Icon(Icons.medical_services_rounded),
             title: "Cadastrar Médico",
             onTap: () {
-              pop(context);
+              Navigator.pop(context);
               push(context, HomePage(selectedIndex: 3), replace: true);
             },
           ),
@@ -81,7 +81,7 @@ class Menu extends StatelessWidget {
             icon: Icon(Icons.view_list),
             title: "Lista de Médicos",
             onTap: () {
-              pop(context);
+              Navigator.pop(context);
               push(context, HomePage(selectedIndex: 3), replace: true);
             },
           ),
@@ -90,7 +90,7 @@ class Menu extends StatelessWidget {
             icon: Icon(Icons.meeting_room),
             title: "Cadastrar Sala",
             onTap: () {
-              pop(context);
+              Navigator.pop(context);
               push(context, RegisterRoomPage());
             },
           ),
@@ -98,7 +98,7 @@ class Menu extends StatelessWidget {
             icon: Icon(Icons.list),
             title: "Lista de Salas",
             onTap: () {
-              pop(context);
+              Navigator.pop(context);
               push(context, HomePage(selectedIndex: 4), replace: true);
             },
           ),

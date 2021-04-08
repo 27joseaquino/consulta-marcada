@@ -1,4 +1,3 @@
-import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +13,7 @@ class CancelButton extends StatelessWidget {
       width: width,
       hasBorder: true,
       fontSize: 20,
-      onPressed: () => pop(context),
+      onPressed: () => Navigator.pop(context),
     );
   }
 }
