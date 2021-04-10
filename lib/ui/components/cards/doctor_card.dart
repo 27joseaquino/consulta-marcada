@@ -3,6 +3,10 @@ import 'package:consulta_marcada/ui/styles/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class DoctorCard extends StatelessWidget {
+  final Doctor doctor;
+
+  DoctorCard({@required this.doctor});
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -20,7 +24,7 @@ class DoctorCard extends StatelessWidget {
       height: 100,
       width: double.infinity,
       child: Image.network(
-        "https://images.pexels.com/photos/4173239/pexels-photo-4173239.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        doctor.image,
         fit: BoxFit.cover,
       ),
     );
@@ -34,14 +38,13 @@ class DoctorCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           CustomText(
-            text: "Nome do Médico",
+            text: doctor.name,
             fontSize: 18,
             fontWeight: FontWeight.bold,
             textOverFlowEllipsis: true,
           ),
-          TextLine(title: "Especialidade: ", content: "Clínico Geral"),
-          TextLine(title: "Gênero: ", content: "Masculino"),
-          TextLine(title: "Status: ", content: "Ativo", color: Colors.green),
+          TextLine(title: "Especialidade: ", content: doctor.specialty),
+          TextLine(title: "Gênero: ", content: doctor.genre),
         ],
       ),
     );
