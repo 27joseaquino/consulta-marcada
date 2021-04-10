@@ -167,7 +167,8 @@ class _RegisterPageState extends State<RegisterPage> {
     } else if (text.length < 8) {
       return "A senha precisa ter no mínimo 8 caracteres!";
     } else if (_confirmPassword.text != _password.text &&
-        _confirmPassword.text.isNotEmpty) {
+        _confirmPassword.text.isNotEmpty &&
+        _password.text.isNotEmpty) {
       return "Os campos SENHA e CONFIRMAR SENHA estão diferentes!";
     }
     return null;
