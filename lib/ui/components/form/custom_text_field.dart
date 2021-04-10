@@ -4,7 +4,6 @@ class CustomTextField extends StatelessWidget {
   final FormFieldValidator<String> validator;
   final TextEditingController controller;
   final TextInputType textInputType;
-  final bool isCounting;
   final String hintText;
   final bool isObscure;
   final int maxLength;
@@ -12,7 +11,6 @@ class CustomTextField extends StatelessWidget {
 
   CustomTextField({
     this.textInputType = TextInputType.text,
-    this.isCounting = false,
     this.isObscure = false,
     this.maxLength = 200,
     this.lines = 1,

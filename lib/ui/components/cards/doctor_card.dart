@@ -2,7 +2,7 @@ import 'package:consulta_marcada/ui/components/cards/text_line.dart';
 import 'package:consulta_marcada/ui/styles/custom_text.dart';
 import 'package:flutter/material.dart';
 
-class PatientCard extends StatelessWidget {
+class DoctorCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -20,7 +20,7 @@ class PatientCard extends StatelessWidget {
       height: 100,
       width: double.infinity,
       child: Image.network(
-        "https://images.pexels.com/photos/6822288/pexels-photo-6822288.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "https://images.pexels.com/photos/4173239/pexels-photo-4173239.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
         fit: BoxFit.cover,
       ),
     );
@@ -34,12 +34,12 @@ class PatientCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           CustomText(
-            text: "Nome do Paciente",
+            text: "Nome do Médico",
             fontSize: 18,
             fontWeight: FontWeight.bold,
             textOverFlowEllipsis: true,
           ),
-          TextLine(title: "CPF: ", content: "111.111.111-11"),
+          TextLine(title: "Especialidade: ", content: "Clínico Geral"),
           TextLine(title: "Gênero: ", content: "Masculino"),
           TextLine(title: "Status: ", content: "Ativo", color: Colors.green),
         ],
