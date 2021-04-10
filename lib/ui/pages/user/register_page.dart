@@ -1,4 +1,5 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
+import 'package:consulta_marcada/core/utils/validators.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
 import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:consulta_marcada/ui/components/logo_consulta_marcada.dart';
@@ -13,6 +14,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final GlobalKey<FormState> _registerFormKey = GlobalKey();
   final _cpf = TextEditingController();
   final _email = TextEditingController();
   final _password = TextEditingController();
@@ -33,23 +35,34 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 150,
                 width: 150,
               ),
-              CustomTextField(
-                hintText: "CPF",
-                controller: _cpf,
-              ),
-              CustomTextField(
-                hintText: "E-mail",
-                controller: _email,
-              ),
-              CustomTextField(
-                hintText: "Senha",
-                isObscure: true,
-                controller: _password,
-              ),
-              CustomTextField(
-                hintText: "Confirmar Senha",
-                isObscure: true,
-                controller: _confirmPassword,
+              Form(
+                key: _registerFormKey,
+                child: Column(
+                  children: [
+                    CustomTextField(
+                      hintText: "CPF",
+                      controller: _cpf,
+                      maxLength: 20,
+                    ),
+                    CustomTextField(
+                      hintText: "E-mail",
+                      controller: _email,
+                      maxLength: 50,
+                    ),
+                    CustomTextField(
+                      hintText: "Senha",
+                      isObscure: true,
+                      validator: passwordValidation,
+                      controller: _password,
+                    ),
+                    CustomTextField(
+                      hintText: "Confirmar Senha",
+                      isObscure: true,
+                      validator: passwordValidation,
+                      controller: _confirmPassword,
+                    ),
+                  ],
+                ),
               ),
               CustomButton(
                 title: "Cadastrar",
@@ -90,6 +103,8 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   _onClickRegister() {
+    if (!_registerFormKey.currentState.validate()) return;
+
     String cpf = _cpf.text;
     String email = _email.text;
     String password = _password.text;
