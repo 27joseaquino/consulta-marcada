@@ -1,5 +1,4 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/core/utils/validators.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
 import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:consulta_marcada/ui/components/logo_consulta_marcada.dart';
@@ -35,16 +34,24 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 logoConsultaMarcada(
-                  height: constraints.maxHeight * .25,
+                  height: constraints.maxHeight > 404
+                      ? constraints.maxHeight * .2
+                      : constraints.maxHeight * .4,
                   width: constraints.maxWidth,
                 ),
                 registrationForm(
-                  height: constraints.maxHeight * .53,
+                  height: constraints.maxHeight > 404
+                      ? constraints.maxHeight * .7
+                      : constraints.maxHeight * .6,
                   width: constraints.maxWidth,
                 ),
-                buttons(
-                  heigth: constraints.maxHeight * .22,
-                  width: constraints.maxWidth,
+                Visibility(
+                  visible: constraints.maxHeight > 404,
+                  child: pushLoginPage(
+                    height: constraints.maxHeight * .1,
+                    width: constraints.maxWidth,
+                  ),
+                  replacement: SizedBox(),
                 ),
               ],
             );
@@ -56,98 +63,83 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Container logoConsultaMarcada({double height, double width}) {
     return Container(
-      padding:EdgeInsets.only(top: height * .2),
+      padding: EdgeInsets.only(top: height * .2),
       height: height,
       width: width,
       child: LogoConsultaMarcada(
         fontSize: height * .1,
-        height: height * .6,
+        height: height * .65,
         width: width,
-      ),
-    );
-  }
-
-  Container buttons({double heigth, double width}) {
-    return Container(
-      height: heigth,
-      width: width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CustomButton(
-            title: "Cadastrar",
-            height: 50,
-            width: width,
-            onPressed: _onClickRegister,
-          ),
-          pushLoginPage(),
-        ],
       ),
     );
   }
 
   Container registrationForm({double height, double width}) {
     return Container(
-      padding: EdgeInsets.only(top: 5),
+      padding: EdgeInsets.only(top: height * .05),
       height: height,
       width: width,
-      child: Form(
-        key: _registerFormKey,
-        child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            children: [
-              CustomTextField(
-                hintText: "CPF",
-                controller: _cpf,
-                maxLength: 20,
+      child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            Form(
+              key: _registerFormKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomTextField(
+                    hintText: "CPF",
+                    controller: _cpf,
+                    maxLength: 20,
+                  ),
+                  CustomTextField(
+                    hintText: "E-mail",
+                    controller: _email,
+                    maxLength: 50,
+                  ),
+                  CustomTextField(
+                    hintText: "Senha",
+                    isObscure: true,
+                    validator: _passwordValidation,
+                    controller: _password,
+                  ),
+                  CustomTextField(
+                    hintText: "Confirmar Senha",
+                    isObscure: true,
+                    validator: _passwordValidation,
+                    controller: _confirmPassword,
+                  ),
+                ],
               ),
-              CustomTextField(
-                hintText: "E-mail",
-                controller: _email,
-                maxLength: 50,
-              ),
-              CustomTextField(
-                hintText: "Senha",
-                isObscure: true,
-                validator: passwordValidation,
-                controller: _password,
-              ),
-              CustomTextField(
-                hintText: "Confirmar Senha",
-                isObscure: true,
-                validator: passwordValidation,
-                controller: _confirmPassword,
-              ),
-            ],
-          ),
+            ),
+            CustomButton(
+              title: "Cadastrar",
+              height: 50,
+              width: width,
+              onPressed: _onClickRegister,
+            ),
+          ],
         ),
       ),
     );
   }
 
-  InkWell pushLoginPage() {
-    return InkWell(
-      child: Container(
-        padding: EdgeInsets.only(top: 5),
-        child: Column(
-          children: [
-            CustomText(
-              fontSize: 20,
-              text: "Já possui uma conta? ",
-              maxlines: 2,
-            ),
-            CustomText(
-              fontSize: 20,
-              text: "Entrar",
-              fontWeight: FontWeight.bold,
-              maxlines: 2,
-            ),
-          ],
+  Container pushLoginPage({double height, double width}) {
+    return Container(
+      height: height,
+      width: width,
+      padding: EdgeInsets.symmetric(vertical: 2),
+      child: InkWell(
+        child: CustomText(
+          fontSize: 18,
+          text: "Já possui uma conta? Entrar",
+          maxlines: 2,
+          textAlign: TextAlign.center,
         ),
+        onTap: () => push(context, LoginPage(), replace: true),
       ),
-      onTap: () => push(context, LoginPage(), replace: true),
     );
   }
 
@@ -159,15 +151,25 @@ class _RegisterPageState extends State<RegisterPage> {
     String password = _password.text;
     String confirmPassword = _confirmPassword.text;
 
-    print("E-mail: " +
-        email +
-        " - Senha: " +
-        password +
-        "CPF" +
-        cpf +
-        "confirmar Senha" +
-        confirmPassword);
+    print("CPF: $cpf");
+    print("E-mail: $email");
+    print("Senha: $password");
+    print("Confirmar Senha: $confirmPassword");
 
     push(context, HomePage(), replace: true);
+  }
+
+  String _passwordValidation(String text) {
+    if (text.isEmpty) {
+      return "Preencha este campo!";
+    } else if (text.length > 50) {
+      return "Você ultrapassou o limite de caracteres!";
+    } else if (text.length < 8) {
+      return "A senha precisa ter no mínimo 8 caracteres!";
+    } else if (_confirmPassword.text != _password.text &&
+        _confirmPassword.text.isNotEmpty) {
+      return "Os campos SENHA e CONFIRMAR SENHA estão diferentes!";
+    }
+    return null;
   }
 }
