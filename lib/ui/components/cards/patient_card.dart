@@ -23,10 +23,7 @@ class PatientCard extends StatelessWidget {
     return Container(
       height: 100,
       width: double.infinity,
-      child: Image.network(
-       patient.image,
-        fit: BoxFit.cover,
-      ),
+      child: Image.network(patient.image, fit: BoxFit.cover),
     );
   }
 
@@ -44,7 +41,6 @@ class PatientCard extends StatelessWidget {
             textOverFlowEllipsis: true,
           ),
           TextLine(title: "CPF: ", content: patient.cpf),
-          TextLine(title: "Gênero: ", content: patient.genre),
         ],
       ),
     );

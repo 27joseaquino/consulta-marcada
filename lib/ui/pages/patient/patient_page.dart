@@ -20,23 +20,23 @@ class _PatientPageState extends State<PatientPage> {
 
 Container buildListview() {
   Patient patient1 = Patient(
-    "12345678900",
-    "José",
+    "123.456.789-00",
+    "José Ronaldo de Oliveira",
     "13/03/2000",
     "Masculino",
     "Brasileiro",
-    "Maria",
+    "Maria de Oliveira",
     "https://images.pexels.com/photos/6822288/pexels-photo-6822288.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     true,
   );
 
   Patient patient2 = Patient(
-    "12345678900",
-    "João",
+    "143.456.789-00",
+    "João da Silva Santos",
     "13/03/2000",
     "Masculino",
     "Brasileiro",
-    "Maria",
+    "Maria dos Santos",
     "https://images.pexels.com/photos/6822288/pexels-photo-6822288.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     false,
   );
@@ -44,6 +44,7 @@ Container buildListview() {
   return Container(
     padding: EdgeInsets.only(top: 16, left: 10, right: 10),
     child: ListView(
+      physics: BouncingScrollPhysics(),
       children: <Widget>[
         PatientCard(patient: patient1),
         PatientCard(patient: patient2),
