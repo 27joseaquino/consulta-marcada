@@ -13,7 +13,7 @@ class Doctor {
     this._genre,
     this._specialty,
     this._image,
-    this._isActive {
+    this._isActive, {
     String id,
   }) : _id = id ?? Uuid().v4();
 

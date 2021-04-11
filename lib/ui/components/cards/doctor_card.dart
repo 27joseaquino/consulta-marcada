@@ -1,10 +1,10 @@
+import 'package:consulta_marcada/core/models/doctor.dart';
 import 'package:consulta_marcada/ui/components/cards/text_line.dart';
 import 'package:consulta_marcada/ui/styles/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class DoctorCard extends StatelessWidget {
   final Doctor doctor;
-
   DoctorCard({@required this.doctor});
 
   @override
@@ -23,10 +23,7 @@ class DoctorCard extends StatelessWidget {
     return Container(
       height: 100,
       width: double.infinity,
-      child: Image.network(
-        doctor.image,
-        fit: BoxFit.cover,
-      ),
+      child: Image.network(doctor.image, fit: BoxFit.cover),
     );
   }
 
@@ -44,7 +41,6 @@ class DoctorCard extends StatelessWidget {
             textOverFlowEllipsis: true,
           ),
           TextLine(title: "Especialidade: ", content: doctor.specialty),
-          TextLine(title: "Gênero: ", content: doctor.genre),
         ],
       ),
     );
