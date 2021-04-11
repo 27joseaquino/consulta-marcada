@@ -28,6 +28,7 @@ class _RoomPageState extends State<RoomPage> {
     return Container(
       padding: EdgeInsets.only(top: 16, left: 10, right: 10),
       child: ListView(
+        physics: BouncingScrollPhysics(),
         children: <Widget>[
           RoomCard(room: room1),
           RoomCard(room: room2),

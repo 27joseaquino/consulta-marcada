@@ -15,9 +15,9 @@ class Room {
     String id,
   }) : _id = id ?? Uuid().v4();
 
-  get id => _id;
-  get number => _number;
-  get type => _type;
-  get isAvailable => _isAvailable;
-  get localization => _localization;
+  String get id => _id;
+  int get number => _number;
+  String get type => _type;
+  bool get isAvailable => _isAvailable;
+  String get localization => _localization;
 }
