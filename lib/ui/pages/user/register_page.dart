@@ -97,7 +97,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   CustomTextField(
                     hintText: "E-mail",
                     controller: _email,
-                    maxLength: 50,
+                    textInputType: TextInputType.emailAddress,
+                    validator: _emailValidation,
                   ),
                   CustomTextField(
                     hintText: "Senha",
@@ -170,6 +171,19 @@ class _RegisterPageState extends State<RegisterPage> {
         _confirmPassword.text.isNotEmpty &&
         _password.text.isNotEmpty) {
       return "Os campos SENHA e CONFIRMAR SENHA estão diferentes!";
+    }
+    return null;
+  }
+
+  String _emailValidation(String text) {
+    if (text.isEmpty) {
+      return "Preencha este campo!";
+    } else if (text.length > 50) {
+      return "Você ultrapassou o limite de caracteres!";
+    } else if (!text.contains('@gmail.com') &&
+        !text.contains('@outlook.com') &&
+        !text.contains('@hotmail.com')) {
+      return "Este e-mail é inválido!";
     }
     return null;
   }
