@@ -1,5 +1,5 @@
-import 'package:consulta_marcada/core/models/room.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
+import 'package:consulta_marcada/data/data.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_floating_button.dart';
 import 'package:consulta_marcada/ui/components/cards/room_card.dart';
 import 'package:consulta_marcada/ui/pages/room/register_room_page.dart';
@@ -21,20 +21,15 @@ class _RoomPageState extends State<RoomPage> {
     );
   }
 
-  buildListview() {
-    Room room1 = Room(110, "Cirurgia", "1º Andar", true);
-    Room room2 = Room(256, "Cirurgia", "2º Andar", false);
-
+  Container buildListview() {
     return Container(
       padding: EdgeInsets.only(top: 16, left: 10, right: 10),
-      child: ListView(
+      child: ListView.builder(
         physics: BouncingScrollPhysics(),
-        children: <Widget>[
-          RoomCard(room: room1),
-          RoomCard(room: room2),
-          RoomCard(room: room1),
-          RoomCard(room: room2),
-        ],
+        itemCount: rooms.length,
+        itemBuilder: (context, index) {
+          return RoomCard(rooms[index]);
+        },
       ),
     );
   }

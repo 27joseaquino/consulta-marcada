@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 
 class RoomCard extends StatelessWidget {
   final Room room;
-
-  RoomCard({@required this.room});
+  RoomCard(this.room);
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +29,9 @@ class RoomCard extends StatelessWidget {
         child: Column(
           children: [
             TextLine(title: room.localization, content: " - Nº ${room.number}"),
-            TextLine(title: "Tipo: ", content: room.type),
+            TextLine(title: "Tipo", content: room.type),
             TextLine(
-              title: "Status: ",
+              title: "Status",
               content: room.isAvailable ? "Disponível" : "Indisponível",
             ),
           ],
