@@ -3,7 +3,7 @@ import 'package:consulta_marcada/ui/components/custom_alert.dart';
 import 'package:consulta_marcada/ui/components/menu.dart';
 import 'package:consulta_marcada/ui/pages/doctor/doctor_page.dart';
 import 'package:consulta_marcada/ui/pages/home/home_buttons.dart';
-import 'package:consulta_marcada/ui/pages/medical_consultation/list_page.dart';
+import 'package:consulta_marcada/ui/pages/medical_consultation/medical_consultation_page.dart';
 import 'package:consulta_marcada/ui/pages/patient/patient_page.dart';
 import 'package:consulta_marcada/ui/pages/room/room_page.dart';
 import 'package:consulta_marcada/ui/pages/user/login_page.dart';
@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     selectedIndex = widget.selectedIndex;
     _screenOptions = <Widget>[
       HomeButtons(),
-      ListPage(),
+      MedicalConsultationPage(),
       PatientPage(),
       DoctorPage(),
       RoomPage(),
