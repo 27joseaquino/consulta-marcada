@@ -14,7 +14,7 @@ class MedicalConsultationCard extends StatelessWidget {
       child: Row(
         children: [
           LateralBar(
-            color: getColorStatus(consultation.status),
+            color: getStatusColor(consultation.status),
             height: 120,
           ),
           buildContent(),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 List<String> status = ["Realizada", "Em andamento", "Não realizada"];
 
-Color getColorStatus(String status) {
+Color getStatusColor(String status) {
   switch (status) {
     case "Realizada":
       return Colors.green;
@@ -13,4 +13,17 @@ Color getColorStatus(String status) {
       return Colors.red;
   }
   return MyColors.appColors["dark-blue"];
+}
+
+IconData getStatusIcon(String status) {
+  switch (status) {
+    case "Realizada":
+      return Icons.check_circle;
+    case "Em andamento":
+      return Icons.alarm;
+    case "Não realizada":
+      return Icons.error;
+  }
+
+  return Icons.error_outline;
 }
