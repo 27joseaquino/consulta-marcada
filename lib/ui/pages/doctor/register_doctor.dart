@@ -170,6 +170,10 @@ class _RegisterDoctorState extends State<RegisterDoctor> {
 
     Doctor doctor = Doctor(name, genre, specialty, true);
 
+    _name.text = "";
+    _specialty.text = "";
+    _genre.text = "";
+
     print("Nome: ${doctor.name}");
     print("Especialidade: ${doctor.specialty}");
     print("Gênero: ${doctor.genre}");

@@ -47,7 +47,7 @@ class _RegisterPatientState extends State<RegisterPatient> {
         Visibility(
           visible: constraints.maxHeight >= 560,
           child: textContainer(
-            height: constraints.maxHeight * .15,
+            height: constraints.maxHeight * .1,
             width: constraints.maxWidth,
           ),
           replacement: SizedBox(),
@@ -55,13 +55,13 @@ class _RegisterPatientState extends State<RegisterPatient> {
         registerPatientForm(
           height: constraints.maxHeight < 560
               ? constraints.maxHeight * .95
-              : constraints.maxHeight * .6,
+              : constraints.maxHeight * .75,
           width: constraints.maxWidth,
         ),
         Visibility(
           visible: constraints.maxHeight >= 560,
           child: buttons(
-            height: constraints.maxHeight * .25,
+            height: constraints.maxHeight * .15,
             width: constraints.maxWidth,
           ),
           replacement: SizedBox(),
@@ -95,12 +95,12 @@ class _RegisterPatientState extends State<RegisterPatient> {
 
   Container textContainer({double height, double width}) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
       height: height,
       width: width,
       child: CustomText(
         text: "Cadastre aqui um novo paciente.",
-        fontSize: 18,
+        fontSize: 17.5,
         maxlines: 2,
         textAlign: TextAlign.justify,
       ),
@@ -111,7 +111,7 @@ class _RegisterPatientState extends State<RegisterPatient> {
     return Container(
       height: height,
       width: width,
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 16),
       child: Form(
         key: _registerPatientFormKey,
         child: SingleChildScrollView(
@@ -187,7 +187,15 @@ class _RegisterPatientState extends State<RegisterPatient> {
     String nationality = _nationality.text;
     String motherName = _motherName.text;
 
-    Patient patient = Patient(cpf, name, dateOfBirth, genre, nationality, motherName, true);
+    Patient patient = Patient(
+      cpf,
+      name,
+      dateOfBirth,
+      genre,
+      nationality,
+      motherName,
+      true,
+    );
 
     _cpf.text = "";
     _name.text = "";
@@ -196,7 +204,7 @@ class _RegisterPatientState extends State<RegisterPatient> {
     _nationality.text = "";
     _motherName.text = "";
 
-    print("Cpf: ${patient.cpf}");
+    print("CPF: ${patient.cpf}");
     print("Nome: ${patient.name}");
     print("Data de nascimento : ${patient.dateOfBirth}");
     print("Gênero: ${patient.genre}");
