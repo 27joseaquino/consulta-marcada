@@ -5,12 +5,12 @@ import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:consulta_marcada/ui/styles/custom_text.dart';
 import 'package:flutter/material.dart';
 
-class RegisterDoctor extends StatefulWidget {
+class RegisterDoctorPage extends StatefulWidget {
   @override
-  _RegisterDoctorState createState() => _RegisterDoctorState();
+  _RegisterDoctorPageState createState() => _RegisterDoctorPageState();
 }
 
-class _RegisterDoctorState extends State<RegisterDoctor> {
+class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
   final GlobalKey<FormState> _registerDoctorFormKey = GlobalKey();
   final _name = TextEditingController();
   final _specialty = TextEditingController();

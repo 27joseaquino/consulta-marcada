@@ -2,7 +2,7 @@ import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/data/data.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_floating_button.dart';
 import 'package:consulta_marcada/ui/components/cards/patient_card.dart';
-import 'package:consulta_marcada/ui/pages/patient/register_patient.dart';
+import 'package:consulta_marcada/ui/pages/patient/register_patient_page.dart';
 import 'package:flutter/material.dart';
 
 class PatientPage extends StatefulWidget {
@@ -17,7 +17,7 @@ class _PatientPageState extends State<PatientPage> {
       body: buildListview(),
       floatingActionButton: CustomFloatingButton(
         onPressed: () {
-          push(context, RegisterPatient());
+          push(context, RegisterPatientPage());
         },
       ),
     );
