@@ -13,7 +13,8 @@ class _DoctorPageState extends State<DoctorPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: buildListview(),
-      floatingActionButton: CustomFloatingButton(onPressed: () {}),
+      floatingActionButton: CustomFloatingButton(onPressed: () {push(context, RegisterDoctor()),
+    }),
     );
   }
 }
