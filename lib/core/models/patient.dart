@@ -5,7 +5,6 @@ class Patient {
   String _genre;
   String _nationality;
   String _motherName;
-  String _image;
   bool _isActive;
 
   Patient(
@@ -15,7 +14,6 @@ class Patient {
     this._genre,
     this._nationality,
     this._motherName,
-    this._image,
     this._isActive, 
   );
 
@@ -25,6 +23,5 @@ class Patient {
   String get genre => _genre;
   String get nationality => _nationality;
   String get motherName => _motherName;
-  String get image => _image;
   bool get isActive => _isActive;
 }

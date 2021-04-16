@@ -1,8 +1,9 @@
 import 'package:consulta_marcada/core/models/patient.dart';
-import 'package:consulta_marcada/ui/components/cards/image_container.dart';
 import 'package:consulta_marcada/ui/components/cards/text_line.dart';
 import 'package:consulta_marcada/ui/styles/custom_text.dart';
 import 'package:flutter/material.dart';
+
+import 'lateral_bar.dart';
 
 class PatientCard extends StatelessWidget {
   final Patient patient;
@@ -13,7 +14,10 @@ class PatientCard extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-          ImageContainer(url: patient.image),
+          LateralBar(
+            color: patient.isActive ? Colors.green : Colors.red,
+            height: 110,
+          ),
           buildContent(),
         ],
       ),

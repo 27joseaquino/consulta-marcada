@@ -28,7 +28,6 @@ Patient patient1 = Patient(
   "Masculino",
   "Brasileiro",
   "Maria de Oliveira",
-  "https://images.pexels.com/photos/6822288/pexels-photo-6822288.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   true,
 );
 
@@ -39,7 +38,6 @@ Patient patient2 = Patient(
   "Masculino",
   "Brasileiro",
   "Maria dos Santos",
-  "https://images.pexels.com/photos/6822288/pexels-photo-6822288.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   false,
 );
 
