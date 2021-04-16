@@ -10,14 +10,12 @@ Doctor doctor1 = Doctor(
   "Dra. Renata Oliveira",
   "Feminino",
   "Cirurgiã",
-  "https://cdn.pixabay.com/photo/2017/03/14/03/20/nurse-2141808_960_720.jpg",
   true,
 );
 Doctor doctor2 = Doctor(
   "Dra. Júlia Quentino",
   "Feminino",
   "Cardiologista",
-  "https://cdn.pixabay.com/photo/2017/03/14/03/20/nurse-2141808_960_720.jpg",
   false,
 );
 

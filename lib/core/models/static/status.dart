@@ -1,7 +1,7 @@
 import 'package:consulta_marcada/ui/styles/my_colors.dart';
 import 'package:flutter/material.dart';
 
-List<String> status = ["Realizada", "Em andamento", "Não realizada"];
+const List<String> status = ["Realizada", "Em andamento", "Não realizada"];
 
 Color getStatusColor(String status) {
   switch (status) {
