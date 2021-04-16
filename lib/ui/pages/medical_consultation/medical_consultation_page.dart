@@ -100,9 +100,10 @@ class _MedicalConsultationPageState extends State<MedicalConsultationPage> {
               children: [
                 Icon(Icons.error, color: Colors.grey),
                 CustomText(
-                  text: "Não há nenhuma\nconsulta marcada",
+                  text: "Não há nenhuma consulta marcada",
                   fontSize: 18,
                   color: Colors.grey,
+                  maxlines: 2,
                 ),
               ],
             ),
