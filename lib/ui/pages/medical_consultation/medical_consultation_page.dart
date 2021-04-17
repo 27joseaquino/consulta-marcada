@@ -37,12 +37,16 @@ class _MedicalConsultationPageState extends State<MedicalConsultationPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              filter(
-                height: constraints.maxHeight * .1,
+              filterContainer(
+                height: constraints.maxHeight > 360
+                    ? constraints.maxHeight * .1
+                    : constraints.maxHeight * .25,
                 width: constraints.maxWidth,
               ),
               buildListview(
-                height: constraints.maxHeight * .9,
+                height: constraints.maxHeight > 360
+                    ? constraints.maxHeight * .9
+                    : constraints.maxHeight * .75,
                 width: constraints.maxWidth,
               ),
             ],
@@ -53,11 +57,11 @@ class _MedicalConsultationPageState extends State<MedicalConsultationPage> {
     );
   }
 
-  Container filter({double height, double width}) {
+  Container filterContainer({double height, double width}) {
     return Container(
       padding: EdgeInsets.only(top: 10),
       height: height,
-      width: width,
+      width: width >= 620 ? width * .55 : width,
       child: ListView.builder(
         physics: BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
