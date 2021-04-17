@@ -5,7 +5,7 @@ import 'package:consulta_marcada/ui/pages/doctor/register_doctor_page.dart';
 import 'package:consulta_marcada/ui/pages/home/home_page.dart';
 import 'package:consulta_marcada/ui/pages/patient/register_patient_page.dart';
 import 'package:consulta_marcada/ui/pages/room/register_room_page.dart';
-import 'package:consulta_marcada/ui/styles/custom_text.dart';
+import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/styles/my_colors.dart';
 import 'package:flutter/material.dart';
 

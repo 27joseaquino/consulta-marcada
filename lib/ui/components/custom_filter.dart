@@ -1,4 +1,4 @@
-import 'package:consulta_marcada/ui/styles/custom_text.dart';
+import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class CustomFilter extends StatefulWidget {

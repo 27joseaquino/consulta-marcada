@@ -2,7 +2,7 @@ import 'package:consulta_marcada/core/models/patient.dart';
 import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
 import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
-import 'package:consulta_marcada/ui/styles/custom_text.dart';
+import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPatientPage extends StatefulWidget {

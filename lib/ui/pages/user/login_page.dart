@@ -4,7 +4,7 @@ import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:consulta_marcada/ui/components/logo_consulta_marcada.dart';
 import 'package:consulta_marcada/ui/pages/home/home_page.dart';
 import 'package:consulta_marcada/ui/pages/user/register_page.dart';
-import 'package:consulta_marcada/ui/styles/custom_text.dart';
+import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
