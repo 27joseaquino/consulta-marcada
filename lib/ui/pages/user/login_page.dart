@@ -3,8 +3,6 @@ import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
 import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:consulta_marcada/ui/components/logo_consulta_marcada.dart';
 import 'package:consulta_marcada/ui/pages/home/home_page.dart';
-import 'package:consulta_marcada/ui/pages/user/register_page.dart';
-import 'package:consulta_marcada/ui/styles/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -42,59 +40,37 @@ class _LoginPageState extends State<LoginPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         logoConsultaMarcada(
-          height: constrainsts.maxHeight * .35,
+          height: constrainsts.maxHeight * .4,
           width: constrainsts.maxWidth,
         ),
         loginForm(
           context,
-          height: constrainsts.maxHeight * .5,
+          height: constrainsts.maxHeight * .6,
           width: constrainsts.maxWidth,
-        ),
-        Visibility(
-          visible: constrainsts.maxHeight > 500,
-          child: pushRegisterPage(
-            height: constrainsts.maxHeight * .15,
-            width: constrainsts.maxWidth,
-          ),
-          replacement: SizedBox(),
         ),
       ],
     );
   }
 
-  Column horizontalScreen(BoxConstraints constrainsts) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          height: constrainsts.maxHeight * .88,
-          width: constrainsts.maxWidth,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              logoConsultaMarcada(
-                height: constrainsts.maxHeight * .35,
-                width: constrainsts.maxWidth * .4,
-              ),
-              loginForm(
-                context,
-                height: constrainsts.maxHeight * .8,
-                width: constrainsts.maxWidth * .6,
-              ),
-            ],
+  Container horizontalScreen(BoxConstraints constrainsts) {
+    return Container(
+      height: constrainsts.maxHeight,
+      width: constrainsts.maxWidth,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          logoConsultaMarcada(
+            height: constrainsts.maxHeight * .35,
+            width: constrainsts.maxWidth * .4,
           ),
-        ),
-        Visibility(
-          visible: constrainsts.maxHeight >= 344,
-          child: pushRegisterPage(
-            height: constrainsts.maxHeight * .12,
-            width: constrainsts.maxWidth,
+          loginForm(
+            context,
+            height: constrainsts.maxHeight * .8,
+            width: constrainsts.maxWidth * .6,
           ),
-          replacement: SizedBox(),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -151,26 +127,6 @@ class _LoginPageState extends State<LoginPage> {
             onPressed: _onClickLogin,
           ),
         ],
-      ),
-    );
-  }
-
-  pushRegisterPage({
-    double height,
-    double width,
-  }) {
-    return Container(
-      height: height,
-      width: width,
-      padding: EdgeInsets.symmetric(vertical: 2),
-      child: InkWell(
-        child: CustomText(
-          fontSize: 20,
-          text: "Ainda não possui uma conta? Cadastrar",
-          maxlines: 2,
-          textAlign: TextAlign.center,
-        ),
-        onTap: () => push(context, RegisterPage(), replace: true),
       ),
     );
   }
