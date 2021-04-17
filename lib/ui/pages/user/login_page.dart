@@ -44,7 +44,6 @@ class _LoginPageState extends State<LoginPage> {
           width: constrainsts.maxWidth,
         ),
         loginForm(
-          context,
           height: constrainsts.maxHeight * .6,
           width: constrainsts.maxWidth,
         ),
@@ -65,7 +64,6 @@ class _LoginPageState extends State<LoginPage> {
             width: constrainsts.maxWidth * .4,
           ),
           loginForm(
-            context,
             height: constrainsts.maxHeight * .8,
             width: constrainsts.maxWidth * .6,
           ),
@@ -91,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Container loginForm(BuildContext context, {double height, double width}) {
+  Container loginForm({double height, double width}) {
     return Container(
       padding: EdgeInsets.only(top: height * .1),
       height: height,
@@ -109,13 +107,13 @@ class _LoginPageState extends State<LoginPage> {
                   hintText: "E-mail",
                   controller: _email,
                   textInputType: TextInputType.emailAddress,
-                  maxLength: 50,
+                  validator: _emailValidation,
                 ),
                 CustomTextField(
                   hintText: "Senha",
                   isObscure: true,
                   controller: _password,
-                  maxLength: 50,
+                  validator: _passwordValidation,
                 ),
               ],
             ),
@@ -137,8 +135,33 @@ class _LoginPageState extends State<LoginPage> {
     String email = _email.text;
     String password = _password.text;
 
-    print("E-mail: " + email + " - Senha: " + password);
+    print("E-mail: $email");
+    print("Senha: $password");
 
     push(context, HomePage(), replace: true);
+  }
+
+  String _passwordValidation(String text) {
+    if (text.isEmpty) {
+      return "Preencha este campo!";
+    } else if (text.length > 50) {
+      return "Você ultrapassou o limite de caracteres!";
+    } else if (text.length < 8) {
+      return "A senha precisa ter no mínimo 8 caracteres!";
+    }
+    return null;
+  }
+
+  String _emailValidation(String text) {
+    if (text.isEmpty) {
+      return "Preencha este campo!";
+    } else if (text.length > 50) {
+      return "Você ultrapassou o limite de caracteres!";
+    } else if (!text.contains('@gmail.com') &&
+        !text.contains('@outlook.com') &&
+        !text.contains('@hotmail.com')) {
+      return "Este e-mail é inválido!";
+    }
+    return null;
   }
 }

@@ -1,5 +1,9 @@
+import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/ui/components/buttons/quick_access_button.dart';
-import 'package:consulta_marcada/ui/styles/custom_text.dart';
+import 'package:consulta_marcada/ui/pages/doctor/register_doctor_page.dart';
+import 'package:consulta_marcada/ui/pages/patient/register_patient_page.dart';
+import 'package:consulta_marcada/ui/pages/room/register_room_page.dart';
+import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class HomeButtons extends StatefulWidget {
@@ -65,7 +69,7 @@ class _HomeButtonsState extends State<HomeButtons> {
               QuickAccessButton(
                 title: "Cadastrar Paciente",
                 icon: Icons.person_add,
-                function: () {},
+                function: () => push(context, RegisterPatientPage()),
                 width: width * .5,
                 height: height * .5,
               ),
@@ -78,14 +82,14 @@ class _HomeButtonsState extends State<HomeButtons> {
               QuickAccessButton(
                 title: "Cadastrar Médico",
                 icon: Icons.medical_services,
-                function: () {},
+                function: () => push(context, RegisterDoctorPage()),
                 width: width * .5,
                 height: height * .5,
               ),
               QuickAccessButton(
-                title: "Enviar Sugestões",
-                icon: Icons.lightbulb,
-                function: () {},
+                title: "Cadastrar Sala",
+                icon: Icons.meeting_room,
+                function: () => push(context, RegisterRoomPage()),
                 width: width * .5,
                 height: height * .5,
               ),

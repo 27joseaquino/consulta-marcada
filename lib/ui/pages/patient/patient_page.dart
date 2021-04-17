@@ -1,4 +1,8 @@
-import 'package:consulta_marcada/ui/styles/custom_text.dart';
+import 'package:consulta_marcada/core/utils/navigator.dart';
+import 'package:consulta_marcada/data/data.dart';
+import 'package:consulta_marcada/ui/components/buttons/custom_floating_button.dart';
+import 'package:consulta_marcada/ui/components/cards/patient_card.dart';
+import 'package:consulta_marcada/ui/pages/patient/register_patient_page.dart';
 import 'package:flutter/material.dart';
 
 class PatientPage extends StatefulWidget {
@@ -9,13 +13,26 @@ class PatientPage extends StatefulWidget {
 class _PatientPageState extends State<PatientPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: CustomText(
-          text: "Página de Pacientes",
-          fontSize: 20,
-        ),
+    return Scaffold(
+      body: buildListview(),
+      floatingActionButton: CustomFloatingButton(
+        onPressed: () {
+          push(context, RegisterPatientPage());
+        },
       ),
     );
   }
+}
+
+Container buildListview() {
+  return Container(
+    padding: EdgeInsets.only(top: 16, left: 10, right: 10),
+    child: ListView.builder(
+      physics: BouncingScrollPhysics(),
+      itemCount: patients.length,
+      itemBuilder: (context, index) {
+        return PatientCard(patients[index]);
+      },
+    ),
+  );
 }

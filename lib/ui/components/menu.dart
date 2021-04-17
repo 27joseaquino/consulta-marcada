@@ -1,9 +1,11 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/ui/components/line.dart';
 import 'package:consulta_marcada/ui/components/logo_consulta_marcada.dart';
+import 'package:consulta_marcada/ui/pages/doctor/register_doctor_page.dart';
 import 'package:consulta_marcada/ui/pages/home/home_page.dart';
+import 'package:consulta_marcada/ui/pages/patient/register_patient_page.dart';
 import 'package:consulta_marcada/ui/pages/room/register_room_page.dart';
-import 'package:consulta_marcada/ui/styles/custom_text.dart';
+import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/styles/my_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -14,27 +16,7 @@ class Menu extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          DrawerHeader(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 8),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  LogoConsultaMarcada(
-                    fontSize: 18,
-                    height: 100,
-                    width: 100,
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.settings, color: Colors.white),
-                  ),
-                ],
-              ),
-            ),
-            decoration: BoxDecoration(color: MyColors.appColors["blue"]),
-          ),
+          drawerHeader(),
           buildListTile(
             icon: Icon(Icons.support_agent_outlined),
             title: "Marcar Consulta",
@@ -57,7 +39,7 @@ class Menu extends StatelessWidget {
             title: "Cadastrar Paciente",
             onTap: () {
               Navigator.pop(context);
-              push(context, HomePage(selectedIndex: 2), replace: true);
+              push(context, RegisterPatientPage());
             },
           ),
           buildListTile(
@@ -74,7 +56,7 @@ class Menu extends StatelessWidget {
             title: "Cadastrar Médico",
             onTap: () {
               Navigator.pop(context);
-              push(context, HomePage(selectedIndex: 3), replace: true);
+              push(context, RegisterDoctorPage());
             },
           ),
           buildListTile(
@@ -104,6 +86,30 @@ class Menu extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  DrawerHeader drawerHeader() {
+    return DrawerHeader(
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 8),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            LogoConsultaMarcada(
+              fontSize: 18,
+              height: 100,
+              width: 100,
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.settings, color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+      decoration: BoxDecoration(color: MyColors.appColors["blue"]),
     );
   }
 

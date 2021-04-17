@@ -1,26 +1,29 @@
-import 'package:consulta_marcada/core/models/room.dart';
+import 'package:consulta_marcada/core/models/patient.dart';
 import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
 import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:flutter/material.dart';
 
-class RegisterRoomPage extends StatefulWidget {
+class RegisterPatientPage extends StatefulWidget {
   @override
-  _RegisterRoomPageState createState() => _RegisterRoomPageState();
+  _RegisterPatientPageState createState() => _RegisterPatientPageState();
 }
 
-class _RegisterRoomPageState extends State<RegisterRoomPage> {
-  final GlobalKey<FormState> _registerRoomFormKey = GlobalKey();
-  final _number = TextEditingController();
-  final _type = TextEditingController();
-  final _localization = TextEditingController();
+class _RegisterPatientPageState extends State<RegisterPatientPage> {
+  final GlobalKey<FormState> _registerPatientFormKey = GlobalKey();
+  final _cpf = TextEditingController();
+  final _name = TextEditingController();
+  final _dateOfBirth = TextEditingController();
+  final _genre = TextEditingController();
+  final _nationality = TextEditingController();
+  final _motherName = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(title: Text("Cadastrar Sala")),
+      appBar: AppBar(title: Text("Cadastrar Paciente")),
       body: Container(
         height: size.height,
         width: size.width,
@@ -44,21 +47,21 @@ class _RegisterRoomPageState extends State<RegisterRoomPage> {
         Visibility(
           visible: constraints.maxHeight >= 560,
           child: textContainer(
-            height: constraints.maxHeight * .15,
+            height: constraints.maxHeight * .1,
             width: constraints.maxWidth,
           ),
           replacement: SizedBox(),
         ),
-        registerRoomForm(
+        registerPatientForm(
           height: constraints.maxHeight < 560
               ? constraints.maxHeight * .95
-              : constraints.maxHeight * .6,
+              : constraints.maxHeight * .75,
           width: constraints.maxWidth,
         ),
         Visibility(
           visible: constraints.maxHeight >= 560,
           child: buttons(
-            height: constraints.maxHeight * .25,
+            height: constraints.maxHeight * .15,
             width: constraints.maxWidth,
           ),
           replacement: SizedBox(),
@@ -72,7 +75,7 @@ class _RegisterRoomPageState extends State<RegisterRoomPage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        registerRoomForm(
+        registerPatientForm(
           height: constraints.maxHeight >= 280
               ? constraints.maxHeight * .8
               : constraints.maxHeight * .9,
@@ -92,45 +95,58 @@ class _RegisterRoomPageState extends State<RegisterRoomPage> {
 
   Container textContainer({double height, double width}) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
       height: height,
       width: width,
       child: CustomText(
-        text: "Cadastre aqui uma nova sala da unidade de saúde.",
-        fontSize: 18,
+        text: "Cadastre aqui um novo paciente.",
+        fontSize: 17.5,
         maxlines: 2,
         textAlign: TextAlign.justify,
       ),
     );
   }
 
-  Container registerRoomForm({double height, double width}) {
+  Container registerPatientForm({double height, double width}) {
     return Container(
       height: height,
       width: width,
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 16),
       child: Form(
-        key: _registerRoomFormKey,
+        key: _registerPatientFormKey,
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               CustomTextField(
-                hintText: "Número",
-                textInputType: TextInputType.number,
-                controller: _number,
+                hintText: "CPF",
+                controller: _cpf,
+                maxLength: 20,
+              ),
+              CustomTextField(
+                hintText: "Nome",
+                controller: _name,
                 maxLength: 50,
               ),
               CustomTextField(
-                hintText: "Tipo",
-                controller: _type,
-                maxLength: 50,
+                hintText: "Data de nascimento",
+                controller: _dateOfBirth,
+                maxLength: 10,
               ),
               CustomTextField(
-                hintText: "Localização",
-                controller: _localization,
+                hintText: "Gênero",
+                controller: _genre,
                 maxLength: 100,
-                lines: height >= 336 ? 3 : 1,
+              ),
+              CustomTextField(
+                hintText: "Nacionalidade",
+                controller: _nationality,
+                maxLength: 100,
+              ),
+              CustomTextField(
+                hintText: "Nome da mãe",
+                controller: _motherName,
+                maxLength: 100,
               ),
             ],
           ),
@@ -162,22 +178,38 @@ class _RegisterRoomPageState extends State<RegisterRoomPage> {
   }
 
   _onClickRegister() {
-    if (!_registerRoomFormKey.currentState.validate()) return;
+    if (!_registerPatientFormKey.currentState.validate()) return;
 
-    int number = int.parse(_number.text);
-    String type = _type.text;
-    String localization = _localization.text;
+    String cpf = _cpf.text;
+    String name = _name.text;
+    String dateOfBirth = _dateOfBirth.text;
+    String genre = _genre.text;
+    String nationality = _nationality.text;
+    String motherName = _motherName.text;
 
-    Room room = Room(number, type, localization, true);
+    Patient patient = Patient(
+      cpf,
+      name,
+      dateOfBirth,
+      genre,
+      nationality,
+      motherName,
+      true,
+    );
 
-    _number.text = "";
-    _type.text = "";
-    _localization.text = "";
+    _cpf.text = "";
+    _name.text = "";
+    _dateOfBirth.text = "";
+    _genre.text = "";
+    _nationality.text = "";
+    _motherName.text = "";
 
-    print("ID: ${room.id}");
-    print("Número: ${room.number}");
-    print("Tipo: ${room.type}");
-    print("Localização: ${room.localization}");
-    print("Status: ${room.isAvailable}");
+    print("CPF: ${patient.cpf}");
+    print("Nome: ${patient.name}");
+    print("Data de nascimento : ${patient.dateOfBirth}");
+    print("Gênero: ${patient.genre}");
+    print("Nacionalidade: ${patient.nationality}");
+    print("Nome da mãe: ${patient.motherName}");
+    print("Status: ${patient.isActive}");
   }
 }

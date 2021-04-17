@@ -1,26 +1,28 @@
-import 'package:consulta_marcada/core/models/room.dart';
+import 'package:consulta_marcada/core/models/doctor.dart';
 import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
 import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:flutter/material.dart';
 
-class RegisterRoomPage extends StatefulWidget {
+class RegisterDoctorPage extends StatefulWidget {
   @override
-  _RegisterRoomPageState createState() => _RegisterRoomPageState();
+  _RegisterDoctorPageState createState() => _RegisterDoctorPageState();
 }
 
-class _RegisterRoomPageState extends State<RegisterRoomPage> {
-  final GlobalKey<FormState> _registerRoomFormKey = GlobalKey();
-  final _number = TextEditingController();
-  final _type = TextEditingController();
-  final _localization = TextEditingController();
+class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
+  final GlobalKey<FormState> _registerDoctorFormKey = GlobalKey();
+  final _name = TextEditingController();
+  final _specialty = TextEditingController();
+  final _genre = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(title: Text("Cadastrar Sala")),
+      appBar: AppBar(
+        title: Text("Cadastrar Médico(a)", style: TextStyle(fontSize: 23)),
+      ),
       body: Container(
         height: size.height,
         width: size.width,
@@ -49,7 +51,7 @@ class _RegisterRoomPageState extends State<RegisterRoomPage> {
           ),
           replacement: SizedBox(),
         ),
-        registerRoomForm(
+        registerDoctorForm(
           height: constraints.maxHeight < 560
               ? constraints.maxHeight * .95
               : constraints.maxHeight * .6,
@@ -72,7 +74,7 @@ class _RegisterRoomPageState extends State<RegisterRoomPage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        registerRoomForm(
+        registerDoctorForm(
           height: constraints.maxHeight >= 280
               ? constraints.maxHeight * .8
               : constraints.maxHeight * .9,
@@ -96,7 +98,7 @@ class _RegisterRoomPageState extends State<RegisterRoomPage> {
       height: height,
       width: width,
       child: CustomText(
-        text: "Cadastre aqui uma nova sala da unidade de saúde.",
+        text: "Cadastre aqui um novo médico(a).",
         fontSize: 18,
         maxlines: 2,
         textAlign: TextAlign.justify,
@@ -104,33 +106,31 @@ class _RegisterRoomPageState extends State<RegisterRoomPage> {
     );
   }
 
-  Container registerRoomForm({double height, double width}) {
+  Container registerDoctorForm({double height, double width}) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       height: height,
       width: width,
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       child: Form(
-        key: _registerRoomFormKey,
+        key: _registerDoctorFormKey,
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               CustomTextField(
-                hintText: "Número",
-                textInputType: TextInputType.number,
-                controller: _number,
-                maxLength: 50,
-              ),
-              CustomTextField(
-                hintText: "Tipo",
-                controller: _type,
-                maxLength: 50,
-              ),
-              CustomTextField(
-                hintText: "Localização",
-                controller: _localization,
+                hintText: "Nome",
+                controller: _name,
                 maxLength: 100,
-                lines: height >= 336 ? 3 : 1,
+              ),
+              CustomTextField(
+                hintText: "Gênero",
+                controller: _genre,
+                maxLength: 20,
+              ),
+              CustomTextField(
+                hintText: "Especialidade",
+                controller: _specialty,
+                maxLength: 50,
               ),
             ],
           ),
@@ -154,30 +154,29 @@ class _RegisterRoomPageState extends State<RegisterRoomPage> {
             height: 50,
             fontSize: 20,
             width: width * .4,
-            onPressed: _onClickRegister,
+            onPressed: _onClickRegisterDoctor,
           )
         ],
       ),
     );
   }
 
-  _onClickRegister() {
-    if (!_registerRoomFormKey.currentState.validate()) return;
+  _onClickRegisterDoctor() {
+    if (!_registerDoctorFormKey.currentState.validate()) return;
 
-    int number = int.parse(_number.text);
-    String type = _type.text;
-    String localization = _localization.text;
+    String name = _name.text;
+    String specialty = _specialty.text;
+    String genre = _genre.text;
 
-    Room room = Room(number, type, localization, true);
+    Doctor doctor = Doctor(name, genre, specialty, true);
 
-    _number.text = "";
-    _type.text = "";
-    _localization.text = "";
+    _name.text = "";
+    _specialty.text = "";
+    _genre.text = "";
 
-    print("ID: ${room.id}");
-    print("Número: ${room.number}");
-    print("Tipo: ${room.type}");
-    print("Localização: ${room.localization}");
-    print("Status: ${room.isAvailable}");
+    print("Nome: ${doctor.name}");
+    print("Especialidade: ${doctor.specialty}");
+    print("Gênero: ${doctor.genre}");
+    print("Status: ${doctor.isActive}");
   }
 }
