@@ -11,9 +11,12 @@ class RoomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => push(context, RoomDetailsPage(room)),
-      child: Card(
+    return Card(
+      child: InkWell(
+        splashColor: room.isAvailable
+            ? Colors.green.withOpacity(0.5)
+            : Colors.red.withOpacity(0.5),
+        onTap: () => push(context, RoomDetailsPage(room)),
         child: Row(
           children: [
             LateralBar(

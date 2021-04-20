@@ -113,11 +113,7 @@ class Menu extends StatelessWidget {
     );
   }
 
-  ListTile buildListTile({
-    @required Icon icon,
-    @required String title,
-    @required Function onTap,
-  }) {
+  ListTile buildListTile({Icon icon, String title, Function onTap}) {
     return ListTile(
       leading: icon,
       title: CustomText(text: title, fontSize: 14),
