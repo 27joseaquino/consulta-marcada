@@ -1,10 +1,12 @@
 import 'package:consulta_marcada/core/models/medical_consultation.dart';
 import 'package:consulta_marcada/core/models/static/status.dart';
+import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/data/data.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_floating_button.dart';
 import 'package:consulta_marcada/ui/components/cards/medical_consultation_card.dart';
 import 'package:consulta_marcada/ui/components/custom_filter.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/pages/medical_consultation/register_consultation_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -53,7 +55,8 @@ class _MedicalConsultationPageState extends State<MedicalConsultationPage> {
           );
         }),
       ),
-      floatingActionButton: CustomFloatingButton(onPressed: () {}),
+      floatingActionButton: CustomFloatingButton(onPressed: () => push(context, RegisterConsultation())
+       ),
     );
   }
 
