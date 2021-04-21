@@ -1,8 +1,9 @@
 import 'package:consulta_marcada/core/models/patient.dart';
+import 'package:consulta_marcada/core/utils/navigator.dart';
+import 'package:consulta_marcada/ui/components/cards/lateral_bar.dart';
 import 'package:consulta_marcada/ui/components/cards/text_line.dart';
+import 'package:consulta_marcada/ui/pages/patient/patient_details_page.dart';
 import 'package:flutter/material.dart';
-
-import 'lateral_bar.dart';
 
 class PatientCard extends StatelessWidget {
   final Patient patient;
@@ -11,14 +12,20 @@ class PatientCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Row(
-        children: [
-          LateralBar(
-            color: patient.isActive ? Colors.green : Colors.red,
-            height: 110,
-          ),
-          buildContent(),
-        ],
+      child: InkWell(
+        splashColor: patient.isActive
+            ? Colors.green.withOpacity(0.5)
+            : Colors.red.withOpacity(0.5),
+        onTap: () => push(context, PatientDetailsPage(patient)),
+        child: Row(
+          children: [
+            LateralBar(
+              color: patient.isActive ? Colors.green : Colors.red,
+              height: 110,
+            ),
+            buildContent(),
+          ],
+        ),
       ),
     );
   }
