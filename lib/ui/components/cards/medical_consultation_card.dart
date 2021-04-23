@@ -1,7 +1,9 @@
 import 'package:consulta_marcada/core/models/medical_consultation.dart';
 import 'package:consulta_marcada/core/models/static/status.dart';
+import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/ui/components/cards/lateral_bar.dart';
 import 'package:consulta_marcada/ui/components/cards/text_line.dart';
+import 'package:consulta_marcada/ui/pages/medical_consultation/medical_consultation_details_page.dart';
 import 'package:flutter/material.dart';
 
 class MedicalConsultationCard extends StatelessWidget {
@@ -10,15 +12,18 @@ class MedicalConsultationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Row(
-        children: [
-          LateralBar(
-            color: getStatusColor(consultation.status),
-            height: 120,
-          ),
-          buildContent(),
-        ],
+    return InkWell(
+      onTap: () => push(context, MedicalConsultationDetails(consultation)),
+      child: Card(
+        child: Row(
+          children: [
+            LateralBar(
+              color: getStatusColor(consultation.status),
+              height: 120,
+            ),
+            buildContent(),
+          ],
+        ),
       ),
     );
   }
