@@ -17,7 +17,6 @@ class MedicalConsultation {
     this._doctor,
     this._room,
     this._date,
-    this._arrivalTime,
     this._status, {
     String id,
   }) : _id = id ?? Uuid().v4();

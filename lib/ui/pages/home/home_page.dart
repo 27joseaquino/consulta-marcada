@@ -1,11 +1,11 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/ui/components/custom_alert.dart';
 import 'package:consulta_marcada/ui/components/menu.dart';
-import 'package:consulta_marcada/ui/pages/doctor/doctor_page.dart';
+import 'package:consulta_marcada/ui/pages/doctor/doctors_list_page.dart';
 import 'package:consulta_marcada/ui/pages/home/home_buttons.dart';
-import 'package:consulta_marcada/ui/pages/medical_consultation/medical_consultation_page.dart';
-import 'package:consulta_marcada/ui/pages/patient/patient_page.dart';
-import 'package:consulta_marcada/ui/pages/room/room_page.dart';
+import 'package:consulta_marcada/ui/pages/medical_consultation/medical_consultations_list_page.dart';
+import 'package:consulta_marcada/ui/pages/patient/patients_list_page.dart';
+import 'package:consulta_marcada/ui/pages/room/rooms_list_page.dart';
 import 'package:consulta_marcada/ui/pages/user/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -27,10 +27,10 @@ class _HomePageState extends State<HomePage> {
     selectedIndex = widget.selectedIndex;
     _screenOptions = <Widget>[
       HomeButtons(),
-      MedicalConsultationPage(),
-      PatientPage(),
-      DoctorPage(),
-      RoomPage(),
+      MedicalConsultationsListPage(),
+      PatientsListPage(),
+      DoctorsListPage(),
+      RoomsListPage(),
     ];
   }
 
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
   IconButton exitButton(BuildContext context) {
     return IconButton(
       onPressed: () {
-        CustomAlert().dialog(
+        CustomAlert.dialog(
           context: context,
           title: "Sair do APP?",
           message: "Deseja mesmo sair do aplicativo consulta marcada?",

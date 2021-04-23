@@ -11,8 +11,8 @@ class CustomText extends StatelessWidget {
   final int maxlines;
 
   CustomText({
-    @required this.text,
-    @required this.fontSize,
+    this.text,
+    this.fontSize,
     this.fontWeight,
     this.color,
     this.textAlign,

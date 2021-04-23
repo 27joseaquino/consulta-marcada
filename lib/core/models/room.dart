@@ -3,13 +3,13 @@ import 'package:uuid/uuid.dart';
 class Room {
   String _id;
   int _number;
-  String _type;
+  String _name;
   String _localization;
   bool _isAvailable;
 
   Room(
     this._number,
-    this._type,
+    this._name,
     this._localization,
     this._isAvailable, {
     String id,
@@ -17,7 +17,7 @@ class Room {
 
   String get id => _id;
   int get number => _number;
-  String get type => _type;
+  String get name => _name;
   bool get isAvailable => _isAvailable;
   String get localization => _localization;
 }

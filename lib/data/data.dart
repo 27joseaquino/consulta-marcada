@@ -44,7 +44,6 @@ MedicalConsultation consultation1 = MedicalConsultation(
   doctor1,
   room1,
   "11/05/2021 às 15:00",
-  "15:30",
   "Em andamento",
 );
 
@@ -53,7 +52,6 @@ MedicalConsultation consultation2 = MedicalConsultation(
   doctor2,
   room2,
   "11/05/2021 às 16:30",
-  "16:30",
   "Realizada",
 );
 

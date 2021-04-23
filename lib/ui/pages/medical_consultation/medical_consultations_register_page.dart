@@ -1,29 +1,35 @@
+import 'package:consulta_marcada/core/models/doctor.dart';
+import 'package:consulta_marcada/core/models/medical_consultation.dart';
 import 'package:consulta_marcada/core/models/patient.dart';
+import 'package:consulta_marcada/core/models/room.dart';
+import 'package:consulta_marcada/data/data.dart';
 import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
-import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
+import 'package:consulta_marcada/ui/components/custom_alert.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/components/form/custom_dropdown.dart';
+import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
-class RegisterPatientPage extends StatefulWidget {
+class MedicalConsultationsRegisterPage extends StatefulWidget {
   @override
-  _RegisterPatientPageState createState() => _RegisterPatientPageState();
+  _MedicalConsultationsRegisterPageState createState() =>
+      _MedicalConsultationsRegisterPageState();
 }
 
-class _RegisterPatientPageState extends State<RegisterPatientPage> {
-  final GlobalKey<FormState> _registerPatientFormKey = GlobalKey();
-  final _cpf = TextEditingController();
-  final _name = TextEditingController();
-  final _dateOfBirth = TextEditingController();
-  final _genre = TextEditingController();
-  final _nationality = TextEditingController();
-  final _motherName = TextEditingController();
+class _MedicalConsultationsRegisterPageState
+    extends State<MedicalConsultationsRegisterPage> {
+  final GlobalKey<FormState> _medicalConsultationRegisterFormKey = GlobalKey();
+  final _date = TextEditingController();
+  Patient _patient;
+  Doctor _doctor;
+  Room _room;
 
-  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(title: Text("Cadastrar Paciente")),
+      appBar: AppBar(title: Text("Marcar Consulta")),
       body: Container(
         height: size.height,
         width: size.width,
@@ -39,7 +45,7 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
     );
   }
 
-  Column verticalScreen(BoxConstraints constraints) {
+  verticalScreen(BoxConstraints constraints) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -47,21 +53,21 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
         Visibility(
           visible: constraints.maxHeight >= 560,
           child: textContainer(
-            height: constraints.maxHeight * .1,
+            height: constraints.maxHeight * .15,
             width: constraints.maxWidth,
           ),
           replacement: SizedBox(),
         ),
-        registerPatientForm(
+        registerConsultationForm(
           height: constraints.maxHeight < 560
               ? constraints.maxHeight * .95
-              : constraints.maxHeight * .75,
+              : constraints.maxHeight * .6,
           width: constraints.maxWidth,
         ),
         Visibility(
           visible: constraints.maxHeight >= 560,
           child: buttons(
-            height: constraints.maxHeight * .15,
+            height: constraints.maxHeight * .25,
             width: constraints.maxWidth,
           ),
           replacement: SizedBox(),
@@ -70,12 +76,12 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
     );
   }
 
-  Column horizontalScreen(BoxConstraints constraints) {
+  horizontalScreen(BoxConstraints constraints) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        registerPatientForm(
+        registerConsultationForm(
           height: constraints.maxHeight >= 280
               ? constraints.maxHeight * .8
               : constraints.maxHeight * .9,
@@ -93,60 +99,50 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
     );
   }
 
-  Container textContainer({double height, double width}) {
+  textContainer({double height, double width}) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       height: height,
       width: width,
       child: CustomText(
-        text: "Cadastre aqui um novo paciente.",
-        fontSize: 17.5,
+        text: "Marque aqui uma nova consulta.",
+        fontSize: 18,
         maxlines: 2,
         textAlign: TextAlign.justify,
       ),
     );
   }
 
-  Container registerPatientForm({double height, double width}) {
+  Container registerConsultationForm({double height, double width}) {
     return Container(
       height: height,
       width: width,
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: Form(
-        key: _registerPatientFormKey,
+        key: _medicalConsultationRegisterFormKey,
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Column(
             children: [
-              CustomTextField(
-                hintText: "CPF",
-                controller: _cpf,
-                maxLength: 20,
+              CustomDropdown(
+                hint: "Paciente",
+                items: patients,
+                callback: _selectPatient,
+              ),
+              CustomDropdown(
+                hint: "Médico(a)",
+                items: doctors,
+                callback: _selectDoctor,
+              ),
+              CustomDropdown(
+                hint: "Sala",
+                items: rooms,
+                callback: _selectRoom,
               ),
               CustomTextField(
-                hintText: "Nome",
-                controller: _name,
-                maxLength: 50,
-              ),
-              CustomTextField(
-                hintText: "Data de nascimento",
-                controller: _dateOfBirth,
-                maxLength: 10,
-              ),
-              CustomTextField(
-                hintText: "Gênero",
-                controller: _genre,
-                maxLength: 100,
-              ),
-              CustomTextField(
-                hintText: "Nacionalidade",
-                controller: _nationality,
-                maxLength: 100,
-              ),
-              CustomTextField(
-                hintText: "Nome da mãe",
-                controller: _motherName,
-                maxLength: 100,
+                hintText: "Data da consulta",
+                textInputType: TextInputType.text,
+                controller: _date,
               ),
             ],
           ),
@@ -155,7 +151,7 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
     );
   }
 
-  Container buttons({double height, double width}) {
+  buttons({double height, double width}) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16),
       height: height,
@@ -166,7 +162,7 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
         children: [
           CancelButton(width: width * .4),
           CustomButton(
-            title: "Cadastrar",
+            title: "Marcar",
             height: 50,
             fontSize: 20,
             width: width * .4,
@@ -178,38 +174,35 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
   }
 
   _onClickRegister() {
-    if (!_registerPatientFormKey.currentState.validate()) return;
+    if (!_medicalConsultationRegisterFormKey.currentState.validate()) return;
 
-    String cpf = _cpf.text;
-    String name = _name.text;
-    String dateOfBirth = _dateOfBirth.text;
-    String genre = _genre.text;
-    String nationality = _nationality.text;
-    String motherName = _motherName.text;
+    if (_patient == null || _doctor == null || _room == null) {
+      CustomAlert.alert(
+        context: context,
+        title: "Campos vazios",
+        message: "Você precisa preencher todos os campos!",
+      );
+    } else {
+      String date = _date.text;
+      _date.text = "";
 
-    Patient patient = Patient(
-      cpf,
-      name,
-      dateOfBirth,
-      genre,
-      nationality,
-      motherName,
-      true,
-    );
+      MedicalConsultation consultation = MedicalConsultation(
+        _patient,
+        _doctor,
+        _room,
+        date,
+        "Não realizada",
+      );
 
-    _cpf.text = "";
-    _name.text = "";
-    _dateOfBirth.text = "";
-    _genre.text = "";
-    _nationality.text = "";
-    _motherName.text = "";
-
-    print("CPF: ${patient.cpf}");
-    print("Nome: ${patient.name}");
-    print("Data de nascimento : ${patient.dateOfBirth}");
-    print("Gênero: ${patient.genre}");
-    print("Nacionalidade: ${patient.nationality}");
-    print("Nome da mãe: ${patient.motherName}");
-    print("Status: ${patient.isActive}");
+      print("Paciente: ${consultation.patient}");
+      print("Médico: ${consultation.doctor}");
+      print("Sala: ${consultation.room}");
+      print("Data: ${consultation.date}");
+      print("Status: ${consultation.status}");
+    }
   }
+
+  void _selectPatient(Patient patient) => _patient = patient;
+  void _selectDoctor(Doctor doctor) => _doctor = doctor;
+  void _selectRoom(Room room) => _room = room;
 }

@@ -40,7 +40,7 @@ class MedicalConsultationCard extends StatelessWidget {
             TextLine(
               title: "Sala",
               content:
-                  "${consultation.room.number} - ${consultation.room.type}",
+                  "${consultation.room.number} - ${consultation.room.name}",
             ),
             TextLine(
               title: "Data e hora",

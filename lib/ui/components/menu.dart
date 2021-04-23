@@ -1,10 +1,10 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/ui/components/line.dart';
 import 'package:consulta_marcada/ui/components/logo_consulta_marcada.dart';
-import 'package:consulta_marcada/ui/pages/doctor/register_doctor_page.dart';
+import 'package:consulta_marcada/ui/pages/doctor/doctors_register_page.dart';
 import 'package:consulta_marcada/ui/pages/home/home_page.dart';
-import 'package:consulta_marcada/ui/pages/patient/register_patient_page.dart';
-import 'package:consulta_marcada/ui/pages/room/register_room_page.dart';
+import 'package:consulta_marcada/ui/pages/patient/patients_register_page.dart';
+import 'package:consulta_marcada/ui/pages/room/rooms_register_page.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/styles/my_colors.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +39,7 @@ class Menu extends StatelessWidget {
             title: "Cadastrar Paciente",
             onTap: () {
               Navigator.pop(context);
-              push(context, RegisterPatientPage());
+              push(context, PatientsRegisterPage());
             },
           ),
           buildListTile(
@@ -56,7 +56,7 @@ class Menu extends StatelessWidget {
             title: "Cadastrar Médico",
             onTap: () {
               Navigator.pop(context);
-              push(context, RegisterDoctorPage());
+              push(context, DoctorsRegisterPage());
             },
           ),
           buildListTile(
@@ -73,7 +73,7 @@ class Menu extends StatelessWidget {
             title: "Cadastrar Sala",
             onTap: () {
               Navigator.pop(context);
-              push(context, RegisterRoomPage());
+              push(context, RoomsRegisterPage());
             },
           ),
           buildListTile(
