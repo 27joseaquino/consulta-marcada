@@ -1,28 +1,26 @@
-import 'package:consulta_marcada/core/models/medical_consultation.dart';
+import 'package:consulta_marcada/core/models/room.dart';
 import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
-import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
+import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
-class RegisterConsultation extends StatefulWidget {
+class RoomsRegisterPage extends StatefulWidget {
   @override
-  _RegisterConsultationState createState() => _RegisterConsultationState();
+  _RoomsRegisterPageState createState() => _RoomsRegisterPageState();
 }
 
-class _RegisterConsultationState extends State<RegisterConsultation> {
-  final GlobalKey<FormState> _registerconsultationFormKey = GlobalKey();
-  final _patient = TextEditingController();
-  final _doctor = TextEditingController();
-  final _date = TextEditingController();
-  final _arrivialTime = TextEditingController();
-  final _room = TextEditingController();
+class _RoomsRegisterPageState extends State<RoomsRegisterPage> {
+  final GlobalKey<FormState> _registerRoomFormKey = GlobalKey();
+  final _number = TextEditingController();
+  final _type = TextEditingController();
+  final _localization = TextEditingController();
 
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(title: Text("Cadastrar Consulta")),
+      appBar: AppBar(title: Text("Cadastrar Sala")),
       body: Container(
         height: size.height,
         width: size.width,
@@ -38,7 +36,7 @@ class _RegisterConsultationState extends State<RegisterConsultation> {
     );
   }
 
-  verticalScreen(BoxConstraints constraints) {
+  Column verticalScreen(BoxConstraints constraints) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -51,7 +49,7 @@ class _RegisterConsultationState extends State<RegisterConsultation> {
           ),
           replacement: SizedBox(),
         ),
-        registerConsultationForm(
+        registerRoomForm(
           height: constraints.maxHeight < 560
               ? constraints.maxHeight * .95
               : constraints.maxHeight * .6,
@@ -69,12 +67,12 @@ class _RegisterConsultationState extends State<RegisterConsultation> {
     );
   }
 
-  horizontalScreen(BoxConstraints constraints) {
+  Column horizontalScreen(BoxConstraints constraints) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        registerConsultationForm(
+        registerRoomForm(
           height: constraints.maxHeight >= 280
               ? constraints.maxHeight * .8
               : constraints.maxHeight * .9,
@@ -92,13 +90,13 @@ class _RegisterConsultationState extends State<RegisterConsultation> {
     );
   }
 
-  textContainer({double height, double width}) {
+  Container textContainer({double height, double width}) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       height: height,
       width: width,
       child: CustomText(
-        text: "Cadastre aqui uma nova consulta.",
+        text: "Cadastre aqui uma nova sala da unidade de saúde.",
         fontSize: 18,
         maxlines: 2,
         textAlign: TextAlign.justify,
@@ -106,47 +104,42 @@ class _RegisterConsultationState extends State<RegisterConsultation> {
     );
   }
 
-  Container registerConsultationForm({double height, double width}) {
+  Container registerRoomForm({double height, double width}) {
     return Container(
       height: height,
       width: width,
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       child: Form(
-        key: _registerconsultationFormKey,
-        child: Column(
-          children: [
-            CustomTextField(
-              hintText: "Paciente",
-              textInputType: TextInputType.text,
-              controller: _patient,
-            ),
-            CustomTextField(
-              hintText: "Médico",
-              textInputType: TextInputType.text,
-              controller: _doctor,
-            ),
-            CustomTextField(
-              hintText: "Sala",
-              textInputType: TextInputType.text,
-              controller: _room,
-            ),
-            CustomTextField(
-              hintText: "Data da consulta",
-              textInputType: TextInputType.text,
-              controller: _date,
-            ),
-            CustomTextField(
-              hintText: "horário da Consulta",
-              textInputType: TextInputType.text,
-              controller: _arrivialTime,
-            ),
-          ],
+        key: _registerRoomFormKey,
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              CustomTextField(
+                hintText: "Número",
+                textInputType: TextInputType.number,
+                controller: _number,
+                maxLength: 50,
+              ),
+              CustomTextField(
+                hintText: "Tipo",
+                controller: _type,
+                maxLength: 50,
+              ),
+              CustomTextField(
+                hintText: "Localização",
+                controller: _localization,
+                maxLength: 100,
+                lines: height >= 336 ? 3 : 1,
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  buttons({double height, double width}) {
+  Container buttons({double height, double width}) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16),
       height: height,
@@ -157,7 +150,7 @@ class _RegisterConsultationState extends State<RegisterConsultation> {
         children: [
           CancelButton(width: width * .4),
           CustomButton(
-            title: "Marcar Consulta",
+            title: "Cadastrar",
             height: 50,
             fontSize: 20,
             width: width * .4,
@@ -169,21 +162,22 @@ class _RegisterConsultationState extends State<RegisterConsultation> {
   }
 
   _onClickRegister() {
-    if (!_registerconsultationFormKey.currentState.validate()) return;
+    if (!_registerRoomFormKey.currentState.validate()) return;
 
-    String date = _date.text;
-    String arrivalTime = _arrivialTime.text;
+    int number = int.parse(_number.text);
+    String type = _type.text;
+    String localization = _localization.text;
 
-    MedicalConsultation medicalconsultation =
-        MedicalConsultation(date, arrivalTime, "Não realizda");
-    _patient.text = "";
-    _doctor.text = "";
-    _date.text = "";
-    _arrivialTime.text = "";
+    Room room = Room(number, type, localization, true);
 
-    print("ID: ${medicalconsultation.id}");
-    print("Data: ${medicalconsultation.date}");
-    print("Horário de chegada: ${medicalconsultation.arrivalTime}");
-    print("Status: ${medicalconsultation.status}");
+    _number.text = "";
+    _type.text = "";
+    _localization.text = "";
+
+    print("ID: ${room.id}");
+    print("Número: ${room.number}");
+    print("Tipo: ${room.name}");
+    print("Localização: ${room.localization}");
+    print("Status: ${room.isAvailable}");
   }
 }

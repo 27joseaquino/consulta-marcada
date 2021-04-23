@@ -1,8 +1,8 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/ui/components/buttons/quick_access_button.dart';
-import 'package:consulta_marcada/ui/pages/doctor/register_doctor_page.dart';
-import 'package:consulta_marcada/ui/pages/patient/register_patient_page.dart';
-import 'package:consulta_marcada/ui/pages/room/register_room_page.dart';
+import 'package:consulta_marcada/ui/pages/doctor/doctors_register_page.dart';
+import 'package:consulta_marcada/ui/pages/patient/patients_register_page.dart';
+import 'package:consulta_marcada/ui/pages/room/rooms_register_page.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:flutter/material.dart';
 
@@ -69,7 +69,7 @@ class _HomeButtonsState extends State<HomeButtons> {
               QuickAccessButton(
                 title: "Cadastrar Paciente",
                 icon: Icons.person_add,
-                function: () => push(context, RegisterPatientPage()),
+                function: () => push(context, PatientsRegisterPage()),
                 width: width * .5,
                 height: height * .5,
               ),
@@ -82,14 +82,14 @@ class _HomeButtonsState extends State<HomeButtons> {
               QuickAccessButton(
                 title: "Cadastrar Médico",
                 icon: Icons.medical_services,
-                function: () => push(context, RegisterDoctorPage()),
+                function: () => push(context, DoctorsRegisterPage()),
                 width: width * .5,
                 height: height * .5,
               ),
               QuickAccessButton(
                 title: "Cadastrar Sala",
                 icon: Icons.meeting_room,
-                function: () => push(context, RegisterRoomPage()),
+                function: () => push(context, RoomsRegisterPage()),
                 width: width * .5,
                 height: height * .5,
               ),

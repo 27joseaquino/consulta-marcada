@@ -40,21 +40,19 @@ Patient patient2 = Patient(
 );
 
 MedicalConsultation consultation1 = MedicalConsultation(
+  patient1,
+  doctor1,
+  room1,
   "11/05/2021 às 15:00",
-  "15:30",
   "Em andamento",
-  patient: patient1,
-  doctor: doctor1,
-  room: room1,
 );
 
 MedicalConsultation consultation2 = MedicalConsultation(
+  patient2,
+  doctor2,
+  room2,
   "11/05/2021 às 16:30",
-  "16:30",
   "Realizada",
-  patient: patient2,
-  doctor: doctor2,
-  room: room2,
 );
 
 List<Room> rooms = [room1, room2];

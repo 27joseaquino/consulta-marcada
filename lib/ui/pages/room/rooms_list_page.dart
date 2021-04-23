@@ -2,21 +2,21 @@ import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/data/data.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_floating_button.dart';
 import 'package:consulta_marcada/ui/components/cards/room_card.dart';
-import 'package:consulta_marcada/ui/pages/room/register_room_page.dart';
+import 'package:consulta_marcada/ui/pages/room/rooms_register_page.dart';
 import 'package:flutter/material.dart';
 
-class RoomPage extends StatefulWidget {
+class RoomsListPage extends StatefulWidget {
   @override
-  _RoomPageState createState() => _RoomPageState();
+  _RoomsListPageState createState() => _RoomsListPageState();
 }
 
-class _RoomPageState extends State<RoomPage> {
+class _RoomsListPageState extends State<RoomsListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: buildListview(),
       floatingActionButton: CustomFloatingButton(
-        onPressed: () => push(context, RegisterRoomPage()),
+        onPressed: () => push(context, RoomsRegisterPage()),
       ),
     );
   }

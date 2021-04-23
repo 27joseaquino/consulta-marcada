@@ -42,7 +42,7 @@ class _RoomDetailsPageState extends State<RoomDetailsPage> {
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.room.type),
+            CustomField(text: widget.room.name),
             CustomText(
               text: 'Localização',
               fontSize: 18,

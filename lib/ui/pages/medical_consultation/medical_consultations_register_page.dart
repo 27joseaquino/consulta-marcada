@@ -1,28 +1,35 @@
 import 'package:consulta_marcada/core/models/doctor.dart';
+import 'package:consulta_marcada/core/models/medical_consultation.dart';
+import 'package:consulta_marcada/core/models/patient.dart';
+import 'package:consulta_marcada/core/models/room.dart';
+import 'package:consulta_marcada/data/data.dart';
 import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
-import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
+import 'package:consulta_marcada/ui/components/custom_alert.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/components/form/custom_dropdown.dart';
+import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
-class RegisterDoctorPage extends StatefulWidget {
+class MedicalConsultationsRegisterPage extends StatefulWidget {
   @override
-  _RegisterDoctorPageState createState() => _RegisterDoctorPageState();
+  _MedicalConsultationsRegisterPageState createState() =>
+      _MedicalConsultationsRegisterPageState();
 }
 
-class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
-  final GlobalKey<FormState> _registerDoctorFormKey = GlobalKey();
-  final _name = TextEditingController();
-  final _specialty = TextEditingController();
-  final _genre = TextEditingController();
+class _MedicalConsultationsRegisterPageState
+    extends State<MedicalConsultationsRegisterPage> {
+  final GlobalKey<FormState> _medicalConsultationRegisterFormKey = GlobalKey();
+  final _date = TextEditingController();
+  Patient _patient;
+  Doctor _doctor;
+  Room _room;
 
-  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Cadastrar Médico(a)", style: TextStyle(fontSize: 23)),
-      ),
+      appBar: AppBar(title: Text("Marcar Consulta")),
       body: Container(
         height: size.height,
         width: size.width,
@@ -38,7 +45,7 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
     );
   }
 
-  Column verticalScreen(BoxConstraints constraints) {
+  verticalScreen(BoxConstraints constraints) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -51,7 +58,7 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
           ),
           replacement: SizedBox(),
         ),
-        registerDoctorForm(
+        registerConsultationForm(
           height: constraints.maxHeight < 560
               ? constraints.maxHeight * .95
               : constraints.maxHeight * .6,
@@ -69,12 +76,12 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
     );
   }
 
-  Column horizontalScreen(BoxConstraints constraints) {
+  horizontalScreen(BoxConstraints constraints) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        registerDoctorForm(
+        registerConsultationForm(
           height: constraints.maxHeight >= 280
               ? constraints.maxHeight * .8
               : constraints.maxHeight * .9,
@@ -92,13 +99,13 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
     );
   }
 
-  Container textContainer({double height, double width}) {
+  textContainer({double height, double width}) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       height: height,
       width: width,
       child: CustomText(
-        text: "Cadastre aqui um novo médico(a).",
+        text: "Marque aqui uma nova consulta.",
         fontSize: 18,
         maxlines: 2,
         textAlign: TextAlign.justify,
@@ -106,31 +113,36 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
     );
   }
 
-  Container registerDoctorForm({double height, double width}) {
+  Container registerConsultationForm({double height, double width}) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       height: height,
       width: width,
+      padding: EdgeInsets.symmetric(horizontal: 16),
       child: Form(
-        key: _registerDoctorFormKey,
+        key: _medicalConsultationRegisterFormKey,
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Column(
             children: [
-              CustomTextField(
-                hintText: "Nome",
-                controller: _name,
-                maxLength: 100,
+              CustomDropdown(
+                hint: "Paciente",
+                items: patients,
+                callback: _selectPatient,
+              ),
+              CustomDropdown(
+                hint: "Médico(a)",
+                items: doctors,
+                callback: _selectDoctor,
+              ),
+              CustomDropdown(
+                hint: "Sala",
+                items: rooms,
+                callback: _selectRoom,
               ),
               CustomTextField(
-                hintText: "Gênero",
-                controller: _genre,
-                maxLength: 20,
-              ),
-              CustomTextField(
-                hintText: "Especialidade",
-                controller: _specialty,
-                maxLength: 50,
+                hintText: "Data da consulta",
+                textInputType: TextInputType.text,
+                controller: _date,
               ),
             ],
           ),
@@ -139,7 +151,7 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
     );
   }
 
-  Container buttons({double height, double width}) {
+  buttons({double height, double width}) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16),
       height: height,
@@ -150,33 +162,47 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
         children: [
           CancelButton(width: width * .4),
           CustomButton(
-            title: "Cadastrar",
+            title: "Marcar",
             height: 50,
             fontSize: 20,
             width: width * .4,
-            onPressed: _onClickRegisterDoctor,
+            onPressed: _onClickRegister,
           )
         ],
       ),
     );
   }
 
-  _onClickRegisterDoctor() {
-    if (!_registerDoctorFormKey.currentState.validate()) return;
+  _onClickRegister() {
+    if (!_medicalConsultationRegisterFormKey.currentState.validate()) return;
 
-    String name = _name.text;
-    String specialty = _specialty.text;
-    String genre = _genre.text;
+    if (_patient == null || _doctor == null || _room == null) {
+      CustomAlert.alert(
+        context: context,
+        title: "Campos vazios",
+        message: "Você precisa preencher todos os campos!",
+      );
+    } else {
+      String date = _date.text;
+      _date.text = "";
 
-    Doctor doctor = Doctor(name, genre, specialty, true);
+      MedicalConsultation consultation = MedicalConsultation(
+        _patient,
+        _doctor,
+        _room,
+        date,
+        "Não realizada",
+      );
 
-    _name.text = "";
-    _specialty.text = "";
-    _genre.text = "";
-
-    print("Nome: ${doctor.name}");
-    print("Especialidade: ${doctor.specialty}");
-    print("Gênero: ${doctor.genre}");
-    print("Status: ${doctor.isActive}");
+      print("Paciente: ${consultation.patient}");
+      print("Médico: ${consultation.doctor}");
+      print("Sala: ${consultation.room}");
+      print("Data: ${consultation.date}");
+      print("Status: ${consultation.status}");
+    }
   }
+
+  void _selectPatient(Patient patient) => _patient = patient;
+  void _selectDoctor(Doctor doctor) => _doctor = doctor;
+  void _selectRoom(Room room) => _room = room;
 }

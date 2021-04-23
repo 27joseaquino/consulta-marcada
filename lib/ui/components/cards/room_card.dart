@@ -34,7 +34,7 @@ class RoomCard extends StatelessWidget {
         child: Column(
           children: [
             TextLine(title: room.localization, content: " - Nº ${room.number}"),
-            TextLine(title: "Tipo", content: room.type),
+            TextLine(title: "Tipo", content: room.name),
             TextLine(
               title: "Status",
               content: room.isAvailable ? "Disponível" : "Indisponível",

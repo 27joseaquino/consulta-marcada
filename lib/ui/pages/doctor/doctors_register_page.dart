@@ -1,29 +1,28 @@
-import 'package:consulta_marcada/core/models/patient.dart';
+import 'package:consulta_marcada/core/models/doctor.dart';
 import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
 import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:flutter/material.dart';
 
-class RegisterPatientPage extends StatefulWidget {
+class DoctorsRegisterPage extends StatefulWidget {
   @override
-  _RegisterPatientPageState createState() => _RegisterPatientPageState();
+  _DoctorsRegisterPageState createState() => _DoctorsRegisterPageState();
 }
 
-class _RegisterPatientPageState extends State<RegisterPatientPage> {
-  final GlobalKey<FormState> _registerPatientFormKey = GlobalKey();
-  final _cpf = TextEditingController();
+class _DoctorsRegisterPageState extends State<DoctorsRegisterPage> {
+  final GlobalKey<FormState> _registerDoctorFormKey = GlobalKey();
   final _name = TextEditingController();
-  final _dateOfBirth = TextEditingController();
+  final _specialty = TextEditingController();
   final _genre = TextEditingController();
-  final _nationality = TextEditingController();
-  final _motherName = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(title: Text("Cadastrar Paciente")),
+      appBar: AppBar(
+        title: Text("Cadastrar Médico(a)", style: TextStyle(fontSize: 23)),
+      ),
       body: Container(
         height: size.height,
         width: size.width,
@@ -47,21 +46,21 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
         Visibility(
           visible: constraints.maxHeight >= 560,
           child: textContainer(
-            height: constraints.maxHeight * .1,
+            height: constraints.maxHeight * .15,
             width: constraints.maxWidth,
           ),
           replacement: SizedBox(),
         ),
-        registerPatientForm(
+        registerDoctorForm(
           height: constraints.maxHeight < 560
               ? constraints.maxHeight * .95
-              : constraints.maxHeight * .75,
+              : constraints.maxHeight * .6,
           width: constraints.maxWidth,
         ),
         Visibility(
           visible: constraints.maxHeight >= 560,
           child: buttons(
-            height: constraints.maxHeight * .15,
+            height: constraints.maxHeight * .25,
             width: constraints.maxWidth,
           ),
           replacement: SizedBox(),
@@ -75,7 +74,7 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        registerPatientForm(
+        registerDoctorForm(
           height: constraints.maxHeight >= 280
               ? constraints.maxHeight * .8
               : constraints.maxHeight * .9,
@@ -95,58 +94,43 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
 
   Container textContainer({double height, double width}) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       height: height,
       width: width,
       child: CustomText(
-        text: "Cadastre aqui um novo paciente.",
-        fontSize: 17.5,
+        text: "Cadastre aqui um novo médico(a).",
+        fontSize: 18,
         maxlines: 2,
         textAlign: TextAlign.justify,
       ),
     );
   }
 
-  Container registerPatientForm({double height, double width}) {
+  Container registerDoctorForm({double height, double width}) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       height: height,
       width: width,
-      padding: EdgeInsets.symmetric(horizontal: 16),
       child: Form(
-        key: _registerPatientFormKey,
+        key: _registerDoctorFormKey,
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               CustomTextField(
-                hintText: "CPF",
-                controller: _cpf,
-                maxLength: 20,
-              ),
-              CustomTextField(
                 hintText: "Nome",
                 controller: _name,
-                maxLength: 50,
-              ),
-              CustomTextField(
-                hintText: "Data de nascimento",
-                controller: _dateOfBirth,
-                maxLength: 10,
+                maxLength: 100,
               ),
               CustomTextField(
                 hintText: "Gênero",
                 controller: _genre,
-                maxLength: 100,
+                maxLength: 20,
               ),
               CustomTextField(
-                hintText: "Nacionalidade",
-                controller: _nationality,
-                maxLength: 100,
-              ),
-              CustomTextField(
-                hintText: "Nome da mãe",
-                controller: _motherName,
-                maxLength: 100,
+                hintText: "Especialidade",
+                controller: _specialty,
+                maxLength: 50,
               ),
             ],
           ),
@@ -170,46 +154,29 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
             height: 50,
             fontSize: 20,
             width: width * .4,
-            onPressed: _onClickRegister,
+            onPressed: _onClickRegisterDoctor,
           )
         ],
       ),
     );
   }
 
-  _onClickRegister() {
-    if (!_registerPatientFormKey.currentState.validate()) return;
+  _onClickRegisterDoctor() {
+    if (!_registerDoctorFormKey.currentState.validate()) return;
 
-    String cpf = _cpf.text;
     String name = _name.text;
-    String dateOfBirth = _dateOfBirth.text;
+    String specialty = _specialty.text;
     String genre = _genre.text;
-    String nationality = _nationality.text;
-    String motherName = _motherName.text;
 
-    Patient patient = Patient(
-      cpf,
-      name,
-      dateOfBirth,
-      genre,
-      nationality,
-      motherName,
-      true,
-    );
+    Doctor doctor = Doctor(name, genre, specialty, true);
 
-    _cpf.text = "";
     _name.text = "";
-    _dateOfBirth.text = "";
+    _specialty.text = "";
     _genre.text = "";
-    _nationality.text = "";
-    _motherName.text = "";
 
-    print("CPF: ${patient.cpf}");
-    print("Nome: ${patient.name}");
-    print("Data de nascimento : ${patient.dateOfBirth}");
-    print("Gênero: ${patient.genre}");
-    print("Nacionalidade: ${patient.nationality}");
-    print("Nome da mãe: ${patient.motherName}");
-    print("Status: ${patient.isActive}");
+    print("Nome: ${doctor.name}");
+    print("Especialidade: ${doctor.specialty}");
+    print("Gênero: ${doctor.genre}");
+    print("Status: ${doctor.isActive}");
   }
 }

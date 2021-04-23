@@ -3,7 +3,7 @@ import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class CustomAlert {
-  Future<void> alert({
+  static Future<void> alert({
     BuildContext context,
     String title,
     String message,
@@ -28,7 +28,7 @@ class CustomAlert {
           ),
           actions: [
             CustomButton(
-              title: "Entendi",
+              title: "Ok, entendi",
               onPressed: function ?? () => Navigator.pop(context),
               height: 50,
               width: double.infinity,
@@ -40,7 +40,7 @@ class CustomAlert {
     );
   }
 
-  Future<void> dialog({
+  static Future<void> dialog({
     BuildContext context,
     String title,
     String message,
