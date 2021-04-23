@@ -3,19 +3,23 @@ import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/components/form/custom_field.dart';
 import 'package:flutter/material.dart';
 
-class MedicalConsultationDetails extends StatefulWidget {
+class MedicalConsultationDetailsPage extends StatefulWidget {
   final MedicalConsultation consultation;
-  MedicalConsultationDetails(this.consultation);
-  _MedicalConsultationDetailsState createState() =>
-      _MedicalConsultationDetailsState();
+
+  MedicalConsultationDetailsPage(this.consultation);
+
+  _MedicalConsultationDetailsPageState createState() =>
+      _MedicalConsultationDetailsPageState();
 }
 
-class _MedicalConsultationDetailsState
-    extends State<MedicalConsultationDetails> {
+class _MedicalConsultationDetailsPageState
+    extends State<MedicalConsultationDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Detalhes da Consulta")),
+      appBar: AppBar(
+        title: Text("Detalhes da Consulta", style: TextStyle(fontSize: 23)),
+      ),
       body: buildBody(),
     );
   }
@@ -46,26 +50,29 @@ class _MedicalConsultationDetailsState
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: "${widget.consultation.room.type} - Nº ${widget.consultation.room.number}"),
+            CustomField(
+                text:
+                    "Nº ${widget.consultation.room.number} - ${widget.consultation.room.name}"),
             CustomText(
-              text: 'Data da Consulta ',
+              text: 'Horário da Consulta ',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
             CustomField(text: widget.consultation.date),
             CustomText(
-              text: 'Horário da Consulta',
+              text: 'Horário de Chegada',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.consultation.arrivalTime),
+            CustomField(
+              text: widget.consultation.arrivalTime ?? "Ainda não chegou",
+            ),
             CustomText(
               text: 'Status',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
             CustomField(text: widget.consultation.status),
-
           ],
         ),
       ),

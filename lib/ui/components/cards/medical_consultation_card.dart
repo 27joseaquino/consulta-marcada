@@ -12,9 +12,12 @@ class MedicalConsultationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => push(context, MedicalConsultationDetails(consultation)),
-      child: Card(
+    return Card(
+      child: InkWell(
+        onTap: () {
+          push(context, MedicalConsultationDetailsPage(consultation));
+        },
+        splashColor: getStatusColor(consultation.status).withOpacity(0.5),
         child: Row(
           children: [
             LateralBar(

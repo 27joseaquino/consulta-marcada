@@ -52,7 +52,7 @@ MedicalConsultation consultation2 = MedicalConsultation(
   doctor2,
   room2,
   "11/05/2021 às 16:30",
-  "Realizada",
+  "Não realizada",
 );
 
 List<Room> rooms = [room1, room2];
