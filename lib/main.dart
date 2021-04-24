@@ -1,4 +1,4 @@
-import 'package:consulta_marcada/ui/pages/user/login_page.dart';
+import 'package:consulta_marcada/ui/pages/splash_page.dart';
 import 'package:consulta_marcada/ui/styles/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'consulta marcada',
       theme: lightTheme,
-      home: LoginPage(),
+      home: SplashPage(),
     );
   }
 }
