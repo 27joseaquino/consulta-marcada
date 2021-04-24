@@ -7,16 +7,18 @@ Room room1 = Room(110, "Cirurgia", "1º Andar", true);
 Room room2 = Room(256, "Cirurgia", "2º Andar", false);
 
 Doctor doctor1 = Doctor(
+  234,
   "Dra. Renata Oliveira",
   "Feminino",
   "Cirurgiã",
-  true,
+  1,
 );
 Doctor doctor2 = Doctor(
+  123,
   "Dra. Júlia Quentino",
   "Feminino",
   "Cardiologista",
-  false,
+  0,
 );
 
 Patient patient1 = Patient("123.456.789-00", "José Ronaldo de Oliveira",

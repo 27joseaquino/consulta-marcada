@@ -15,6 +15,7 @@ class _DoctorsRegisterPageState extends State<DoctorsRegisterPage> {
   final _name = TextEditingController();
   final _specialty = TextEditingController();
   final _genre = TextEditingController();
+  final _crm = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -118,6 +119,12 @@ class _DoctorsRegisterPageState extends State<DoctorsRegisterPage> {
           child: Column(
             children: [
               CustomTextField(
+                hintText: "CRM",
+                controller: _crm,
+                maxLength: 100,
+                textInputType: TextInputType.number,
+              ),
+              CustomTextField(
                 hintText: "Nome",
                 controller: _name,
                 maxLength: 100,
@@ -125,12 +132,12 @@ class _DoctorsRegisterPageState extends State<DoctorsRegisterPage> {
               CustomTextField(
                 hintText: "Gênero",
                 controller: _genre,
-                maxLength: 20,
+                maxLength: 10,
               ),
               CustomTextField(
                 hintText: "Especialidade",
                 controller: _specialty,
-                maxLength: 50,
+                maxLength: 100,
               ),
             ],
           ),
@@ -164,11 +171,12 @@ class _DoctorsRegisterPageState extends State<DoctorsRegisterPage> {
   _onClickRegisterDoctor() {
     if (!_registerDoctorFormKey.currentState.validate()) return;
 
+    int crm = int.parse(_crm.text);
     String name = _name.text;
     String specialty = _specialty.text;
     String genre = _genre.text;
 
-    Doctor doctor = Doctor(name, genre, specialty, true);
+    Doctor doctor = Doctor(crm, name, genre, specialty, 1);
 
     _name.text = "";
     _specialty.text = "";

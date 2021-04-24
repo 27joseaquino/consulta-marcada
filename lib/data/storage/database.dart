@@ -41,6 +41,16 @@ class ConsultaMarcadaDB {
 
     await database.execute(sql);
 
+    sql = "create table doctor (crm VARCHAR(100) PRIMARY KEY, name" +
+        "VARCHAR(100), genre VARCHAR(10), specialty VARCHAR(100), is_active BOOLEAN);";
+
+    await database.execute(sql);
+
+    sql = "create table room (id VARCHAR(500) PRIMARY KEY, number" +
+        "INTEGER, localization VARCHAR(100), name VARCHAR(100), is_available BOOLEAN);";
+
+    await database.execute(sql);
+
     sql = "INSERT INTO user (id, name, email, password)" +
         "VALUES ('asdjdkjsdjlasj', 'João Márcio', 'joao@gmail.com', '12345678');";
 

@@ -15,7 +15,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Detalhes do Médico")),
+      appBar: AppBar(title: Text("Detalhes do Médico(a)")),
       body: buildBody(),
     );
   }
@@ -35,7 +35,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
               fontWeight: FontWeight.bold,
             ),
             CustomField(
-              text: widget.doctor.isActive ? "Ativo" : "Inativo",
+              text: widget.doctor.isActive == 1 ? "Ativo" : "Inativo",
             ),
             CustomText(
               text: 'Nome',
