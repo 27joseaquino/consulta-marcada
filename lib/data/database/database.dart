@@ -41,7 +41,7 @@ class ConsultaMarcadaDB {
 
     await database.execute(sql);
 
-    sql = "create table doctor (crm VARCHAR(100) PRIMARY KEY, name" +
+    sql = "create table doctor (crm VARCHAR(100) PRIMARY KEY, name " +
         "VARCHAR(100), genre VARCHAR(10), specialty VARCHAR(100), is_active BOOLEAN);";
 
     await database.execute(sql);

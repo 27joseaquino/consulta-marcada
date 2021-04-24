@@ -1,3 +1,4 @@
+import 'package:consulta_marcada/ui/bloc/address_bloc.dart';
 import 'package:consulta_marcada/ui/bloc/patient_bloc.dart';
 import 'package:consulta_marcada/ui/pages/splash_page.dart';
 import 'package:consulta_marcada/ui/styles/light_theme.dart';
@@ -31,6 +32,7 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => PatientBloc()),
+        ChangeNotifierProvider(create: (context) => AddressBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

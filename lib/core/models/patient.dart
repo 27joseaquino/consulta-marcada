@@ -29,6 +29,8 @@ class Patient {
   Address get address => _address;
   int get isActive => _isActive;
 
+  void setAddress(Address address) => _address = address;
+
   Patient.fromJson(Map<String, dynamic> json) {
     this._cpf = json['cpf'];
     this._name = json['name'];

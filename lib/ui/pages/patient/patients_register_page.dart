@@ -1,5 +1,6 @@
 import 'package:consulta_marcada/core/models/patient.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
+import 'package:consulta_marcada/ui/bloc/address_bloc.dart';
 import 'package:consulta_marcada/ui/bloc/patient_bloc.dart';
 import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
 import 'package:consulta_marcada/ui/components/buttons/progress_button.dart';
@@ -24,6 +25,7 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
   final _genre = TextEditingController();
   final _nationality = TextEditingController();
   final _motherName = TextEditingController();
+  final _cep = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -154,6 +156,12 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
                 controller: _motherName,
                 maxLength: 100,
               ),
+              CustomTextField(
+                hintText: "CEP",
+                controller: _cep,
+                textInputType: TextInputType.number,
+                maxLength: 50,
+              ),
             ],
           ),
         ),
@@ -177,12 +185,23 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
     );
   }
 
-  Consumer<PatientBloc> patientRegisterButton({double width}) {
-    return Consumer<PatientBloc>(
-      builder: (context, patientBloc, child) {
+  Consumer2<PatientBloc, AddressBloc> patientRegisterButton({double width}) {
+    return Consumer2<PatientBloc, AddressBloc>(
+      builder: (context, patientBloc, addressBloc, child) {
         if (patientBloc.error != null) {
           String errorMessage = patientBloc.error;
           patientBloc.clearError();
+
+          Future.delayed(Duration.zero, () {
+            CustomAlert.alert(
+              context: context,
+              title: "Erro ao cadastrar o paciente",
+              message: errorMessage,
+            );
+          });
+        } else if (addressBloc.error != null) {
+          String errorMessage = addressBloc.error;
+          addressBloc.clearError();
 
           Future.delayed(Duration.zero, () {
             CustomAlert.alert(
@@ -205,7 +224,9 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
           ),
           color: MyColors.appColors["blue"],
           function: _onClickAddPatient,
-          showProgress: patientBloc.isProcessing,
+          showProgress: !patientBloc.isProcessing
+              ? addressBloc.isProcessing
+              : patientBloc.isProcessing,
         );
       },
     );
@@ -215,6 +236,7 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
     if (!_registerPatientFormKey.currentState.validate()) return;
 
     PatientBloc patientBloc = Provider.of<PatientBloc>(context, listen: false);
+    AddressBloc addressBloc = Provider.of<AddressBloc>(context, listen: false);
 
     String cpf = _cpf.text;
     String name = _name.text;
@@ -222,35 +244,40 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
     String genre = _genre.text;
     String nationality = _nationality.text;
     String motherName = _motherName.text;
+    int cep = int.parse(_cep.text);
 
-    Patient patient = Patient(
-      cpf,
-      name,
-      dateOfBirth,
-      genre,
-      nationality,
-      motherName,
-      1,
-    );
+    bool hasAddress = await addressBloc.addAddress(patientCPF: cpf, cep: cep);
 
-    bool success = await patientBloc.addPatient(patient: patient);
-
-    if (success) {
-      CustomAlert.alert(
-        context: context,
-        title: "Sucesso!",
-        message: "O cadastro do paciente foi realizado com sucesso!",
-        function: () {
-          _cpf.text = "";
-          _name.text = "";
-          _dateOfBirth.text = "";
-          _genre.text = "";
-          _nationality.text = "";
-          _motherName.text = "";
-
-          push(context, HomePage(selectedIndex: 2), replace: true);
-        },
+    if (hasAddress) {
+      Patient patient = Patient(
+        cpf,
+        name,
+        dateOfBirth,
+        genre,
+        nationality,
+        motherName,
+        1,
       );
+
+      bool success = await patientBloc.addPatient(patient: patient);
+
+      if (success) {
+        CustomAlert.alert(
+          context: context,
+          title: "Sucesso!",
+          message: "O cadastro do paciente foi realizado com sucesso!",
+          function: () {
+            _cpf.text = "";
+            _name.text = "";
+            _dateOfBirth.text = "";
+            _genre.text = "";
+            _nationality.text = "";
+            _motherName.text = "";
+
+            push(context, HomePage(selectedIndex: 2), replace: true);
+          },
+        );
+      }
     }
   }
 }

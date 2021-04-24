@@ -1,5 +1,5 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/data/storage/database.dart';
+import 'package:consulta_marcada/data/database/database.dart';
 import 'package:consulta_marcada/ui/pages/user/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';

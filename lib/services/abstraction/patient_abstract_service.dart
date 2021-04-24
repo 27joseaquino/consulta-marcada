@@ -15,8 +15,8 @@ class PatientAbstractService extends AbstractService {
 
   @override
   responseToObject(Map json) {
-    // ignore: todo
-    // TODO: implement responseToObject
-    throw UnimplementedError();
+    Patient patient = Patient.fromJson(json);
+
+    return patient;
   }
 }
