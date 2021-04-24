@@ -13,14 +13,14 @@ class PatientCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
-        splashColor: patient.isActive
+        splashColor: patient.isActive == 1
             ? Colors.green.withOpacity(0.5)
             : Colors.red.withOpacity(0.5),
         onTap: () => push(context, PatientDetailsPage(patient)),
         child: Row(
           children: [
             LateralBar(
-              color: patient.isActive ? Colors.green : Colors.red,
+              color: patient.isActive == 1 ? Colors.green : Colors.red,
               height: 110,
             ),
             buildContent(),

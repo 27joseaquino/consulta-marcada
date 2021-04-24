@@ -8,7 +8,7 @@ class Patient {
   String _nationality;
   String _motherName;
   Address _address;
-  bool _isActive;
+  int _isActive;
 
   Patient(
     this._cpf,
@@ -17,6 +17,7 @@ class Patient {
     this._genre,
     this._nationality,
     this._motherName,
+    this._isActive,
   );
 
   String get cpf => _cpf;
@@ -26,7 +27,7 @@ class Patient {
   String get nationality => _nationality;
   String get motherName => _motherName;
   Address get address => _address;
-  bool get isActive => _isActive;
+  int get isActive => _isActive;
 
   Patient.fromJson(Map<String, dynamic> json) {
     this._cpf = json['cpf'];
@@ -46,6 +47,7 @@ class Patient {
     data['date_of_birth'] = this._dateOfBirth;
     data['nationality'] = this._nationality;
     data['mother_name'] = this._motherName;
+    data['is_active'] = this._isActive;
     return data;
   }
 }

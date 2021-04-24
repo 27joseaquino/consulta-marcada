@@ -30,7 +30,7 @@ class ConsultaMarcadaDB {
 
     sql = "create table patient (cpf VARCHAR(11) PRIMARY KEY, " +
         "name VARCHAR(100), genre VARCHAR(10), date_of_birth VARCHAR(10), " +
-        "nationality VARCHAR(20), mother_name VARCHAR(100), is_active BOOLEAN DEAFULT true);";
+        "nationality VARCHAR(20), mother_name VARCHAR(100), is_active BOOLEAN);";
 
     await database.execute(sql);
 
@@ -45,5 +45,7 @@ class ConsultaMarcadaDB {
         "VALUES ('asdjdkjsdjlasj', 'João Márcio', 'joao@gmail.com', '12345678');";
 
     await database.execute(sql);
+
+    database.close();
   }
 }

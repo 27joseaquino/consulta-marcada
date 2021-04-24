@@ -34,7 +34,7 @@ Consumer<PatientBloc> buildBody() {
       if (patientBloc.error != null) {
         return ErrorMessageContainer(
           icon: Icons.error,
-          text: "Não há nenhum paciente cadastrado",
+          text: "Ocorreu um erro ao tentar\nrecuperar a lista de pacientes",
         );
       }
 
@@ -50,7 +50,7 @@ Consumer<PatientBloc> buildBody() {
         visible: patientBloc.patients.isNotEmpty,
         child: buildListView(patientBloc.patients),
         replacement: ErrorMessageContainer(
-          text: 'Nenhum problema relatado',
+          text: 'Nenhum paciente cadastrado',
           icon: Icons.cancel,
         ),
       );

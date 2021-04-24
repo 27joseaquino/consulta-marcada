@@ -1,7 +1,7 @@
 import 'package:consulta_marcada/core/models/patient.dart';
 import 'package:consulta_marcada/services/abstraction/abstract_service.dart';
 
-abstract class PatientAbstractService extends AbstractService {
+class PatientAbstractService extends AbstractService {
   @override
   List responseToObjectList(List json) {
     List<Patient> patients = [];

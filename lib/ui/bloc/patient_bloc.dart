@@ -20,7 +20,7 @@ class PatientBloc extends AbstractBloc {
     setIsProcessing(false);
   }
 
-  Future<bool> addProblem({Patient patient}) async {
+  Future<bool> addPatient({Patient patient}) async {
     setIsProcessing(true);
 
     ServiceResponse<bool> result = await _patientService.addPatient(

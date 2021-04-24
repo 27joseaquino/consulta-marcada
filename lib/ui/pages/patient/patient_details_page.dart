@@ -36,7 +36,7 @@ class _PatientDetailsPageState extends State<PatientDetailsPage> {
               fontWeight: FontWeight.bold,
             ),
             CustomField(
-              text: widget.patient.isActive ? "Ativo" : "Inativo",
+              text: widget.patient.isActive == 1 ? "Ativo" : "Inativo",
             ),
             CustomText(
               text: 'CPF',

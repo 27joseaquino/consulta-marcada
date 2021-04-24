@@ -20,10 +20,10 @@ Doctor doctor2 = Doctor(
 );
 
 Patient patient1 = Patient("123.456.789-00", "José Ronaldo de Oliveira",
-    "13/03/2000", "Masculino", "Brasileiro", "Maria de Oliveira");
+    "13/03/2000", "Masculino", "Brasileiro", "Maria de Oliveira", 1);
 
 Patient patient2 = Patient("143.456.789-00", "João da Silva Santos",
-    "13/03/2000", "Masculino", "Brasileiro", "Maria dos Santos");
+    "13/03/2000", "Masculino", "Brasileiro", "Maria dos Santos", 0);
 
 MedicalConsultation consultation1 = MedicalConsultation(
   patient1,

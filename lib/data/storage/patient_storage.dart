@@ -19,6 +19,8 @@ class PatientStorage {
 
     List<Map> response = await db.query(_tableName, columns: columns);
 
+    db.close();
+
     print(response);
 
     return response;
@@ -28,6 +30,8 @@ class PatientStorage {
     Database db = await ConsultaMarcadaDB().database;
 
     int response = await db.insert(_tableName, patient.toJson());
+
+    db.close();
 
     return response;
   }

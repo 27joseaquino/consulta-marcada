@@ -1,10 +1,15 @@
 import 'package:consulta_marcada/core/models/patient.dart';
-import 'package:consulta_marcada/data/storage/patient_storage.dart';
+import 'package:consulta_marcada/core/utils/navigator.dart';
+import 'package:consulta_marcada/ui/bloc/patient_bloc.dart';
 import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
-import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
+import 'package:consulta_marcada/ui/components/buttons/progress_button.dart';
+import 'package:consulta_marcada/ui/components/custom_alert.dart';
 import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/pages/home/home_page.dart';
+import 'package:consulta_marcada/ui/styles/my_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PatientsRegisterPage extends StatefulWidget {
   @override
@@ -166,20 +171,50 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CancelButton(width: width * .4),
-          CustomButton(
-            title: "Cadastrar",
-            height: 50,
-            fontSize: 20,
-            width: width * .4,
-            onPressed: _onClickRegister,
-          )
+          patientRegisterButton(width: width * .4),
         ],
       ),
     );
   }
 
-  _onClickRegister() async {
+  Consumer<PatientBloc> patientRegisterButton({double width}) {
+    return Consumer<PatientBloc>(
+      builder: (context, patientBloc, child) {
+        if (patientBloc.error != null) {
+          String errorMessage = patientBloc.error;
+          patientBloc.clearError();
+
+          Future.delayed(Duration.zero, () {
+            CustomAlert.alert(
+              context: context,
+              title: "Erro ao cadastrar o paciente",
+              message: errorMessage,
+            );
+          });
+        }
+
+        return ProgressButton(
+          height: 50,
+          width: width,
+          content: CustomText(
+            text: "Cadastrar",
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            textAlign: TextAlign.center,
+            color: Colors.white,
+          ),
+          color: MyColors.appColors["blue"],
+          function: _onClickAddPatient,
+          showProgress: patientBloc.isProcessing,
+        );
+      },
+    );
+  }
+
+  _onClickAddPatient() async {
     if (!_registerPatientFormKey.currentState.validate()) return;
+
+    PatientBloc patientBloc = Provider.of<PatientBloc>(context, listen: false);
 
     String cpf = _cpf.text;
     String name = _name.text;
@@ -195,17 +230,27 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
       genre,
       nationality,
       motherName,
+      1,
     );
 
-    int success = await PatientStorage().addPatient(patient: patient);
+    bool success = await patientBloc.addPatient(patient: patient);
 
-    print(">>>>>>>>>>>>>> $success");
+    if (success) {
+      CustomAlert.alert(
+        context: context,
+        title: "Sucesso!",
+        message: "O cadastro do paciente foi realizado com sucesso!",
+        function: () {
+          _cpf.text = "";
+          _name.text = "";
+          _dateOfBirth.text = "";
+          _genre.text = "";
+          _nationality.text = "";
+          _motherName.text = "";
 
-    _cpf.text = "";
-    _name.text = "";
-    _dateOfBirth.text = "";
-    _genre.text = "";
-    _nationality.text = "";
-    _motherName.text = "";
+          push(context, HomePage(selectedIndex: 2), replace: true);
+        },
+      );
+    }
   }
 }

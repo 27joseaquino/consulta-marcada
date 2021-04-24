@@ -24,6 +24,7 @@ class PatientService extends PatientAbstractService {
 
       result.setData = this.responseToObjectList(response);
     } catch (e) {
+      print(e.toString());
       result.setError = "Ocorreu um erro.";
     }
 

@@ -10,6 +10,7 @@ class CustomAlert {
     Function function,
   }) {
     return showDialog<void>(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -49,6 +50,7 @@ class CustomAlert {
     Function function,
   }) {
     return showDialog<void>(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
