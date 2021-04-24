@@ -1,4 +1,5 @@
 import 'package:consulta_marcada/core/models/patient.dart';
+import 'package:consulta_marcada/data/storage/patient_storage.dart';
 import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
 import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
@@ -121,12 +122,12 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
               CustomTextField(
                 hintText: "CPF",
                 controller: _cpf,
-                maxLength: 20,
+                maxLength: 11,
               ),
               CustomTextField(
                 hintText: "Nome",
                 controller: _name,
-                maxLength: 50,
+                maxLength: 100,
               ),
               CustomTextField(
                 hintText: "Data de nascimento",
@@ -136,12 +137,12 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
               CustomTextField(
                 hintText: "Gênero",
                 controller: _genre,
-                maxLength: 100,
+                maxLength: 10,
               ),
               CustomTextField(
                 hintText: "Nacionalidade",
                 controller: _nationality,
-                maxLength: 100,
+                maxLength: 20,
               ),
               CustomTextField(
                 hintText: "Nome da mãe",
@@ -177,7 +178,7 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
     );
   }
 
-  _onClickRegister() {
+  _onClickRegister() async {
     if (!_registerPatientFormKey.currentState.validate()) return;
 
     String cpf = _cpf.text;
@@ -194,8 +195,11 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
       genre,
       nationality,
       motherName,
-      true,
     );
+
+    int success = await PatientStorage().addPatient(patient: patient);
+
+    print(">>>>>>>>>>>>>> $success");
 
     _cpf.text = "";
     _name.text = "";
@@ -203,13 +207,5 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
     _genre.text = "";
     _nationality.text = "";
     _motherName.text = "";
-
-    print("CPF: ${patient.cpf}");
-    print("Nome: ${patient.name}");
-    print("Data de nascimento : ${patient.dateOfBirth}");
-    print("Gênero: ${patient.genre}");
-    print("Nacionalidade: ${patient.nationality}");
-    print("Nome da mãe: ${patient.motherName}");
-    print("Status: ${patient.isActive}");
   }
 }

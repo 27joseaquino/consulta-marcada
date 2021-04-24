@@ -19,25 +19,11 @@ Doctor doctor2 = Doctor(
   false,
 );
 
-Patient patient1 = Patient(
-  "123.456.789-00",
-  "José Ronaldo de Oliveira",
-  "13/03/2000",
-  "Masculino",
-  "Brasileiro",
-  "Maria de Oliveira",
-  true,
-);
+Patient patient1 = Patient("123.456.789-00", "José Ronaldo de Oliveira",
+    "13/03/2000", "Masculino", "Brasileiro", "Maria de Oliveira");
 
-Patient patient2 = Patient(
-  "143.456.789-00",
-  "João da Silva Santos",
-  "13/03/2000",
-  "Masculino",
-  "Brasileiro",
-  "Maria dos Santos",
-  false,
-);
+Patient patient2 = Patient("143.456.789-00", "João da Silva Santos",
+    "13/03/2000", "Masculino", "Brasileiro", "Maria dos Santos");
 
 MedicalConsultation consultation1 = MedicalConsultation(
   patient1,

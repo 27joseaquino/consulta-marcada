@@ -1,9 +1,13 @@
+import 'package:consulta_marcada/core/models/patient.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/data/data.dart';
+import 'package:consulta_marcada/ui/bloc/patient_bloc.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_floating_button.dart';
 import 'package:consulta_marcada/ui/components/cards/patient_card.dart';
+import 'package:consulta_marcada/ui/components/custom_circular_progress.dart';
+import 'package:consulta_marcada/ui/components/error_message_container.dart';
 import 'package:consulta_marcada/ui/pages/patient/patients_register_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PatientsListPage extends StatefulWidget {
   @override
@@ -14,7 +18,7 @@ class _PatientsListPageState extends State<PatientsListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: buildListview(),
+      body: buildBody(),
       floatingActionButton: CustomFloatingButton(
         onPressed: () {
           push(context, PatientsRegisterPage());
@@ -24,7 +28,37 @@ class _PatientsListPageState extends State<PatientsListPage> {
   }
 }
 
-Container buildListview() {
+Consumer<PatientBloc> buildBody() {
+  return Consumer<PatientBloc>(
+    builder: (context, patientBloc, child) {
+      if (patientBloc.error != null) {
+        return ErrorMessageContainer(
+          icon: Icons.error,
+          text: "Não há nenhum paciente cadastrado",
+        );
+      }
+
+      if (!patientBloc.isProcessing && patientBloc.patients == null) {
+        patientBloc.fetchPatients();
+
+        return CustomCircularProgress();
+      } else if (patientBloc.isProcessing) {
+        return CustomCircularProgress();
+      }
+
+      return Visibility(
+        visible: patientBloc.patients.isNotEmpty,
+        child: buildListView(patientBloc.patients),
+        replacement: ErrorMessageContainer(
+          text: 'Nenhum problema relatado',
+          icon: Icons.cancel,
+        ),
+      );
+    },
+  );
+}
+
+Container buildListView(List<Patient> patients) {
   return Container(
     padding: EdgeInsets.only(top: 16, left: 10, right: 10),
     child: ListView.builder(

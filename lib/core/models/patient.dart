@@ -17,7 +17,6 @@ class Patient {
     this._genre,
     this._nationality,
     this._motherName,
-    this._isActive,
   );
 
   String get cpf => _cpf;
@@ -37,5 +36,16 @@ class Patient {
     this._nationality = json['nationality'];
     this._motherName = json['mother_name'];
     this._isActive = json['is_active'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['cpf'] = this._cpf;
+    data['name'] = this._name;
+    data['genre'] = this._genre;
+    data['date_of_birth'] = this._dateOfBirth;
+    data['nationality'] = this._nationality;
+    data['mother_name'] = this._motherName;
+    return data;
   }
 }

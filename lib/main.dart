@@ -1,7 +1,9 @@
+import 'package:consulta_marcada/ui/bloc/patient_bloc.dart';
 import 'package:consulta_marcada/ui/pages/splash_page.dart';
 import 'package:consulta_marcada/ui/styles/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,11 +28,16 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'consulta marcada',
-      theme: lightTheme,
-      home: SplashPage(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => PatientBloc()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'consulta marcada',
+        theme: lightTheme,
+        home: SplashPage(),
+      ),
     );
   }
 }

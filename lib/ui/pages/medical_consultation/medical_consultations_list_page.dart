@@ -5,7 +5,7 @@ import 'package:consulta_marcada/data/data.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_floating_button.dart';
 import 'package:consulta_marcada/ui/components/cards/medical_consultation_card.dart';
 import 'package:consulta_marcada/ui/components/custom_filter.dart';
-import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/components/error_message_container.dart';
 import 'package:consulta_marcada/ui/pages/medical_consultation/medical_consultations_register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -101,22 +101,9 @@ class _MedicalConsultationsListPageState
             return MedicalConsultationCard(list[index]);
           },
         ),
-        replacement: Center(
-          child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.error, color: Colors.grey),
-                CustomText(
-                  text: "Não há nenhuma consulta marcada",
-                  fontSize: 18,
-                  color: Colors.grey,
-                  maxlines: 2,
-                ),
-              ],
-            ),
-          ),
+        replacement: ErrorMessageContainer(
+          icon: Icons.error,
+          text: "Não há nenhuma consulta marcada",
         ),
       ),
     );
