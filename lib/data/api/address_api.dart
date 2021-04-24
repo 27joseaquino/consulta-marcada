@@ -14,6 +14,7 @@ class AddressApi {
 
     if (response.statusCode != 200) {
       print(response.statusCode);
+      throw Exception(response.statusCode);
     }
 
     Map result = json.decode(utf8.decode(response.bodyBytes));

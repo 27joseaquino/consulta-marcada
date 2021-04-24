@@ -1,5 +1,6 @@
 import 'package:consulta_marcada/core/models/patient.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
+import 'package:consulta_marcada/ui/bloc/address_bloc.dart';
 import 'package:consulta_marcada/ui/bloc/patient_bloc.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_floating_button.dart';
 import 'package:consulta_marcada/ui/components/cards/patient_card.dart';
@@ -28,9 +29,9 @@ class _PatientsListPageState extends State<PatientsListPage> {
   }
 }
 
-Consumer<PatientBloc> buildBody() {
-  return Consumer<PatientBloc>(
-    builder: (context, patientBloc, child) {
+Consumer2<PatientBloc, AddressBloc> buildBody() {
+  return Consumer2<PatientBloc, AddressBloc>(
+    builder: (context, patientBloc, addressBloc, child) {
       if (patientBloc.error != null) {
         return ErrorMessageContainer(
           icon: Icons.error,
@@ -38,8 +39,12 @@ Consumer<PatientBloc> buildBody() {
         );
       }
 
-      if (!patientBloc.isProcessing && patientBloc.patients == null) {
-        patientBloc.fetchPatients();
+      if (!addressBloc.isProcessing && addressBloc.addressList == null) {
+        addressBloc.fetchAddressList();
+
+        return CustomCircularProgress();
+      } else if (!patientBloc.isProcessing && patientBloc.patients == null) {
+        patientBloc.fetchPatients(addressList: addressBloc.addressList);
 
         return CustomCircularProgress();
       } else if (patientBloc.isProcessing) {

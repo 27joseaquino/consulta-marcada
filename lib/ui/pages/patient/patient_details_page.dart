@@ -31,7 +31,7 @@ class _PatientDetailsPageState extends State<PatientDetailsPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             CustomText(
-              text: 'Status',
+              text: "Status",
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -39,41 +39,55 @@ class _PatientDetailsPageState extends State<PatientDetailsPage> {
               text: widget.patient.isActive == 1 ? "Ativo" : "Inativo",
             ),
             CustomText(
-              text: 'CPF',
+              text: "CPF",
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
             CustomField(text: widget.patient.cpf),
             CustomText(
-              text: 'Data de nascimento',
+              text: "Data de nascimento",
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
             CustomField(text: widget.patient.dateOfBirth),
             CustomText(
-              text: 'Nome',
+              text: "Nome",
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
             CustomField(text: widget.patient.name),
             CustomText(
-              text: 'Gênero',
+              text: "Gênero",
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
             CustomField(text: widget.patient.genre),
             CustomText(
-              text: 'Nacionalidade',
+              text: "Nacionalidade",
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
             CustomField(text: widget.patient.nationality),
             CustomText(
-              text: 'Nome da mãe',
+              text: "Nome da mãe",
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
             CustomField(text: widget.patient.motherName),
+            CustomText(
+              text: "Endereço",
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+            CustomField(
+              text: widget.patient.address != null
+                  ? "CEP: ${widget.patient.address.cep}\n" +
+                      "Logradouro: ${widget.patient.address.street}\n" +
+                      "Bairro: ${widget.patient.address.district}\n" +
+                      "Cidade: ${widget.patient.address.city} " +
+                      "- ${widget.patient.address.uf}"
+                  : "Não foi informado",
+            ),
           ],
         ),
       ),

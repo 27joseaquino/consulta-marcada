@@ -25,7 +25,7 @@ class CustomAlert {
             text: message,
             fontSize: 18,
             maxlines: 5,
-            textAlign: TextAlign.justify,
+            textAlign: TextAlign.start,
           ),
           actions: [
             CustomButton(

@@ -3,7 +3,7 @@ import 'package:consulta_marcada/data/database/database.dart';
 import 'package:sqflite/sqflite.dart';
 
 class AddressStorage {
-  final String _tableName = 'patient';
+  final String _tableName = 'address';
 
   final List<String> columns = [
     'cpf_patient_fk',

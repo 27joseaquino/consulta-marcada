@@ -19,11 +19,14 @@ class AddressService extends AddressAbstractService {
         map["uf"],
       );
 
+      print(address.id);
+
       int response = await AddressStorage().addAddress(address: address);
 
       result.setData = response != null;
     } catch (e) {
-      result.setError = "Ocorreu um erro.";
+      result.setError = "O CEP inserido não existe. Por favor, " +
+          "tente novamente com um CEP válido!";
     }
 
     return result;
