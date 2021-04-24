@@ -1,3 +1,5 @@
+import 'package:consulta_marcada/core/models/address.dart';
+
 class Patient {
   String _cpf;
   String _name;
@@ -5,6 +7,7 @@ class Patient {
   String _genre;
   String _nationality;
   String _motherName;
+  Address _address;
   bool _isActive;
 
   Patient(
@@ -14,7 +17,7 @@ class Patient {
     this._genre,
     this._nationality,
     this._motherName,
-    this._isActive, 
+    this._isActive,
   );
 
   String get cpf => _cpf;
@@ -23,5 +26,16 @@ class Patient {
   String get genre => _genre;
   String get nationality => _nationality;
   String get motherName => _motherName;
+  Address get address => _address;
   bool get isActive => _isActive;
+
+  Patient.fromJson(Map<String, dynamic> json) {
+    this._cpf = json['cpf'];
+    this._name = json['name'];
+    this._genre = json['genre'];
+    this._dateOfBirth = json['date_of_birth'];
+    this._nationality = json['nationality'];
+    this._motherName = json['mother_name'];
+    this._isActive = json['is_active'];
+  }
 }
