@@ -1,5 +1,6 @@
 import 'package:consulta_marcada/ui/styles/my_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 ThemeData lightTheme = ThemeData(
   primaryColor: MyColors.appColors["blue"],
@@ -8,10 +9,9 @@ ThemeData lightTheme = ThemeData(
   appBarTheme: AppBarTheme(
     color: MyColors.appColors["blue"],
     textTheme: TextTheme(
-      headline6: TextStyle(
+      headline6: GoogleFonts.poppins(
         fontSize: 25,
         color: Colors.white,
-        fontFamily: "Poppins",
         fontWeight: FontWeight.bold,
       ),
     ),
