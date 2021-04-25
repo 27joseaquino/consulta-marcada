@@ -73,7 +73,7 @@ Obs.: O endereço é um objeto com a seguinte estrutura:
 
 ## Features implementadas
 
-- Login com e-mail e senha; (` Para fazer login use: E-mail: joao@gmail.com - Senha: 12345678`)
+- Login com e-mail e senha; `Para fazer login use: E-mail: joao@gmail.com - Senha: 12345678`
 - Listagem de Pacientes;
 - Listagem de Médicos;
 - Listagem de Salas;
