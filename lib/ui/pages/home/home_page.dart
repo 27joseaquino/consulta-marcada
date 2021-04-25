@@ -1,4 +1,5 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
+import 'package:consulta_marcada/ui/bloc/user_bloc.dart';
 import 'package:consulta_marcada/ui/components/custom_alert.dart';
 import 'package:consulta_marcada/ui/components/menu.dart';
 import 'package:consulta_marcada/ui/pages/doctor/doctors_list_page.dart';
@@ -8,6 +9,7 @@ import 'package:consulta_marcada/ui/pages/patient/patients_list_page.dart';
 import 'package:consulta_marcada/ui/pages/room/rooms_list_page.dart';
 import 'package:consulta_marcada/ui/pages/user/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   final int selectedIndex;
@@ -82,7 +84,13 @@ class _HomePageState extends State<HomePage> {
           message: "Deseja mesmo sair do aplicativo consulta marcada?",
           firstButtonTitle: "Não",
           secondButtonTitle: "Sim",
-          function: () => push(context, LoginPage(), replace: true),
+          function: () {
+            UserBloc userBloc = Provider.of<UserBloc>(context, listen: false);
+
+            userBloc.signOut();
+
+            push(context, LoginPage(), replace: true);
+          },
         );
       },
       icon: Icon(Icons.logout),

@@ -1,9 +1,14 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
+import 'package:consulta_marcada/ui/bloc/user_bloc.dart';
+import 'package:consulta_marcada/ui/components/buttons/progress_button.dart';
+import 'package:consulta_marcada/ui/components/custom_alert.dart';
+import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:consulta_marcada/ui/components/logo_consulta_marcada.dart';
 import 'package:consulta_marcada/ui/pages/home/home_page.dart';
+import 'package:consulta_marcada/ui/styles/my_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -118,27 +123,61 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
           ),
-          CustomButton(
-            title: "Entrar",
-            height: 50,
-            width: double.infinity,
-            onPressed: _onClickLogin,
-          ),
+          loginButton(),
         ],
       ),
     );
   }
 
-  _onClickLogin() {
+  Consumer<UserBloc> loginButton() {
+    return Consumer<UserBloc>(
+      builder: (context, userBloc, child) {
+        if (userBloc.error != null) {
+          String errorMessage = userBloc.error;
+          userBloc.clearError();
+
+          Future.delayed(Duration.zero, () {
+            CustomAlert.alert(
+              context: context,
+              title: "Erro no Login",
+              message: errorMessage,
+            );
+          });
+        }
+
+        return ProgressButton(
+          function: () => _onClickLogin(),
+          height: 50,
+          width: double.infinity,
+          content: CustomText(
+            text: "Entrar",
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          color: MyColors.appColors["blue"],
+          showProgress: userBloc.isProcessing,
+        );
+      },
+    );
+  }
+
+  _onClickLogin() async {
     if (!_loginFormKey.currentState.validate()) return;
 
-    String email = _email.text;
-    String password = _password.text;
+    UserBloc userBloc = Provider.of<UserBloc>(context, listen: false);
 
-    print("E-mail: $email");
-    print("Senha: $password");
+    String email = _email.text.trim();
+    String password = _password.text.trim();
 
-    push(context, HomePage(), replace: true);
+    bool success = await userBloc.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+
+    if (success) {
+      push(context, HomePage(), replace: true);
+    }
   }
 
   String _passwordValidation(String text) {

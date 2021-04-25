@@ -2,16 +2,97 @@
 
 Aplicativo Mobile para o auxílio à unidades de saúde com o gerenciamento de consultas médicas.
 
-## Observações
+O projeto tem como principal objetivo apresentar o CRUD de consultas, entidade essa com a seguinte estrutura:
 
-- O projeto está funcionando com a versão 2.1.0 do flutter e a versão 2.13.0 do Dart.
+```json
+{
+  "id": "ID da consulta",
+  "patient_cpf": "CPF do paciente",
+  "doctor_crm": "CRM do médico(a)",
+  "room_number": "Número da sala",
+  "date": "Horário da consulta",
+  "arrival_time": "Horário de chegada",
+  "status": "Status da consulta" //O status da consulta pode ser: Realizada, Não realizada e Em andamento
+}
+```
 
-# Getting Started
+A consulta depende de outros 3 objetos, são eles:
 
-Este projeto é um ponto de partida para um aplicativo Flutter.
+### Paciente
 
-Alguns recursos para você começar, se este for seu primeiro projeto Flutter:
+```json
+{
+  "cpf": "CPF do paciente",
+  "name": "Nome do paciente",
+  "genre": "Gênero",
+  "date_of_birth": "Data de nascimento",
+  "nationality": "Nacionalidade",
+  "mother_name": "Nome da mãe",
+  "address": "Endereço",
+  "is_active": "Status de atividade"
+}
+```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-- [Online documentation](https://flutter.dev/docs)
+Obs.: O endereço é um objeto com a seguinte estrutura:
+
+```json
+{
+  "cep": "CEP",
+  "street": "Logradouro",
+  "district": "Bairro",
+  "city": "Cidade",
+  "uf": "Estado"
+}
+```
+
+[API usada para acessar o endereço do paciente com o CEP](https://viacep.com.br/)
+
+### Médico(a)
+
+```json
+{
+  "crm": "CRM do médico(a)",
+  "name": "Nome do médico(a)",
+  "genre": "Gênero",
+  "specialty": "Especialidade",
+  "is_active": "Status de atividade"
+}
+```
+
+### Sala
+
+```json
+{
+  "id": "ID da sala",
+  "number": "Número da sala",
+  "localization": "Localização da sala",
+  "name": "Nome da sala", //Ex.: Sala de Cirurgia
+  "is_available": "Status de disponibilidade"
+}
+```
+
+## Features implementadas
+
+- Login com e-mail e senha; (` Para fazer login use: E-mail: joao@gmail.com - Senha: 12345678`)
+- Listagem de Pacientes;
+- Listagem de Médicos;
+- Listagem de Salas;
+- Cadastro de Pacientes;
+- Cadastro de Médicos;
+- Cadastro de Salas;
+
+## Organização de camadas da aplicação:
+
+1. View;
+2. Provider;
+3. Service;
+4. Data;
+
+## Como executar?
+
+- Clone o repositório;
+- Entre na pasta do projeto;
+- Execute `pub get` instalar todas as dependências do projeto;
+- Inicie um emulador de dispositivo móvel ou conecte seu smartphone no computador (certifique-se que seu aparelho tenha a Depuração USB ativada);
+- Execute `flutter run` para executar o aplicativo no seu dispositivo conectado (ou emulado).
+- E pronto, o aplicativo estará executando no seu celular.

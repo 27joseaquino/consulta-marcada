@@ -17,7 +17,7 @@ ThemeData lightTheme = ThemeData(
     ),
     iconTheme: IconThemeData(
       color: Colors.white,
-      size: 14,
+      size: 25,
     ),
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(

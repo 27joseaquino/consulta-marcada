@@ -1,8 +1,10 @@
+import 'package:consulta_marcada/core/models/user.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/data/database/database.dart';
+import 'package:consulta_marcada/ui/bloc/user_bloc.dart';
+import 'package:consulta_marcada/ui/pages/home/home_page.dart';
 import 'package:consulta_marcada/ui/pages/user/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:provider/provider.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -30,10 +32,12 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   }
 
   void splash(context) {
+    UserBloc userBloc = Provider.of<UserBloc>(context, listen: false);
     Future.delayed(Duration(milliseconds: 100)).then((value) async {
-      Database db = await ConsultaMarcadaDB().database;
-
-      if (db != null) {
+      User user = await userBloc.activeUser();
+      if (user != null) {
+        push(context, HomePage(), replace: true);
+      } else {
         push(context, LoginPage(), replace: true);
       }
     });

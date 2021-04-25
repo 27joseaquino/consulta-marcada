@@ -1,12 +1,11 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/ui/components/line.dart';
-import 'package:consulta_marcada/ui/components/logo_consulta_marcada.dart';
+import 'package:consulta_marcada/ui/components/menu/header_menu.dart';
 import 'package:consulta_marcada/ui/pages/doctor/doctors_register_page.dart';
 import 'package:consulta_marcada/ui/pages/home/home_page.dart';
 import 'package:consulta_marcada/ui/pages/patient/patients_register_page.dart';
 import 'package:consulta_marcada/ui/pages/room/rooms_register_page.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
-import 'package:consulta_marcada/ui/styles/my_colors.dart';
 import 'package:flutter/material.dart';
 
 class Menu extends StatelessWidget {
@@ -16,7 +15,7 @@ class Menu extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          drawerHeader(),
+          HeaderMenu(),
           buildListTile(
             icon: Icon(Icons.support_agent_outlined),
             title: "Marcar Consulta",
@@ -86,30 +85,6 @@ class Menu extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  DrawerHeader drawerHeader() {
-    return DrawerHeader(
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 8),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            LogoConsultaMarcada(
-              fontSize: 18,
-              height: 100,
-              width: 100,
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.settings, color: Colors.white),
-            ),
-          ],
-        ),
-      ),
-      decoration: BoxDecoration(color: MyColors.appColors["blue"]),
     );
   }
 
