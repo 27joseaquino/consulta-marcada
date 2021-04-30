@@ -1,5 +1,5 @@
 import 'package:consulta_marcada/core/models/medical_consultation.dart';
-import 'package:consulta_marcada/core/models/static/status.dart';
+import 'package:consulta_marcada/data/static/status.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/ui/components/cards/lateral_bar.dart';
 import 'package:consulta_marcada/ui/components/cards/text_line.dart';
