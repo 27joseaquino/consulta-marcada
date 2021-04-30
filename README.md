@@ -12,8 +12,9 @@ O projeto tem como principal objetivo apresentar o CRUD de consultas, entidade e
   "room_number": "Número da sala",
   "date": "Horário da consulta",
   "arrival_time": "Horário de chegada",
-  "status": "Status da consulta" //O status da consulta pode ser: Realizada, Não realizada e Em andamento
+  "status": "Status da consulta"
 }
+//A consulta pode ter os seguintes status: Não realizada, realizada e em andamento.
 ```
 
 A consulta depende de outros 3 objetos, são eles:
@@ -66,7 +67,7 @@ Obs.: O endereço é um objeto com a seguinte estrutura:
   "id": "ID da sala",
   "number": "Número da sala",
   "localization": "Localização da sala",
-  "name": "Nome da sala", //Ex.: Sala de Cirurgia
+  "name": "Nome da sala",
   "is_available": "Status de disponibilidade"
 }
 ```
@@ -77,20 +78,20 @@ Obs.: O endereço é um objeto com a seguinte estrutura:
 - Listagem de Pacientes;
 - Listagem de Médicos;
 - Cadastro de Pacientes;
-- Cadastro de Médicos;
+- Cadastro de Médicos.
 
 ## Organização de camadas da aplicação:
 
-1. View;
-2. Provider;
-3. Service;
-4. Data;
+1. View
+2. Provider
+3. Service
+4. Data
 
 ## Como executar?
 
 - Clone o repositório;
 - Entre na pasta do projeto;
-- Execute `pub get` instalar todas as dependências do projeto;
+- Execute `pub get` para instalar todas as dependências do projeto;
 - Inicie um emulador de dispositivo móvel ou conecte seu smartphone no computador (certifique-se que seu aparelho tenha a Depuração USB ativada);
 - Execute `flutter run` para executar o aplicativo no seu dispositivo conectado (ou emulado).
 - E pronto, o aplicativo estará executando no seu celular.
