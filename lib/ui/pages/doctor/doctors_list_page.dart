@@ -1,5 +1,5 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/data/data.dart';
+import 'package:consulta_marcada/data/static/data.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_floating_button.dart';
 import 'package:consulta_marcada/ui/components/cards/doctor_card.dart';
 import 'package:consulta_marcada/ui/pages/doctor/doctors_register_page.dart';

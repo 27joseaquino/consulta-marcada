@@ -2,7 +2,7 @@ import 'package:consulta_marcada/core/models/doctor.dart';
 import 'package:consulta_marcada/core/models/medical_consultation.dart';
 import 'package:consulta_marcada/core/models/patient.dart';
 import 'package:consulta_marcada/core/models/room.dart';
-import 'package:consulta_marcada/data/data.dart';
+import 'package:consulta_marcada/data/static/data.dart';
 import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
 import 'package:consulta_marcada/ui/components/custom_alert.dart';
