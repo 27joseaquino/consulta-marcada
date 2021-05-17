@@ -2,7 +2,7 @@ import 'package:consulta_marcada/ui/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CustomText extends StatelessWidget {
+class AppText extends StatelessWidget {
   final String text;
   final TextAlign textAlign;
   final double fontSize;
@@ -11,7 +11,7 @@ class CustomText extends StatelessWidget {
   final bool textOverFlowEllipsis;
   final int maxlines;
 
-  CustomText({
+  AppText({
     this.text,
     this.fontSize,
     this.fontWeight,

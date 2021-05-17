@@ -1,8 +1,8 @@
 import 'package:consulta_marcada/core/models/patient.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/ui/components/cards/lateral_bar.dart';
-import 'package:consulta_marcada/ui/components/cards/text_line.dart';
 import 'package:consulta_marcada/ui/screens/patient/patient_details_screen.dart';
+import 'package:consulta_marcada/ui/widgets/cards/lateral_bar.dart';
+import 'package:consulta_marcada/ui/widgets/cards/text_line.dart';
 import 'package:flutter/material.dart';
 
 class PatientCard extends StatelessWidget {

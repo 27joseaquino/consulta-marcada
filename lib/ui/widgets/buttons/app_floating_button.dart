@@ -1,9 +1,9 @@
 import 'package:consulta_marcada/ui/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class CustomFloatingButton extends StatelessWidget {
+class AppFloatingButton extends StatelessWidget {
   final Function onPressed;
-  CustomFloatingButton({@required this.onPressed});
+  AppFloatingButton({@required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

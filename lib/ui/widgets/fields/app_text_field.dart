@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget {
+class AppTextField extends StatelessWidget {
   final FormFieldValidator<String> validator;
   final TextEditingController controller;
   final TextInputType textInputType;
@@ -9,7 +9,7 @@ class CustomTextField extends StatelessWidget {
   final int maxLength;
   final int lines;
 
-  CustomTextField({
+  AppTextField({
     this.textInputType = TextInputType.text,
     this.isObscure = false,
     this.maxLength = 200,

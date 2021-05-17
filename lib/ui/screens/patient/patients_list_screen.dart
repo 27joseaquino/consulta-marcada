@@ -1,12 +1,12 @@
 import 'package:consulta_marcada/core/models/patient.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/ui/components/buttons/custom_floating_button.dart';
-import 'package:consulta_marcada/ui/components/cards/patient_card.dart';
-import 'package:consulta_marcada/ui/components/custom_circular_progress.dart';
-import 'package:consulta_marcada/ui/components/error_message_container.dart';
 import 'package:consulta_marcada/ui/providers/address_provider.dart';
 import 'package:consulta_marcada/ui/providers/patient_provider.dart';
 import 'package:consulta_marcada/ui/screens/patient/patients_register_screen.dart';
+import 'package:consulta_marcada/ui/widgets/app_circular_progress.dart';
+import 'package:consulta_marcada/ui/widgets/buttons/app_floating_button.dart';
+import 'package:consulta_marcada/ui/widgets/cards/patient_card.dart';
+import 'package:consulta_marcada/ui/widgets/error_message_container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +20,7 @@ class _PatientsListScreenState extends State<PatientsListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: buildBody(),
-      floatingActionButton: CustomFloatingButton(
+      floatingActionButton: AppFloatingButton(
         onPressed: () {
           push(context, PatientsRegisterScreen());
         },
@@ -43,14 +43,14 @@ Consumer2<PatientProvider, AddressProvider> buildBody() {
           addressProvider.addressList == null) {
         addressProvider.fetchAddressList();
 
-        return CustomCircularProgress();
+        return AppCircularProgress();
       } else if (!patientProvider.isProcessing &&
           patientProvider.patients == null) {
         patientProvider.fetchPatients(addressList: addressProvider.addressList);
 
-        return CustomCircularProgress();
+        return AppCircularProgress();
       } else if (patientProvider.isProcessing) {
-        return CustomCircularProgress();
+        return AppCircularProgress();
       }
 
       return Visibility(

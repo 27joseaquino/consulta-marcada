@@ -1,8 +1,8 @@
 import 'package:consulta_marcada/core/models/doctor.dart';
-import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
-import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
-import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
-import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
+import 'package:consulta_marcada/ui/widgets/buttons/app_button.dart';
+import 'package:consulta_marcada/ui/widgets/buttons/cancel_button.dart';
+import 'package:consulta_marcada/ui/widgets/fields/app_text_field.dart';
 import 'package:flutter/material.dart';
 
 class DoctorsRegisterScreen extends StatefulWidget {
@@ -98,7 +98,7 @@ class _DoctorsRegisterScreenState extends State<DoctorsRegisterScreen> {
       padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       height: height,
       width: width,
-      child: CustomText(
+      child: AppText(
         text: "Cadastre aqui um novo médico(a).",
         fontSize: 18,
         maxlines: 2,
@@ -118,23 +118,23 @@ class _DoctorsRegisterScreenState extends State<DoctorsRegisterScreen> {
           physics: BouncingScrollPhysics(),
           child: Column(
             children: [
-              CustomTextField(
+              AppTextField(
                 hintText: "CRM",
                 controller: _crm,
                 maxLength: 100,
                 textInputType: TextInputType.number,
               ),
-              CustomTextField(
+              AppTextField(
                 hintText: "Nome",
                 controller: _name,
                 maxLength: 100,
               ),
-              CustomTextField(
+              AppTextField(
                 hintText: "Gênero",
                 controller: _genre,
                 maxLength: 10,
               ),
-              CustomTextField(
+              AppTextField(
                 hintText: "Especialidade",
                 controller: _specialty,
                 maxLength: 100,
@@ -156,7 +156,7 @@ class _DoctorsRegisterScreenState extends State<DoctorsRegisterScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CancelButton(width: width * .4),
-          CustomButton(
+          AppButton(
             title: "Cadastrar",
             height: 50,
             fontSize: 20,

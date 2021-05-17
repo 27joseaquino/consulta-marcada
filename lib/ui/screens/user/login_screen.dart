@@ -1,12 +1,12 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/ui/components/buttons/progress_button.dart';
-import 'package:consulta_marcada/ui/components/custom_alert.dart';
-import 'package:consulta_marcada/ui/components/custom_text.dart';
-import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
-import 'package:consulta_marcada/ui/components/logo_consulta_marcada.dart';
 import 'package:consulta_marcada/ui/providers/user_provider.dart';
 import 'package:consulta_marcada/ui/screens/home/home_screen.dart';
 import 'package:consulta_marcada/ui/styles/app_colors.dart';
+import 'package:consulta_marcada/ui/widgets/app_alert.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
+import 'package:consulta_marcada/ui/widgets/buttons/progress_button.dart';
+import 'package:consulta_marcada/ui/widgets/fields/app_text_field.dart';
+import 'package:consulta_marcada/ui/widgets/logo_consulta_marcada.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -108,13 +108,13 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomTextField(
+                AppTextField(
                   hintText: "E-mail",
                   controller: _email,
                   textInputType: TextInputType.emailAddress,
                   validator: _emailValidation,
                 ),
-                CustomTextField(
+                AppTextField(
                   hintText: "Senha",
                   isObscure: true,
                   controller: _password,
@@ -137,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
           userProvider.clearError();
 
           Future.delayed(Duration.zero, () {
-            CustomAlert.alert(
+            AppAlert.alert(
               context: context,
               title: "Erro no Login",
               message: errorMessage,
@@ -149,7 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
           function: () => _onClickLogin(),
           height: 50,
           width: double.infinity,
-          content: CustomText(
+          content: AppText(
             text: "Entrar",
             fontSize: 20,
             fontWeight: FontWeight.bold,

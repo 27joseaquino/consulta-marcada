@@ -1,4 +1,4 @@
-import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
 class LogoConsultaMarcada extends StatelessWidget {
@@ -25,7 +25,7 @@ class LogoConsultaMarcada extends StatelessWidget {
             width: width,
             child: Image.asset("assets/logo.png", fit: BoxFit.contain),
           ),
-          CustomText(
+          AppText(
             text: "Consulta Marcada",
             fontSize: fontSize,
             fontWeight: FontWeight.bold,

@@ -1,4 +1,4 @@
-import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
+import 'package:consulta_marcada/ui/widgets/buttons/app_button.dart';
 import 'package:flutter/material.dart';
 
 class CancelButton extends StatelessWidget {
@@ -7,7 +7,7 @@ class CancelButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomButton(
+    return AppButton(
       title: "Cancelar",
       height: 50,
       width: width,

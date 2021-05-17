@@ -1,6 +1,4 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/ui/components/custom_alert.dart';
-import 'package:consulta_marcada/ui/components/menu.dart';
 import 'package:consulta_marcada/ui/providers/user_provider.dart';
 import 'package:consulta_marcada/ui/screens/doctor/doctors_list_screen.dart';
 import 'package:consulta_marcada/ui/screens/home/home_buttons.dart';
@@ -8,6 +6,8 @@ import 'package:consulta_marcada/ui/screens/medical_consultation/medical_consult
 import 'package:consulta_marcada/ui/screens/patient/patients_list_screen.dart';
 import 'package:consulta_marcada/ui/screens/room/rooms_list_screen.dart';
 import 'package:consulta_marcada/ui/screens/user/login_screen.dart';
+import 'package:consulta_marcada/ui/widgets/app_alert.dart';
+import 'package:consulta_marcada/ui/widgets/menu/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
   IconButton exitButton(BuildContext context) {
     return IconButton(
       onPressed: () {
-        CustomAlert.dialog(
+        AppAlert.dialog(
           context: context,
           title: "Sair do APP?",
           message: "Deseja mesmo sair do aplicativo consulta marcada?",

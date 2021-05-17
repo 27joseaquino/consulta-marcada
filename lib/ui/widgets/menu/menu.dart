@@ -1,11 +1,11 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/ui/components/line.dart';
-import 'package:consulta_marcada/ui/components/menu/header_menu.dart';
-import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/screens/doctor/doctors_register_screen.dart';
 import 'package:consulta_marcada/ui/screens/home/home_screen.dart';
 import 'package:consulta_marcada/ui/screens/patient/patients_register_screen.dart';
 import 'package:consulta_marcada/ui/screens/room/rooms_register_screen.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
+import 'package:consulta_marcada/ui/widgets/line.dart';
+import 'package:consulta_marcada/ui/widgets/menu/app_header.dart';
 import 'package:flutter/material.dart';
 
 class Menu extends StatelessWidget {
@@ -15,7 +15,7 @@ class Menu extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          HeaderMenu(),
+          AppHeader(),
           buildListTile(
             icon: Icon(Icons.support_agent_outlined),
             title: "Marcar Consulta",
@@ -91,7 +91,7 @@ class Menu extends StatelessWidget {
   ListTile buildListTile({Icon icon, String title, Function onTap}) {
     return ListTile(
       leading: icon,
-      title: CustomText(text: title, fontSize: 14),
+      title: AppText(text: title, fontSize: 14),
       trailing: Icon(Icons.arrow_forward_ios),
       onTap: onTap,
     );

@@ -1,4 +1,4 @@
-import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
 class TextLine extends StatelessWidget {
@@ -13,7 +13,7 @@ class TextLine extends StatelessWidget {
       children: <Widget>[
         Visibility(
           visible: title != null,
-          child: CustomText(
+          child: AppText(
               text: '$title: ', fontSize: 16, fontWeight: FontWeight.bold),
           replacement: Text(" "),
         ),
@@ -21,7 +21,7 @@ class TextLine extends StatelessWidget {
           visible: content != null,
           child: Expanded(
             child: Container(
-              child: CustomText(
+              child: AppText(
                 text: content,
                 fontSize: 16,
                 color: color != null ? color : null,

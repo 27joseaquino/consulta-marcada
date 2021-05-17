@@ -1,9 +1,9 @@
-import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
-class CustomField extends StatelessWidget {
+class AppField extends StatelessWidget {
   final String text;
-  CustomField({this.text});
+  AppField({this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class CustomField extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 8),
       child: Padding(
         padding: EdgeInsets.only(left: 16, top: 10, right: 5, bottom: 10),
-        child: CustomText(
+        child: AppText(
           text: text,
           fontSize: 18,
           maxlines: 10,

@@ -1,19 +1,19 @@
-import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
-class CustomDropdown extends StatefulWidget {
+class AppDropdown extends StatefulWidget {
   final List<dynamic> items;
   final String firstItem;
   final String hint;
   final dynamic callback;
 
-  CustomDropdown({this.items, this.callback, this.hint, this.firstItem});
+  AppDropdown({this.items, this.callback, this.hint, this.firstItem});
 
   @override
-  _CustomDropdownState createState() => _CustomDropdownState();
+  _AppDropdownState createState() => _AppDropdownState();
 }
 
-class _CustomDropdownState extends State<CustomDropdown> {
+class _AppDropdownState extends State<AppDropdown> {
   dynamic dropdownValue;
 
   @override
@@ -38,7 +38,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
         child: DropdownButton<dynamic>(
           hint: Padding(
             padding: const EdgeInsets.only(left: 16),
-            child: CustomText(
+            child: AppText(
               text: widget.hint,
               fontSize: 18,
               color: Colors.grey,

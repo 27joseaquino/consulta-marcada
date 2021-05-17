@@ -3,12 +3,12 @@ import 'package:consulta_marcada/core/models/medical_consultation.dart';
 import 'package:consulta_marcada/core/models/patient.dart';
 import 'package:consulta_marcada/core/models/room.dart';
 import 'package:consulta_marcada/data/static/data.dart';
-import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
-import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
-import 'package:consulta_marcada/ui/components/custom_alert.dart';
-import 'package:consulta_marcada/ui/components/custom_text.dart';
-import 'package:consulta_marcada/ui/components/form/custom_dropdown.dart';
-import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
+import 'package:consulta_marcada/ui/widgets/app_alert.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
+import 'package:consulta_marcada/ui/widgets/buttons/app_button.dart';
+import 'package:consulta_marcada/ui/widgets/buttons/cancel_button.dart';
+import 'package:consulta_marcada/ui/widgets/fields/app_dropdown.dart';
+import 'package:consulta_marcada/ui/widgets/fields/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -104,7 +104,7 @@ class _MedicalConsultationsRegisterScreenState
       padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       height: height,
       width: width,
-      child: CustomText(
+      child: AppText(
         text: "Marque aqui uma nova consulta.",
         fontSize: 18,
         maxlines: 2,
@@ -124,22 +124,22 @@ class _MedicalConsultationsRegisterScreenState
           physics: BouncingScrollPhysics(),
           child: Column(
             children: [
-              CustomDropdown(
+              AppDropdown(
                 hint: "Paciente",
                 items: patients,
                 callback: _selectPatient,
               ),
-              CustomDropdown(
+              AppDropdown(
                 hint: "Médico(a)",
                 items: doctors,
                 callback: _selectDoctor,
               ),
-              CustomDropdown(
+              AppDropdown(
                 hint: "Sala",
                 items: rooms,
                 callback: _selectRoom,
               ),
-              CustomTextField(
+              AppTextField(
                 hintText: "Data da consulta",
                 textInputType: TextInputType.text,
                 controller: _date,
@@ -161,7 +161,7 @@ class _MedicalConsultationsRegisterScreenState
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CancelButton(width: width * .4),
-          CustomButton(
+          AppButton(
             title: "Marcar",
             height: 50,
             fontSize: 20,
@@ -177,7 +177,7 @@ class _MedicalConsultationsRegisterScreenState
     if (!_medicalConsultationRegisterFormKey.currentState.validate()) return;
 
     if (_patient == null || _doctor == null || _room == null) {
-      CustomAlert.alert(
+      AppAlert.alert(
         context: context,
         title: "Campos vazios",
         message: "Você precisa preencher todos os campos!",

@@ -1,4 +1,4 @@
-import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
 class ErrorMessageContainer extends StatelessWidget {
@@ -19,7 +19,7 @@ class ErrorMessageContainer extends StatelessWidget {
             color: Colors.grey[500],
             size: 26,
           ),
-          CustomText(
+          AppText(
             text: text,
             fontSize: 18,
             color: Colors.grey,

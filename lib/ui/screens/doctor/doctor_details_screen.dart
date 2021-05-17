@@ -1,6 +1,6 @@
 import 'package:consulta_marcada/core/models/doctor.dart';
-import 'package:consulta_marcada/ui/components/form/custom_field.dart';
-import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
+import 'package:consulta_marcada/ui/widgets/fields/app_field.dart';
 import 'package:flutter/material.dart';
 
 class DoctorDetailsScreen extends StatefulWidget {
@@ -29,32 +29,32 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            CustomText(
+            AppText(
               text: 'Status',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(
+            AppField(
               text: widget.doctor.isActive == 1 ? "Ativo" : "Inativo",
             ),
-            CustomText(
+            AppText(
               text: 'Nome',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.doctor.name),
-            CustomText(
+            AppField(text: widget.doctor.name),
+            AppText(
               text: 'Gênero',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.doctor.genre),
-            CustomText(
+            AppField(text: widget.doctor.genre),
+            AppText(
               text: 'Especialidade',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.doctor.specialty),
+            AppField(text: widget.doctor.specialty),
           ],
         ),
       ),

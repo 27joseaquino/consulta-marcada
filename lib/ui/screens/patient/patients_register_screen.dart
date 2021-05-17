@@ -1,14 +1,14 @@
 import 'package:consulta_marcada/core/models/patient.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
-import 'package:consulta_marcada/ui/components/buttons/progress_button.dart';
-import 'package:consulta_marcada/ui/components/custom_alert.dart';
-import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
-import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/providers/address_provider.dart';
 import 'package:consulta_marcada/ui/providers/patient_provider.dart';
 import 'package:consulta_marcada/ui/screens/home/home_screen.dart';
 import 'package:consulta_marcada/ui/styles/app_colors.dart';
+import 'package:consulta_marcada/ui/widgets/app_alert.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
+import 'package:consulta_marcada/ui/widgets/buttons/cancel_button.dart';
+import 'package:consulta_marcada/ui/widgets/buttons/progress_button.dart';
+import 'package:consulta_marcada/ui/widgets/fields/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -106,7 +106,7 @@ class _PatientsRegisterScreenState extends State<PatientsRegisterScreen> {
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
       height: height,
       width: width,
-      child: CustomText(
+      child: AppText(
         text: "Cadastre aqui um novo paciente.",
         fontSize: 17.5,
         maxlines: 2,
@@ -126,37 +126,37 @@ class _PatientsRegisterScreenState extends State<PatientsRegisterScreen> {
           physics: BouncingScrollPhysics(),
           child: Column(
             children: [
-              CustomTextField(
+              AppTextField(
                 hintText: "CPF",
                 controller: _cpf,
                 maxLength: 11,
               ),
-              CustomTextField(
+              AppTextField(
                 hintText: "Nome",
                 controller: _name,
                 maxLength: 100,
               ),
-              CustomTextField(
+              AppTextField(
                 hintText: "Data de nascimento",
                 controller: _dateOfBirth,
                 maxLength: 10,
               ),
-              CustomTextField(
+              AppTextField(
                 hintText: "Gênero",
                 controller: _genre,
                 maxLength: 10,
               ),
-              CustomTextField(
+              AppTextField(
                 hintText: "Nacionalidade",
                 controller: _nationality,
                 maxLength: 20,
               ),
-              CustomTextField(
+              AppTextField(
                 hintText: "Nome da mãe",
                 controller: _motherName,
                 maxLength: 100,
               ),
-              CustomTextField(
+              AppTextField(
                 hintText: "CEP",
                 controller: _cep,
                 textInputType: TextInputType.number,
@@ -194,7 +194,7 @@ class _PatientsRegisterScreenState extends State<PatientsRegisterScreen> {
           patientProvider.clearError();
 
           Future.delayed(Duration.zero, () {
-            CustomAlert.alert(
+            AppAlert.alert(
               context: context,
               title: "Erro ao cadastrar o paciente",
               message: errorMessage,
@@ -205,7 +205,7 @@ class _PatientsRegisterScreenState extends State<PatientsRegisterScreen> {
           addressProvider.clearError();
 
           Future.delayed(Duration.zero, () {
-            CustomAlert.alert(
+            AppAlert.alert(
               context: context,
               title: "Erro ao cadastrar o paciente",
               message: errorMessage,
@@ -216,7 +216,7 @@ class _PatientsRegisterScreenState extends State<PatientsRegisterScreen> {
         return ProgressButton(
           height: 50,
           width: width,
-          content: CustomText(
+          content: AppText(
             text: "Cadastrar",
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -267,7 +267,7 @@ class _PatientsRegisterScreenState extends State<PatientsRegisterScreen> {
       bool success = await patientProvider.addPatient(patient: patient);
 
       if (success) {
-        CustomAlert.alert(
+        AppAlert.alert(
           context: context,
           title: "Sucesso!",
           message: "O cadastro do paciente foi realizado com sucesso!",

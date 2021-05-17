@@ -1,8 +1,8 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/data/static/data.dart';
-import 'package:consulta_marcada/ui/components/buttons/custom_floating_button.dart';
-import 'package:consulta_marcada/ui/components/cards/room_card.dart';
 import 'package:consulta_marcada/ui/screens/room/rooms_register_screen.dart';
+import 'package:consulta_marcada/ui/widgets/buttons/app_floating_button.dart';
+import 'package:consulta_marcada/ui/widgets/cards/room_card.dart';
 import 'package:flutter/material.dart';
 
 class RoomsListScreen extends StatefulWidget {
@@ -15,7 +15,7 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: buildListview(),
-      floatingActionButton: CustomFloatingButton(
+      floatingActionButton: AppFloatingButton(
         onPressed: () => push(context, RoomsRegisterScreen()),
       ),
     );

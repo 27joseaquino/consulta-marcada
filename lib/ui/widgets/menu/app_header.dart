@@ -1,12 +1,12 @@
 import 'package:consulta_marcada/core/models/user.dart';
 import 'package:consulta_marcada/core/utils/text_utils.dart';
-import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/providers/user_provider.dart';
 import 'package:consulta_marcada/ui/styles/app_colors.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HeaderMenu extends StatelessWidget {
+class AppHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<UserProvider>(builder: (context, userProvider, child) {
@@ -21,7 +21,7 @@ class HeaderMenu extends StatelessWidget {
               Wrap(
                 direction: Axis.vertical,
                 children: [
-                  CustomText(
+                  AppText(
                     text: treatUsername(user.name),
                     textAlign: TextAlign.center,
                     fontSize: 32,
@@ -29,7 +29,7 @@ class HeaderMenu extends StatelessWidget {
                     color: Colors.white,
                     maxlines: 2,
                   ),
-                  CustomText(
+                  AppText(
                     text: user.email ?? "",
                     fontSize: 16,
                     textAlign: TextAlign.center,

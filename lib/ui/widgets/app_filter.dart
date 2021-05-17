@@ -1,14 +1,14 @@
-import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
-class CustomFilter extends StatefulWidget {
+class AppFilter extends StatefulWidget {
   final Color color;
   final IconData icon;
   final String title;
   final dynamic addStatus;
   final dynamic removeStatus;
 
-  CustomFilter({
+  AppFilter({
     this.title,
     this.color,
     this.icon,
@@ -17,10 +17,10 @@ class CustomFilter extends StatefulWidget {
   });
 
   @override
-  _CustomFilterState createState() => _CustomFilterState();
+  _AppFilterState createState() => _AppFilterState();
 }
 
-class _CustomFilterState extends State<CustomFilter> {
+class _AppFilterState extends State<AppFilter> {
   Color fillColor;
   Color color;
   bool selected = false;
@@ -37,7 +37,7 @@ class _CustomFilterState extends State<CustomFilter> {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 5),
       child: TextButton.icon(
-        label: CustomText(
+        label: AppText(
           text: widget.title ?? "",
           fontSize: 14,
           color: color,

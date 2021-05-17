@@ -1,6 +1,6 @@
 import 'package:consulta_marcada/core/models/patient.dart';
-import 'package:consulta_marcada/ui/components/custom_text.dart';
-import 'package:consulta_marcada/ui/components/form/custom_field.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
+import 'package:consulta_marcada/ui/widgets/fields/app_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -30,56 +30,56 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            CustomText(
+            AppText(
               text: "Status",
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(
+            AppField(
               text: widget.patient.isActive == 1 ? "Ativo" : "Inativo",
             ),
-            CustomText(
+            AppText(
               text: "CPF",
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.patient.cpf),
-            CustomText(
+            AppField(text: widget.patient.cpf),
+            AppText(
               text: "Data de nascimento",
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.patient.dateOfBirth),
-            CustomText(
+            AppField(text: widget.patient.dateOfBirth),
+            AppText(
               text: "Nome",
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.patient.name),
-            CustomText(
+            AppField(text: widget.patient.name),
+            AppText(
               text: "Gênero",
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.patient.genre),
-            CustomText(
+            AppField(text: widget.patient.genre),
+            AppText(
               text: "Nacionalidade",
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.patient.nationality),
-            CustomText(
+            AppField(text: widget.patient.nationality),
+            AppText(
               text: "Nome da mãe",
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.patient.motherName),
-            CustomText(
+            AppField(text: widget.patient.motherName),
+            AppText(
               text: "Endereço",
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(
+            AppField(
               text: widget.patient.address != null
                   ? "CEP: ${widget.patient.address.cep}\n" +
                       "Logradouro: ${widget.patient.address.street}\n" +

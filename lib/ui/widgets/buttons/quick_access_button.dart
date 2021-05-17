@@ -1,5 +1,5 @@
-import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/styles/app_colors.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -44,7 +44,7 @@ class QuickAccessButton extends StatelessWidget {
                   child: Icon(icon, color: Colors.white, size: 25),
                 ),
                 Container(
-                  child: CustomText(
+                  child: AppText(
                     text: title,
                     fontSize: height * 0.15,
                     fontWeight: FontWeight.bold,

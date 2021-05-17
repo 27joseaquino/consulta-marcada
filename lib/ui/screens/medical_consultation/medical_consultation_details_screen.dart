@@ -1,6 +1,6 @@
 import 'package:consulta_marcada/core/models/medical_consultation.dart';
-import 'package:consulta_marcada/ui/components/custom_text.dart';
-import 'package:consulta_marcada/ui/components/form/custom_field.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
+import 'package:consulta_marcada/ui/widgets/fields/app_field.dart';
 import 'package:flutter/material.dart';
 
 class MedicalConsultationDetailsScreen extends StatefulWidget {
@@ -33,46 +33,46 @@ class _MedicalConsultationDetailsScreenState
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            CustomText(
+            AppText(
               text: 'Paciente',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.consultation.patient.name),
-            CustomText(
+            AppField(text: widget.consultation.patient.name),
+            AppText(
               text: 'Medico',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.consultation.doctor.name),
-            CustomText(
+            AppField(text: widget.consultation.doctor.name),
+            AppText(
               text: 'Sala',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(
+            AppField(
                 text:
                     "Nº ${widget.consultation.room.number} - ${widget.consultation.room.name}"),
-            CustomText(
+            AppText(
               text: 'Horário da Consulta ',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.consultation.date),
-            CustomText(
+            AppField(text: widget.consultation.date),
+            AppText(
               text: 'Horário de Chegada',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(
+            AppField(
               text: widget.consultation.arrivalTime ?? "Ainda não chegou",
             ),
-            CustomText(
+            AppText(
               text: 'Status',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.consultation.status),
+            AppField(text: widget.consultation.status),
           ],
         ),
       ),

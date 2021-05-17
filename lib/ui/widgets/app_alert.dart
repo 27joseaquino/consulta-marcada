@@ -1,8 +1,8 @@
-import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
-import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
+import 'package:consulta_marcada/ui/widgets/buttons/app_button.dart';
 import 'package:flutter/material.dart';
 
-class CustomAlert {
+class AppAlert {
   static Future<void> alert({
     BuildContext context,
     String title,
@@ -14,21 +14,21 @@ class CustomAlert {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: CustomText(
+          title: AppText(
             text: title,
             fontSize: 18,
             textAlign: TextAlign.justify,
             fontWeight: FontWeight.bold,
             maxlines: 2,
           ),
-          content: CustomText(
+          content: AppText(
             text: message,
             fontSize: 18,
             maxlines: 5,
             textAlign: TextAlign.start,
           ),
           actions: [
-            CustomButton(
+            AppButton(
               title: "Ok, entendi",
               onPressed: function ?? () => Navigator.pop(context),
               height: 50,
@@ -54,21 +54,21 @@ class CustomAlert {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: CustomText(
+          title: AppText(
             text: title,
             fontSize: 18,
             maxlines: 2,
             textAlign: TextAlign.justify,
             fontWeight: FontWeight.bold,
           ),
-          content: CustomText(
+          content: AppText(
             text: message,
             fontSize: 18,
             maxlines: 5,
             textAlign: TextAlign.start,
           ),
           actions: <Widget>[
-            CustomButton(
+            AppButton(
               onPressed: () => Navigator.pop(context),
               title: firstButtonTitle,
               fontSize: 18,
@@ -76,7 +76,7 @@ class CustomAlert {
               width: 100,
               hasBorder: true,
             ),
-            CustomButton(
+            AppButton(
               onPressed: function,
               title: secondButtonTitle,
               fontSize: 18,

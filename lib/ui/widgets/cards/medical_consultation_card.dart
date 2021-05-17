@@ -1,9 +1,9 @@
 import 'package:consulta_marcada/core/models/medical_consultation.dart';
 import 'package:consulta_marcada/data/static/status.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/ui/components/cards/lateral_bar.dart';
-import 'package:consulta_marcada/ui/components/cards/text_line.dart';
 import 'package:consulta_marcada/ui/screens/medical_consultation/medical_consultation_details_screen.dart';
+import 'package:consulta_marcada/ui/widgets/cards/lateral_bar.dart';
+import 'package:consulta_marcada/ui/widgets/cards/text_line.dart';
 import 'package:flutter/material.dart';
 
 class MedicalConsultationCard extends StatelessWidget {

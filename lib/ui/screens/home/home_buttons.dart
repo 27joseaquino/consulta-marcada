@@ -1,9 +1,9 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/ui/components/buttons/quick_access_button.dart';
-import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/screens/doctor/doctors_register_screen.dart';
 import 'package:consulta_marcada/ui/screens/patient/patients_register_screen.dart';
 import 'package:consulta_marcada/ui/screens/room/rooms_register_screen.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
+import 'package:consulta_marcada/ui/widgets/buttons/quick_access_button.dart';
 import 'package:flutter/material.dart';
 
 class HomeButtons extends StatefulWidget {
@@ -26,7 +26,7 @@ class _HomeButtonsState extends State<HomeButtons> {
             children: [
               Container(
                 margin: EdgeInsets.only(top: 14, left: 5),
-                child: CustomText(
+                child: AppText(
                   text: "Acesso Rápido",
                   fontSize: 18,
                   fontWeight: FontWeight.bold,

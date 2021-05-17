@@ -1,4 +1,4 @@
-import 'package:consulta_marcada/ui/components/custom_circular_progress.dart';
+import 'package:consulta_marcada/ui/widgets/app_circular_progress.dart';
 import 'package:flutter/material.dart';
 
 class ProgressButton extends StatelessWidget {
@@ -33,7 +33,7 @@ class ProgressButton extends StatelessWidget {
           backgroundColor: color,
         ),
         onPressed: function,
-        child: showProgress ? CustomCircularProgress() : content,
+        child: showProgress ? AppCircularProgress() : content,
       ),
     );
   }

@@ -1,8 +1,8 @@
 import 'package:consulta_marcada/core/models/room.dart';
-import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
-import 'package:consulta_marcada/ui/components/buttons/custom_button.dart';
-import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
-import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
+import 'package:consulta_marcada/ui/widgets/buttons/app_button.dart';
+import 'package:consulta_marcada/ui/widgets/buttons/cancel_button.dart';
+import 'package:consulta_marcada/ui/widgets/fields/app_text_field.dart';
 import 'package:flutter/material.dart';
 
 class RoomsRegisterScreen extends StatefulWidget {
@@ -95,7 +95,7 @@ class _RoomsRegisterScreenState extends State<RoomsRegisterScreen> {
       padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       height: height,
       width: width,
-      child: CustomText(
+      child: AppText(
         text: "Cadastre aqui uma nova sala da unidade de saúde.",
         fontSize: 18,
         maxlines: 2,
@@ -115,18 +115,18 @@ class _RoomsRegisterScreenState extends State<RoomsRegisterScreen> {
           physics: BouncingScrollPhysics(),
           child: Column(
             children: [
-              CustomTextField(
+              AppTextField(
                 hintText: "Número",
                 textInputType: TextInputType.number,
                 controller: _number,
                 maxLength: 50,
               ),
-              CustomTextField(
+              AppTextField(
                 hintText: "Tipo",
                 controller: _type,
                 maxLength: 50,
               ),
-              CustomTextField(
+              AppTextField(
                 hintText: "Localização",
                 controller: _localization,
                 maxLength: 100,
@@ -149,7 +149,7 @@ class _RoomsRegisterScreenState extends State<RoomsRegisterScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CancelButton(width: width * .4),
-          CustomButton(
+          AppButton(
             title: "Cadastrar",
             height: 50,
             fontSize: 20,

@@ -2,11 +2,11 @@ import 'package:consulta_marcada/core/models/medical_consultation.dart';
 import 'package:consulta_marcada/data/static/status.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/data/static/data.dart';
-import 'package:consulta_marcada/ui/components/buttons/custom_floating_button.dart';
-import 'package:consulta_marcada/ui/components/cards/medical_consultation_card.dart';
-import 'package:consulta_marcada/ui/components/custom_filter.dart';
-import 'package:consulta_marcada/ui/components/error_message_container.dart';
 import 'package:consulta_marcada/ui/screens/medical_consultation/medical_consultations_register_screen.dart';
+import 'package:consulta_marcada/ui/widgets/app_filter.dart';
+import 'package:consulta_marcada/ui/widgets/buttons/app_floating_button.dart';
+import 'package:consulta_marcada/ui/widgets/cards/medical_consultation_card.dart';
+import 'package:consulta_marcada/ui/widgets/error_message_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -56,7 +56,7 @@ class _MedicalConsultationsListScreenState
           );
         }),
       ),
-      floatingActionButton: CustomFloatingButton(
+      floatingActionButton: AppFloatingButton(
         onPressed: () => push(context, MedicalConsultationsRegisterScreen()),
       ),
     );
@@ -74,7 +74,7 @@ class _MedicalConsultationsListScreenState
         itemBuilder: (context, index) {
           return Visibility(
             visible: status[index] != "Realizada",
-            child: CustomFilter(
+            child: AppFilter(
               title: status[index],
               color: getStatusColor(status[index]),
               icon: getStatusIcon(status[index]),

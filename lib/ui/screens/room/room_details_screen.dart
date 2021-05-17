@@ -1,6 +1,6 @@
 import 'package:consulta_marcada/core/models/room.dart';
-import 'package:consulta_marcada/ui/components/form/custom_field.dart';
-import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
+import 'package:consulta_marcada/ui/widgets/fields/app_field.dart';
 import 'package:flutter/material.dart';
 
 class RoomDetailsScreen extends StatefulWidget {
@@ -29,26 +29,26 @@ class _RoomDetailsScreenState extends State<RoomDetailsScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            CustomText(
+            AppText(
               text: 'Status',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(
+            AppField(
               text: widget.room.isAvailable ? "Disponível" : "Indisponível",
             ),
-            CustomText(
+            AppText(
               text: 'Tipo de Sala',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.room.name),
-            CustomText(
+            AppField(text: widget.room.name),
+            AppText(
               text: 'Localização',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(
+            AppField(
               text: "${widget.room.localization} - Nº ${widget.room.number}",
             ),
           ],

@@ -1,8 +1,8 @@
-import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/styles/app_colors.dart';
+import 'package:consulta_marcada/ui/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatelessWidget {
+class AppButton extends StatelessWidget {
   final String title;
   final double fontSize;
   final double height;
@@ -10,7 +10,7 @@ class CustomButton extends StatelessWidget {
   final bool hasBorder;
   final Function onPressed;
 
-  CustomButton({
+  AppButton({
     @required this.title,
     @required this.onPressed,
     this.height,
@@ -33,7 +33,7 @@ class CustomButton extends StatelessWidget {
             side: BorderSide(color: AppColors.blue, width: 2),
           ),
         ),
-        child: CustomText(
+        child: AppText(
           text: title,
           color: hasBorder ? AppColors.blue : Colors.white,
           fontSize: fontSize,

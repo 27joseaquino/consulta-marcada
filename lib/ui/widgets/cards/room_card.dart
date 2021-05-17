@@ -1,8 +1,8 @@
 import 'package:consulta_marcada/core/models/room.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/ui/components/cards/text_line.dart';
-import 'package:consulta_marcada/ui/components/cards/lateral_bar.dart';
 import 'package:consulta_marcada/ui/screens/room/room_details_screen.dart';
+import 'package:consulta_marcada/ui/widgets/cards/lateral_bar.dart';
+import 'package:consulta_marcada/ui/widgets/cards/text_line.dart';
 import 'package:flutter/material.dart';
 
 class RoomCard extends StatelessWidget {
