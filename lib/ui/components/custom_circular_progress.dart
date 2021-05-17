@@ -1,4 +1,4 @@
-import 'package:consulta_marcada/ui/styles/my_colors.dart';
+import 'package:consulta_marcada/ui/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomCircularProgress extends StatelessWidget {
@@ -7,10 +7,8 @@ class CustomCircularProgress extends StatelessWidget {
     return Center(
       child: CircularProgressIndicator(
         strokeWidth: 5,
-        backgroundColor: MyColors.appColors["light-blue"],
-        valueColor: AlwaysStoppedAnimation<Color>(
-          MyColors.appColors["dark-bluee"],
-        ),
+        backgroundColor: AppColors.lightBlue,
+        valueColor: AlwaysStoppedAnimation<Color>(AppColors.darkBlue),
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:consulta_marcada/ui/components/custom_text.dart';
-import 'package:consulta_marcada/ui/styles/my_colors.dart';
+import 'package:consulta_marcada/ui/styles/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -28,7 +28,7 @@ class QuickAccessButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: function,
         style: ElevatedButton.styleFrom(
-          primary: MyColors.appColors["dark-blue"],
+          primary: AppColors.darkBlue,
         ),
         child: Container(
           alignment: Alignment(-.9, .4),

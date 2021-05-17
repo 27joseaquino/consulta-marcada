@@ -1,4 +1,4 @@
-import 'package:consulta_marcada/ui/styles/my_colors.dart';
+import 'package:consulta_marcada/ui/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomFloatingButton extends StatelessWidget {
@@ -10,7 +10,7 @@ class CustomFloatingButton extends StatelessWidget {
     return FloatingActionButton(
       child: Icon(Icons.add, color: Colors.white),
       onPressed: onPressed,
-      backgroundColor: MyColors.appColors["dark-blue"],
+      backgroundColor: AppColors.darkBlue,
     );
   }
 }

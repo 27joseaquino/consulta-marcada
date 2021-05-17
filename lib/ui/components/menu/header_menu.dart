@@ -2,7 +2,7 @@ import 'package:consulta_marcada/core/models/user.dart';
 import 'package:consulta_marcada/core/utils/text_utils.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/providers/user_provider.dart';
-import 'package:consulta_marcada/ui/styles/my_colors.dart';
+import 'package:consulta_marcada/ui/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -45,7 +45,7 @@ class HeaderMenu extends StatelessWidget {
             ],
           ),
         ),
-        decoration: BoxDecoration(color: MyColors.appColors["blue"]),
+        decoration: BoxDecoration(color: AppColors.blue),
       );
     });
   }

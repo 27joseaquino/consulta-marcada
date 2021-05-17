@@ -8,7 +8,7 @@ import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/providers/address_provider.dart';
 import 'package:consulta_marcada/ui/providers/patient_provider.dart';
 import 'package:consulta_marcada/ui/screens/home/home_screen.dart';
-import 'package:consulta_marcada/ui/styles/my_colors.dart';
+import 'package:consulta_marcada/ui/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -223,7 +223,7 @@ class _PatientsRegisterScreenState extends State<PatientsRegisterScreen> {
             textAlign: TextAlign.center,
             color: Colors.white,
           ),
-          color: MyColors.appColors["blue"],
+          color: AppColors.blue,
           function: _onClickAddPatient,
           showProgress: !patientProvider.isProcessing
               ? addressProvider.isProcessing

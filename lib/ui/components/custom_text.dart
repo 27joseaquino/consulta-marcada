@@ -1,4 +1,4 @@
-import 'package:consulta_marcada/ui/styles/my_colors.dart';
+import 'package:consulta_marcada/ui/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -29,7 +29,7 @@ class CustomText extends StatelessWidget {
       style: GoogleFonts.poppins(
         fontWeight: fontWeight ?? FontWeight.normal,
         fontSize: fontSize,
-        color: color ?? MyColors.appColors["grey"],
+        color: color ?? AppColors.grey,
       ),
       maxLines: maxlines,
       overflow: _overFlow(),

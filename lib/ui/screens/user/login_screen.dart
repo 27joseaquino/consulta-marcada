@@ -6,7 +6,7 @@ import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:consulta_marcada/ui/components/logo_consulta_marcada.dart';
 import 'package:consulta_marcada/ui/providers/user_provider.dart';
 import 'package:consulta_marcada/ui/screens/home/home_screen.dart';
-import 'package:consulta_marcada/ui/styles/my_colors.dart';
+import 'package:consulta_marcada/ui/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -155,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
-          color: MyColors.appColors["blue"],
+          color: AppColors.blue,
           showProgress: userProvider.isProcessing,
         );
       },
