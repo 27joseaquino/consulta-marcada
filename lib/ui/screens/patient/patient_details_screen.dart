@@ -4,15 +4,15 @@ import 'package:consulta_marcada/ui/components/form/custom_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class PatientDetailsPage extends StatefulWidget {
+class PatientDetailsScreen extends StatefulWidget {
   final Patient patient;
-  PatientDetailsPage(this.patient);
+  PatientDetailsScreen(this.patient);
 
   @override
-  _PatientDetailsPageState createState() => _PatientDetailsPageState();
+  _PatientDetailsScreenState createState() => _PatientDetailsScreenState();
 }
 
-class _PatientDetailsPageState extends State<PatientDetailsPage> {
+class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -2,21 +2,21 @@ import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/data/static/data.dart';
 import 'package:consulta_marcada/ui/components/buttons/custom_floating_button.dart';
 import 'package:consulta_marcada/ui/components/cards/doctor_card.dart';
-import 'package:consulta_marcada/ui/pages/doctor/doctors_register_page.dart';
+import 'package:consulta_marcada/ui/screens/doctor/doctors_register_screen.dart';
 import 'package:flutter/material.dart';
 
-class DoctorsListPage extends StatefulWidget {
+class DoctorsListScreen extends StatefulWidget {
   @override
-  _DoctorsListPageState createState() => _DoctorsListPageState();
+  _DoctorsListScreenState createState() => _DoctorsListScreenState();
 }
 
-class _DoctorsListPageState extends State<DoctorsListPage> {
+class _DoctorsListScreenState extends State<DoctorsListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: buildListview(),
       floatingActionButton: CustomFloatingButton(
-        onPressed: () => push(context, DoctorsRegisterPage()),
+        onPressed: () => push(context, DoctorsRegisterScreen()),
       ),
     );
   }

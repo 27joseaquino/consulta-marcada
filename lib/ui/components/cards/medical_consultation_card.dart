@@ -3,7 +3,7 @@ import 'package:consulta_marcada/data/static/status.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/ui/components/cards/lateral_bar.dart';
 import 'package:consulta_marcada/ui/components/cards/text_line.dart';
-import 'package:consulta_marcada/ui/pages/medical_consultation/medical_consultation_details_page.dart';
+import 'package:consulta_marcada/ui/screens/medical_consultation/medical_consultation_details_screen.dart';
 import 'package:flutter/material.dart';
 
 class MedicalConsultationCard extends StatelessWidget {
@@ -15,7 +15,7 @@ class MedicalConsultationCard extends StatelessWidget {
     return Card(
       child: InkWell(
         onTap: () {
-          push(context, MedicalConsultationDetailsPage(consultation));
+          push(context, MedicalConsultationDetailsScreen(consultation));
         },
         splashColor: getStatusColor(consultation.status).withOpacity(0.5),
         child: Row(

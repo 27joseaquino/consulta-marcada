@@ -2,7 +2,7 @@ import 'package:consulta_marcada/core/models/patient.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/ui/components/cards/lateral_bar.dart';
 import 'package:consulta_marcada/ui/components/cards/text_line.dart';
-import 'package:consulta_marcada/ui/pages/patient/patient_details_page.dart';
+import 'package:consulta_marcada/ui/screens/patient/patient_details_screen.dart';
 import 'package:flutter/material.dart';
 
 class PatientCard extends StatelessWidget {
@@ -16,7 +16,7 @@ class PatientCard extends StatelessWidget {
         splashColor: patient.isActive == 1
             ? Colors.green.withOpacity(0.5)
             : Colors.red.withOpacity(0.5),
-        onTap: () => push(context, PatientDetailsPage(patient)),
+        onTap: () => push(context, PatientDetailsScreen(patient)),
         child: Row(
           children: [
             LateralBar(

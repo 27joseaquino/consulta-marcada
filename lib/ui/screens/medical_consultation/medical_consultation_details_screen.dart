@@ -3,17 +3,17 @@ import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/components/form/custom_field.dart';
 import 'package:flutter/material.dart';
 
-class MedicalConsultationDetailsPage extends StatefulWidget {
+class MedicalConsultationDetailsScreen extends StatefulWidget {
   final MedicalConsultation consultation;
 
-  MedicalConsultationDetailsPage(this.consultation);
+  MedicalConsultationDetailsScreen(this.consultation);
 
-  _MedicalConsultationDetailsPageState createState() =>
-      _MedicalConsultationDetailsPageState();
+  _MedicalConsultationDetailsScreenState createState() =>
+      _MedicalConsultationDetailsScreenState();
 }
 
-class _MedicalConsultationDetailsPageState
-    extends State<MedicalConsultationDetailsPage> {
+class _MedicalConsultationDetailsScreenState
+    extends State<MedicalConsultationDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,11 +1,11 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/ui/components/line.dart';
 import 'package:consulta_marcada/ui/components/menu/header_menu.dart';
-import 'package:consulta_marcada/ui/pages/doctor/doctors_register_page.dart';
-import 'package:consulta_marcada/ui/pages/home/home_page.dart';
-import 'package:consulta_marcada/ui/pages/patient/patients_register_page.dart';
-import 'package:consulta_marcada/ui/pages/room/rooms_register_page.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/screens/doctor/doctors_register_screen.dart';
+import 'package:consulta_marcada/ui/screens/home/home_screen.dart';
+import 'package:consulta_marcada/ui/screens/patient/patients_register_screen.dart';
+import 'package:consulta_marcada/ui/screens/room/rooms_register_screen.dart';
 import 'package:flutter/material.dart';
 
 class Menu extends StatelessWidget {
@@ -21,7 +21,7 @@ class Menu extends StatelessWidget {
             title: "Marcar Consulta",
             onTap: () {
               Navigator.pop(context);
-              push(context, HomePage(selectedIndex: 1), replace: true);
+              push(context, HomeScreen(selectedIndex: 1), replace: true);
             },
           ),
           buildListTile(
@@ -29,7 +29,7 @@ class Menu extends StatelessWidget {
             title: "Lista de Atendimento",
             onTap: () {
               Navigator.pop(context);
-              push(context, HomePage(selectedIndex: 1), replace: true);
+              push(context, HomeScreen(selectedIndex: 1), replace: true);
             },
           ),
           Line(),
@@ -38,7 +38,7 @@ class Menu extends StatelessWidget {
             title: "Cadastrar Paciente",
             onTap: () {
               Navigator.pop(context);
-              push(context, PatientsRegisterPage());
+              push(context, PatientsRegisterScreen());
             },
           ),
           buildListTile(
@@ -46,7 +46,7 @@ class Menu extends StatelessWidget {
             title: "Lista de Pacientes",
             onTap: () {
               Navigator.pop(context);
-              push(context, HomePage(selectedIndex: 2), replace: true);
+              push(context, HomeScreen(selectedIndex: 2), replace: true);
             },
           ),
           Line(),
@@ -55,7 +55,7 @@ class Menu extends StatelessWidget {
             title: "Cadastrar Médico",
             onTap: () {
               Navigator.pop(context);
-              push(context, DoctorsRegisterPage());
+              push(context, DoctorsRegisterScreen());
             },
           ),
           buildListTile(
@@ -63,7 +63,7 @@ class Menu extends StatelessWidget {
             title: "Lista de Médicos",
             onTap: () {
               Navigator.pop(context);
-              push(context, HomePage(selectedIndex: 3), replace: true);
+              push(context, HomeScreen(selectedIndex: 3), replace: true);
             },
           ),
           Line(),
@@ -72,7 +72,7 @@ class Menu extends StatelessWidget {
             title: "Cadastrar Sala",
             onTap: () {
               Navigator.pop(context);
-              push(context, RoomsRegisterPage());
+              push(context, RoomsRegisterScreen());
             },
           ),
           buildListTile(
@@ -80,7 +80,7 @@ class Menu extends StatelessWidget {
             title: "Lista de Salas",
             onTap: () {
               Navigator.pop(context);
-              push(context, HomePage(selectedIndex: 4), replace: true);
+              push(context, HomeScreen(selectedIndex: 4), replace: true);
             },
           ),
         ],

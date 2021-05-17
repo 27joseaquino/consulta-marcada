@@ -4,25 +4,25 @@ import 'package:consulta_marcada/ui/components/buttons/custom_floating_button.da
 import 'package:consulta_marcada/ui/components/cards/patient_card.dart';
 import 'package:consulta_marcada/ui/components/custom_circular_progress.dart';
 import 'package:consulta_marcada/ui/components/error_message_container.dart';
-import 'package:consulta_marcada/ui/pages/patient/patients_register_page.dart';
 import 'package:consulta_marcada/ui/providers/address_provider.dart';
 import 'package:consulta_marcada/ui/providers/patient_provider.dart';
+import 'package:consulta_marcada/ui/screens/patient/patients_register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class PatientsListPage extends StatefulWidget {
+class PatientsListScreen extends StatefulWidget {
   @override
-  _PatientsListPageState createState() => _PatientsListPageState();
+  _PatientsListScreenState createState() => _PatientsListScreenState();
 }
 
-class _PatientsListPageState extends State<PatientsListPage> {
+class _PatientsListScreenState extends State<PatientsListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: buildBody(),
       floatingActionButton: CustomFloatingButton(
         onPressed: () {
-          push(context, PatientsRegisterPage());
+          push(context, PatientsRegisterScreen());
         },
       ),
     );

@@ -6,18 +6,18 @@ import 'package:consulta_marcada/ui/components/buttons/custom_floating_button.da
 import 'package:consulta_marcada/ui/components/cards/medical_consultation_card.dart';
 import 'package:consulta_marcada/ui/components/custom_filter.dart';
 import 'package:consulta_marcada/ui/components/error_message_container.dart';
-import 'package:consulta_marcada/ui/pages/medical_consultation/medical_consultations_register_page.dart';
+import 'package:consulta_marcada/ui/screens/medical_consultation/medical_consultations_register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class MedicalConsultationsListPage extends StatefulWidget {
+class MedicalConsultationsListScreen extends StatefulWidget {
   @override
-  _MedicalConsultationsListPageState createState() =>
-      _MedicalConsultationsListPageState();
+  _MedicalConsultationsListScreenState createState() =>
+      _MedicalConsultationsListScreenState();
 }
 
-class _MedicalConsultationsListPageState
-    extends State<MedicalConsultationsListPage> {
+class _MedicalConsultationsListScreenState
+    extends State<MedicalConsultationsListScreen> {
   List<String> _status = [];
   List<MedicalConsultation> list = [];
 
@@ -57,7 +57,7 @@ class _MedicalConsultationsListPageState
         }),
       ),
       floatingActionButton: CustomFloatingButton(
-        onPressed: () => push(context, MedicalConsultationsRegisterPage()),
+        onPressed: () => push(context, MedicalConsultationsRegisterScreen()),
       ),
     );
   }

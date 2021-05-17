@@ -1,25 +1,25 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
 import 'package:consulta_marcada/ui/components/custom_alert.dart';
 import 'package:consulta_marcada/ui/components/menu.dart';
-import 'package:consulta_marcada/ui/pages/doctor/doctors_list_page.dart';
-import 'package:consulta_marcada/ui/pages/home/home_buttons.dart';
-import 'package:consulta_marcada/ui/pages/medical_consultation/medical_consultations_list_page.dart';
-import 'package:consulta_marcada/ui/pages/patient/patients_list_page.dart';
-import 'package:consulta_marcada/ui/pages/room/rooms_list_page.dart';
-import 'package:consulta_marcada/ui/pages/user/login_page.dart';
 import 'package:consulta_marcada/ui/providers/user_provider.dart';
+import 'package:consulta_marcada/ui/screens/doctor/doctors_list_screen.dart';
+import 'package:consulta_marcada/ui/screens/home/home_buttons.dart';
+import 'package:consulta_marcada/ui/screens/medical_consultation/medical_consultations_list_screen.dart';
+import 'package:consulta_marcada/ui/screens/patient/patients_list_screen.dart';
+import 'package:consulta_marcada/ui/screens/room/rooms_list_screen.dart';
+import 'package:consulta_marcada/ui/screens/user/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   final int selectedIndex;
-  HomePage({this.selectedIndex = 0});
+  HomeScreen({this.selectedIndex = 0});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   List<Widget> _screenOptions;
   int selectedIndex;
 
@@ -29,10 +29,10 @@ class _HomePageState extends State<HomePage> {
     selectedIndex = widget.selectedIndex;
     _screenOptions = <Widget>[
       HomeButtons(),
-      MedicalConsultationsListPage(),
-      PatientsListPage(),
-      DoctorsListPage(),
-      RoomsListPage(),
+      MedicalConsultationsListScreen(),
+      PatientsListScreen(),
+      DoctorsListScreen(),
+      RoomsListScreen(),
     ];
   }
 
@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
 
             userProvider.signOut();
 
-            push(context, LoginPage(), replace: true);
+            push(context, LoginScreen(), replace: true);
           },
         );
       },

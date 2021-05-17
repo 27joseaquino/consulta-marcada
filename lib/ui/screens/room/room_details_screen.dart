@@ -1,21 +1,21 @@
-import 'package:consulta_marcada/core/models/doctor.dart';
+import 'package:consulta_marcada/core/models/room.dart';
 import 'package:consulta_marcada/ui/components/form/custom_field.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:flutter/material.dart';
 
-class DoctorDetailsPage extends StatefulWidget {
-  final Doctor doctor;
-  DoctorDetailsPage(this.doctor);
+class RoomDetailsScreen extends StatefulWidget {
+  final Room room;
+  RoomDetailsScreen(this.room);
 
   @override
-  _DoctorDetailsPageState createState() => _DoctorDetailsPageState();
+  _RoomDetailsScreenState createState() => _RoomDetailsScreenState();
 }
 
-class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
+class _RoomDetailsScreenState extends State<RoomDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Detalhes do Médico(a)")),
+      appBar: AppBar(title: Text("Detalhes da Sala")),
       body: buildBody(),
     );
   }
@@ -35,26 +35,22 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
               fontWeight: FontWeight.bold,
             ),
             CustomField(
-              text: widget.doctor.isActive == 1 ? "Ativo" : "Inativo",
+              text: widget.room.isAvailable ? "Disponível" : "Indisponível",
             ),
             CustomText(
-              text: 'Nome',
+              text: 'Tipo de Sala',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.doctor.name),
+            CustomField(text: widget.room.name),
             CustomText(
-              text: 'Gênero',
+              text: 'Localização',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            CustomField(text: widget.doctor.genre),
-            CustomText(
-              text: 'Especialidade',
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+            CustomField(
+              text: "${widget.room.localization} - Nº ${widget.room.number}",
             ),
-            CustomField(text: widget.doctor.specialty),
           ],
         ),
       ),

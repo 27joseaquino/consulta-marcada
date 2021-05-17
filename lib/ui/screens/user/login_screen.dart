@@ -4,18 +4,18 @@ import 'package:consulta_marcada/ui/components/custom_alert.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:consulta_marcada/ui/components/logo_consulta_marcada.dart';
-import 'package:consulta_marcada/ui/pages/home/home_page.dart';
 import 'package:consulta_marcada/ui/providers/user_provider.dart';
+import 'package:consulta_marcada/ui/screens/home/home_screen.dart';
 import 'package:consulta_marcada/ui/styles/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _loginFormKey = GlobalKey();
   final _email = TextEditingController();
   final _password = TextEditingController();
@@ -177,7 +177,7 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     if (success) {
-      push(context, HomePage(), replace: true);
+      push(context, HomeScreen(), replace: true);
     }
   }
 

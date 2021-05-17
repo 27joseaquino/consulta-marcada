@@ -12,14 +12,14 @@ import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class MedicalConsultationsRegisterPage extends StatefulWidget {
+class MedicalConsultationsRegisterScreen extends StatefulWidget {
   @override
-  _MedicalConsultationsRegisterPageState createState() =>
-      _MedicalConsultationsRegisterPageState();
+  _MedicalConsultationsRegisterScreenState createState() =>
+      _MedicalConsultationsRegisterScreenState();
 }
 
-class _MedicalConsultationsRegisterPageState
-    extends State<MedicalConsultationsRegisterPage> {
+class _MedicalConsultationsRegisterScreenState
+    extends State<MedicalConsultationsRegisterScreen> {
   final GlobalKey<FormState> _medicalConsultationRegisterFormKey = GlobalKey();
   final _date = TextEditingController();
   Patient _patient;

@@ -1,17 +1,18 @@
 import 'package:consulta_marcada/core/models/user.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/ui/pages/home/home_page.dart';
-import 'package:consulta_marcada/ui/pages/user/login_page.dart';
 import 'package:consulta_marcada/ui/providers/user_provider.dart';
+import 'package:consulta_marcada/ui/screens/home/home_screen.dart';
+import 'package:consulta_marcada/ui/screens/user/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SplashPage extends StatefulWidget {
+class SplashScreen extends StatefulWidget {
   @override
-  _SplashPageState createState() => _SplashPageState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
@@ -38,9 +39,9 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     Future.delayed(Duration(milliseconds: 100)).then((value) async {
       User user = await userProvider.activeUser();
       if (user != null) {
-        push(context, HomePage(), replace: true);
+        push(context, HomeScreen(), replace: true);
       } else {
-        push(context, LoginPage(), replace: true);
+        push(context, LoginScreen(), replace: true);
       }
     });
   }

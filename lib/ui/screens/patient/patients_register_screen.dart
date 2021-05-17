@@ -5,19 +5,19 @@ import 'package:consulta_marcada/ui/components/buttons/progress_button.dart';
 import 'package:consulta_marcada/ui/components/custom_alert.dart';
 import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
-import 'package:consulta_marcada/ui/pages/home/home_page.dart';
 import 'package:consulta_marcada/ui/providers/address_provider.dart';
 import 'package:consulta_marcada/ui/providers/patient_provider.dart';
+import 'package:consulta_marcada/ui/screens/home/home_screen.dart';
 import 'package:consulta_marcada/ui/styles/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class PatientsRegisterPage extends StatefulWidget {
+class PatientsRegisterScreen extends StatefulWidget {
   @override
-  _PatientsRegisterPageState createState() => _PatientsRegisterPageState();
+  _PatientsRegisterScreenState createState() => _PatientsRegisterScreenState();
 }
 
-class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
+class _PatientsRegisterScreenState extends State<PatientsRegisterScreen> {
   final GlobalKey<FormState> _registerPatientFormKey = GlobalKey();
   final _cpf = TextEditingController();
   final _name = TextEditingController();
@@ -279,7 +279,7 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
             _nationality.text = "";
             _motherName.text = "";
 
-            push(context, HomePage(selectedIndex: 2), replace: true);
+            push(context, HomeScreen(selectedIndex: 2), replace: true);
           },
         );
       }
