@@ -1,13 +1,13 @@
 import 'package:consulta_marcada/core/models/patient.dart';
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/ui/bloc/address_bloc.dart';
-import 'package:consulta_marcada/ui/bloc/patient_bloc.dart';
 import 'package:consulta_marcada/ui/components/buttons/cancel_button.dart';
 import 'package:consulta_marcada/ui/components/buttons/progress_button.dart';
 import 'package:consulta_marcada/ui/components/custom_alert.dart';
 import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/pages/home/home_page.dart';
+import 'package:consulta_marcada/ui/providers/address_provider.dart';
+import 'package:consulta_marcada/ui/providers/patient_provider.dart';
 import 'package:consulta_marcada/ui/styles/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -185,12 +185,13 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
     );
   }
 
-  Consumer2<PatientBloc, AddressBloc> patientRegisterButton({double width}) {
-    return Consumer2<PatientBloc, AddressBloc>(
-      builder: (context, patientBloc, addressBloc, child) {
-        if (patientBloc.error != null) {
-          String errorMessage = patientBloc.error;
-          patientBloc.clearError();
+  Consumer2<PatientProvider, AddressProvider> patientRegisterButton(
+      {double width}) {
+    return Consumer2<PatientProvider, AddressProvider>(
+      builder: (context, patientProvider, addressProvider, child) {
+        if (patientProvider.error != null) {
+          String errorMessage = patientProvider.error;
+          patientProvider.clearError();
 
           Future.delayed(Duration.zero, () {
             CustomAlert.alert(
@@ -199,9 +200,9 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
               message: errorMessage,
             );
           });
-        } else if (addressBloc.error != null) {
-          String errorMessage = addressBloc.error;
-          addressBloc.clearError();
+        } else if (addressProvider.error != null) {
+          String errorMessage = addressProvider.error;
+          addressProvider.clearError();
 
           Future.delayed(Duration.zero, () {
             CustomAlert.alert(
@@ -224,9 +225,9 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
           ),
           color: MyColors.appColors["blue"],
           function: _onClickAddPatient,
-          showProgress: !patientBloc.isProcessing
-              ? addressBloc.isProcessing
-              : patientBloc.isProcessing,
+          showProgress: !patientProvider.isProcessing
+              ? addressProvider.isProcessing
+              : patientProvider.isProcessing,
         );
       },
     );
@@ -235,8 +236,11 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
   _onClickAddPatient() async {
     if (!_registerPatientFormKey.currentState.validate()) return;
 
-    PatientBloc patientBloc = Provider.of<PatientBloc>(context, listen: false);
-    AddressBloc addressBloc = Provider.of<AddressBloc>(context, listen: false);
+    PatientProvider patientProvider =
+        Provider.of<PatientProvider>(context, listen: false);
+
+    AddressProvider addressProvider =
+        Provider.of<AddressProvider>(context, listen: false);
 
     String cpf = _cpf.text;
     String name = _name.text;
@@ -246,7 +250,8 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
     String motherName = _motherName.text;
     int cep = int.parse(_cep.text);
 
-    bool hasAddress = await addressBloc.addAddress(patientCPF: cpf, cep: cep);
+    bool hasAddress =
+        await addressProvider.addAddress(patientCPF: cpf, cep: cep);
 
     if (hasAddress) {
       Patient patient = Patient(
@@ -259,7 +264,7 @@ class _PatientsRegisterPageState extends State<PatientsRegisterPage> {
         1,
       );
 
-      bool success = await patientBloc.addPatient(patient: patient);
+      bool success = await patientProvider.addPatient(patient: patient);
 
       if (success) {
         CustomAlert.alert(

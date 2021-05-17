@@ -1,7 +1,7 @@
 import 'package:consulta_marcada/services/service_response.dart';
 import 'package:flutter/material.dart';
 
-abstract class AbstractBloc extends ChangeNotifier {
+abstract class AbstractProvider extends ChangeNotifier {
   bool _isProcessing = false;
   String _error;
 

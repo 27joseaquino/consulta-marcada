@@ -2,9 +2,9 @@ import 'package:consulta_marcada/core/models/address.dart';
 import 'package:consulta_marcada/core/models/patient.dart';
 import 'package:consulta_marcada/services/implementation/patient_service.dart';
 import 'package:consulta_marcada/services/service_response.dart';
-import 'package:consulta_marcada/ui/bloc/abstract_bloc.dart';
+import 'package:consulta_marcada/ui/providers/abstract_provider.dart';
 
-class PatientBloc extends AbstractBloc {
+class PatientProvider extends AbstractProvider {
   final _patientService = PatientService();
   List<Patient> _patients;
 

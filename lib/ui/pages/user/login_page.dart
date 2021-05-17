@@ -1,11 +1,11 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/ui/bloc/user_bloc.dart';
 import 'package:consulta_marcada/ui/components/buttons/progress_button.dart';
 import 'package:consulta_marcada/ui/components/custom_alert.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
 import 'package:consulta_marcada/ui/components/form/custom_text_field.dart';
 import 'package:consulta_marcada/ui/components/logo_consulta_marcada.dart';
 import 'package:consulta_marcada/ui/pages/home/home_page.dart';
+import 'package:consulta_marcada/ui/providers/user_provider.dart';
 import 'package:consulta_marcada/ui/styles/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -129,12 +129,12 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Consumer<UserBloc> loginButton() {
-    return Consumer<UserBloc>(
-      builder: (context, userBloc, child) {
-        if (userBloc.error != null) {
-          String errorMessage = userBloc.error;
-          userBloc.clearError();
+  Consumer<UserProvider> loginButton() {
+    return Consumer<UserProvider>(
+      builder: (context, userProvider, child) {
+        if (userProvider.error != null) {
+          String errorMessage = userProvider.error;
+          userProvider.clearError();
 
           Future.delayed(Duration.zero, () {
             CustomAlert.alert(
@@ -156,7 +156,7 @@ class _LoginPageState extends State<LoginPage> {
             color: Colors.white,
           ),
           color: MyColors.appColors["blue"],
-          showProgress: userBloc.isProcessing,
+          showProgress: userProvider.isProcessing,
         );
       },
     );
@@ -165,12 +165,13 @@ class _LoginPageState extends State<LoginPage> {
   _onClickLogin() async {
     if (!_loginFormKey.currentState.validate()) return;
 
-    UserBloc userBloc = Provider.of<UserBloc>(context, listen: false);
+    UserProvider userProvider =
+        Provider.of<UserProvider>(context, listen: false);
 
     String email = _email.text.trim();
     String password = _password.text.trim();
 
-    bool success = await userBloc.signInWithEmailAndPassword(
+    bool success = await userProvider.signInWithEmailAndPassword(
       email: email,
       password: password,
     );

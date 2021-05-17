@@ -1,9 +1,9 @@
 import 'package:consulta_marcada/core/models/user.dart';
 import 'package:consulta_marcada/services/implementation/user_service.dart';
 import 'package:consulta_marcada/services/service_response.dart';
-import 'package:consulta_marcada/ui/bloc/abstract_bloc.dart';
+import 'package:consulta_marcada/ui/providers/abstract_provider.dart';
 
-class UserBloc extends AbstractBloc {
+class UserProvider extends AbstractProvider {
   final _userService = UserService();
   User _user;
 

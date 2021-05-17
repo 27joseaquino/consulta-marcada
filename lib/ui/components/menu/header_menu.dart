@@ -1,7 +1,7 @@
 import 'package:consulta_marcada/core/models/user.dart';
 import 'package:consulta_marcada/core/utils/text_utils.dart';
-import 'package:consulta_marcada/ui/bloc/user_bloc.dart';
 import 'package:consulta_marcada/ui/components/custom_text.dart';
+import 'package:consulta_marcada/ui/providers/user_provider.dart';
 import 'package:consulta_marcada/ui/styles/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,8 +9,8 @@ import 'package:provider/provider.dart';
 class HeaderMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<UserBloc>(builder: (context, userBloc, child) {
-      User user = userBloc.user;
+    return Consumer<UserProvider>(builder: (context, userProvider, child) {
+      User user = userProvider.user;
       return DrawerHeader(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 10),

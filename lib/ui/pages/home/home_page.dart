@@ -1,5 +1,4 @@
 import 'package:consulta_marcada/core/utils/navigator.dart';
-import 'package:consulta_marcada/ui/bloc/user_bloc.dart';
 import 'package:consulta_marcada/ui/components/custom_alert.dart';
 import 'package:consulta_marcada/ui/components/menu.dart';
 import 'package:consulta_marcada/ui/pages/doctor/doctors_list_page.dart';
@@ -8,6 +7,7 @@ import 'package:consulta_marcada/ui/pages/medical_consultation/medical_consultat
 import 'package:consulta_marcada/ui/pages/patient/patients_list_page.dart';
 import 'package:consulta_marcada/ui/pages/room/rooms_list_page.dart';
 import 'package:consulta_marcada/ui/pages/user/login_page.dart';
+import 'package:consulta_marcada/ui/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -85,9 +85,10 @@ class _HomePageState extends State<HomePage> {
           firstButtonTitle: "Não",
           secondButtonTitle: "Sim",
           function: () {
-            UserBloc userBloc = Provider.of<UserBloc>(context, listen: false);
+            UserProvider userProvider =
+                Provider.of<UserProvider>(context, listen: false);
 
-            userBloc.signOut();
+            userProvider.signOut();
 
             push(context, LoginPage(), replace: true);
           },
