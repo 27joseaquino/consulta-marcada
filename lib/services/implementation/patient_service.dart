@@ -4,6 +4,7 @@ import 'package:consulta_marcada/services/abstraction/patient_abstract_service.d
 import 'package:consulta_marcada/services/service_response.dart';
 
 class PatientService extends PatientAbstractService {
+  @override
   Future<ServiceResponse<bool>> addPatient({Patient patient}) async {
     ServiceResponse<bool> result = ServiceResponse<bool>();
     try {
@@ -17,6 +18,7 @@ class PatientService extends PatientAbstractService {
     return result;
   }
 
+  @override
   Future<ServiceResponse<List<Patient>>> fetchPatients() async {
     ServiceResponse<List<Patient>> result = ServiceResponse<List<Patient>>();
     try {

@@ -1,7 +1,11 @@
 import 'package:consulta_marcada/core/models/patient.dart';
 import 'package:consulta_marcada/services/abstraction/abstract_service.dart';
+import 'package:consulta_marcada/services/service_response.dart';
 
-class PatientAbstractService extends AbstractService {
+abstract class PatientAbstractService extends AbstractService {
+  Future<ServiceResponse<bool>> addPatient({Patient patient});
+  Future<ServiceResponse<List<Patient>>> fetchPatients();
+
   @override
   List responseToObjectList(List json) {
     List<Patient> patients = [];

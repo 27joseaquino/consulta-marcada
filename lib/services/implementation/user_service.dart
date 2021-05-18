@@ -5,13 +5,16 @@ import 'package:consulta_marcada/services/implementation/shared_preferences_serv
 import 'package:consulta_marcada/services/service_response.dart';
 
 class UserService extends UserAbstractService {
+  @override
   Future<User> activeUser() async {
     User user = await SharedPreferencesService().activeUser();
     return user;
   }
 
+  @override
   void signOut() => SharedPreferencesService().clearUserPrefs();
 
+  @override
   Future<ServiceResponse<User>> signInWithEmailAndPassword({
     String email,
     String password,
