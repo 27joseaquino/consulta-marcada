@@ -76,9 +76,7 @@ Obs.: O endereço é um objeto com a seguinte estrutura:
 
 - Login com e-mail e senha; `Para fazer login use: E-mail: joao@gmail.com - Senha: 12345678`
 - Listagem de Pacientes;
-- Listagem de Médicos;
 - Cadastro de Pacientes;
-- Cadastro de Médicos.
 
 ## Organização de camadas da aplicação:
 
