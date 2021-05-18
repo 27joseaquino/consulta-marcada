@@ -1,7 +1,11 @@
 import 'package:consulta_marcada/core/models/address.dart';
 import 'package:consulta_marcada/services/abstraction/abstract_service.dart';
+import 'package:consulta_marcada/services/service_response.dart';
 
-class AddressAbstractService extends AbstractService {
+abstract class AddressAbstractService extends AbstractService {
+  Future<ServiceResponse<bool>> addAddress({String patientCPF, int cep});
+  Future<ServiceResponse<List<Address>>> fetchAddressList();
+
   @override
   List responseToObjectList(List json) {
     List<Address> addressList = [];

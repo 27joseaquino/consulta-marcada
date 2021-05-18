@@ -1,13 +1,12 @@
-import 'package:consulta_marcada/ui/styles/my_colors.dart';
+import 'package:consulta_marcada/ui/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData lightTheme = ThemeData(
-  primaryColor: MyColors.appColors["blue"],
-  accentColor: MyColors.appColors["light-blue"],
+  primaryColor: AppColors.blue,
   scaffoldBackgroundColor: Colors.grey[200],
   appBarTheme: AppBarTheme(
-    color: MyColors.appColors["blue"],
+    color: AppColors.blue,
     textTheme: TextTheme(
       headline6: GoogleFonts.poppins(
         fontSize: 25,
@@ -23,7 +22,7 @@ ThemeData lightTheme = ThemeData(
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     showUnselectedLabels: true,
     elevation: 20,
-    selectedItemColor: MyColors.appColors["blue"],
-    unselectedItemColor: MyColors.appColors["grey"],
+    selectedItemColor: AppColors.blue,
+    unselectedItemColor: AppColors.grey,
   ),
 );
