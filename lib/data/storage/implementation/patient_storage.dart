@@ -1,8 +1,9 @@
 import 'package:consulta_marcada/core/models/patient.dart';
 import 'package:consulta_marcada/data/database/database.dart';
+import 'package:consulta_marcada/data/storage/abstraction/patient_abstract_storage.dart';
 import 'package:sqflite/sqflite.dart';
 
-class PatientStorage {
+class PatientStorage extends PatientAbstractStorage {
   final String _tableName = 'patient';
 
   final List<String> columns = [
@@ -15,6 +16,7 @@ class PatientStorage {
     'is_active'
   ];
 
+  @override
   Future<List<Map>> fetchPatients() async {
     Database db = await ConsultaMarcadaDB().database;
 
@@ -27,6 +29,7 @@ class PatientStorage {
     return response;
   }
 
+  @override
   Future<int> addPatient({Patient patient}) async {
     Database db = await ConsultaMarcadaDB().database;
 

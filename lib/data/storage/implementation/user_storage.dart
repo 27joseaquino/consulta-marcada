@@ -1,7 +1,9 @@
 import 'package:consulta_marcada/data/database/database.dart';
+import 'package:consulta_marcada/data/storage/abstraction/user_abstract_storage.dart';
 import 'package:sqflite/sqflite.dart';
 
-class UserStorage {
+class UserStorage extends UserAbstractStorage {
+  @override
   Future<List<Map>> signInWithEmailAndPassword({
     String email,
     String password,

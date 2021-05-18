@@ -1,5 +1,5 @@
 import 'package:consulta_marcada/core/models/user.dart';
-import 'package:consulta_marcada/data/storage/user_storage.dart';
+import 'package:consulta_marcada/data/storage/implementation/user_storage.dart';
 import 'package:consulta_marcada/services/abstraction/user_abstract_service.dart';
 import 'package:consulta_marcada/services/implementation/shared_preferences_service.dart';
 import 'package:consulta_marcada/services/service_response.dart';

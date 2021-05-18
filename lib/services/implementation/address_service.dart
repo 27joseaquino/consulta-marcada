@@ -1,6 +1,6 @@
 import 'package:consulta_marcada/core/models/address.dart';
 import 'package:consulta_marcada/data/api/address_api.dart';
-import 'package:consulta_marcada/data/storage/address_storage.dart';
+import 'package:consulta_marcada/data/storage/implementation/address_storage.dart';
 import 'package:consulta_marcada/services/abstraction/address_abstract_service.dart';
 import 'package:consulta_marcada/services/service_response.dart';
 

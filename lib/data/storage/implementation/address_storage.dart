@@ -1,8 +1,9 @@
 import 'package:consulta_marcada/core/models/address.dart';
 import 'package:consulta_marcada/data/database/database.dart';
+import 'package:consulta_marcada/data/storage/abstraction/address_abstract_storage.dart';
 import 'package:sqflite/sqflite.dart';
 
-class AddressStorage {
+class AddressStorage extends AddressAbstractStorage {
   final String _tableName = 'address';
 
   final List<String> columns = [
@@ -15,6 +16,7 @@ class AddressStorage {
     'uf'
   ];
 
+  @override
   Future<List<Map>> fetchAddressList() async {
     Database db = await ConsultaMarcadaDB().database;
 
@@ -27,6 +29,7 @@ class AddressStorage {
     return response;
   }
 
+  @override
   Future<int> addAddress({Address address}) async {
     Database db = await ConsultaMarcadaDB().database;
 

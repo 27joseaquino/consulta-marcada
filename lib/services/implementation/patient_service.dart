@@ -1,5 +1,5 @@
 import 'package:consulta_marcada/core/models/patient.dart';
-import 'package:consulta_marcada/data/storage/patient_storage.dart';
+import 'package:consulta_marcada/data/storage/implementation/patient_storage.dart';
 import 'package:consulta_marcada/services/abstraction/patient_abstract_service.dart';
 import 'package:consulta_marcada/services/service_response.dart';
 
